@@ -24,17 +24,17 @@ public class FXMLController {
     private TextArea txtResult;
 
     @FXML
-    void handleButtonAction(ActionEvent event) {
-    	List<Ristorante> ristoranti = this.model.getRistoranti();       	
+    void HandleButtonAction(ActionEvent event) {
 
-    	for(Ristorante r : ristoranti) {    		
+    	List<Ristorante> ristoranti = this.model.getRistoranti();
+    	
+    	for(Ristorante r : ristoranti) {
     		txtResult.appendText(r.toString()+"\n");
-    	}  	
-
+    	}
     }
     
     public void setModel(Model model) {
-    	this.model = model;    	
+    	this.model = model;
     }
 
     @FXML
