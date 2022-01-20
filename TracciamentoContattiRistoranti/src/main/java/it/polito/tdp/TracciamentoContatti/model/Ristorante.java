@@ -1,5 +1,7 @@
 package it.polito.tdp.TracciamentoContatti.model;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 import it.polito.tdp.TracciamentoContatti.model.Ristorante;
@@ -13,13 +15,16 @@ public class Ristorante {
 	private String provincia;
 	private String telefono;
 	
-	public Ristorante(String codice, String nome, String indirizzo, String citta, String provincia, String telefono) {	
-		this.codice = codice;
+	private List<Sala> sale = new LinkedList<>();	
+	private List<Cliente> clienti = new LinkedList<>();
+	
+	public Ristorante(String codice, String nome, String indirizzo, String citta, String provincia, String telefono) {
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.citta = citta;
 		this.provincia = provincia;
 		this.telefono = telefono;
+		this.sale = sale;
 	}
 
 	public String getCodice() {
@@ -70,6 +75,22 @@ public class Ristorante {
 		this.telefono = telefono;
 	}
 
+	public List<Sala> getSale() {
+		return sale;
+	}
+
+	public void setSale(List<Sala> sale) {
+		this.sale = sale;
+	}
+
+	public List<Cliente> getClienti() {
+		return clienti;
+	}
+
+	public void setClienti(List<Cliente> clienti) {
+		this.clienti = clienti;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(codice);
@@ -89,12 +110,13 @@ public class Ristorante {
 
 	@Override
 	public String toString() {
-		return codice 	+ " " +	 nome + " " + indirizzo + " " + citta
-				+ " " + provincia + " " + telefono;
+		return "Ristorante [codice=" + codice + ", nome=" + nome + ", indirizzo=" + indirizzo + ", citta=" + citta
+				+ ", provincia=" + provincia + ", telefono=" + telefono + ", sale=" + sale + ", clienti=" + clienti
+				+ "]";
 	}
 	
 	
-	
 
+	
 }
 

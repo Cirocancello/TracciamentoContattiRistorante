@@ -1,5 +1,7 @@
 package it.polito.tdp.TracciamentoContatti.model;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 import it.polito.tdp.TracciamentoContatti.model.Sala;
@@ -10,10 +12,14 @@ public class Sala {
 	private Integer codiceRistorante;
 	private String nome;
 	
+	private List<Tavolo> tavoli = new LinkedList<>();
+	private List<Cameriere> camerieri = new LinkedList<>();
+	
 	public Sala(Integer codice, Integer codiceRistorante, String nome) {
+
 		this.codice = codice;
 		this.codiceRistorante = codiceRistorante;
-		this.nome = nome;
+		this.nome = nome;		
 	}
 
 	public Integer getCodice() {
@@ -24,7 +30,7 @@ public class Sala {
 		this.codice = codice;
 	}
 
-	public Integer etCodiceRistorante() {
+	public Integer getCodiceRistorante() {
 		return codiceRistorante;
 	}
 
@@ -39,10 +45,26 @@ public class Sala {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
+	public List<Tavolo> getTavoli() {
+		return tavoli;
+	}
+
+	public void setTavoli(List<Tavolo> tavoli) {
+		this.tavoli = tavoli;
+	}
+
+	public List<Cameriere> getCamerieri() {
+		return camerieri;
+	}
+
+	public void setCamerieri(List<Cameriere> camerieri) {
+		this.camerieri = camerieri;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(codice);
+		return Objects.hash(codice, codiceRistorante);
 	}
 
 	@Override
@@ -54,19 +76,15 @@ public class Sala {
 		if (getClass() != obj.getClass())
 			return false;
 		Sala other = (Sala) obj;
-		return Objects.equals(codice, other.codice);
+		return Objects.equals(codice, other.codice) && Objects.equals(codiceRistorante, other.codiceRistorante);
 	}
 
 	@Override
 	public String toString() {
-		return "Sala codice=" + codice + ", codiceRistorante=" + codiceRistorante 
-				+ ", nome=" + nome;
+		return "Sala [codice=" + codice + ", codiceRistorante=" + codiceRistorante + ", nome=" + nome + ", tavoli="
+				+ tavoli + ", camerieri=" + camerieri + "]";
 	}
-
 	
 	
 	
-	
-
 }
-
