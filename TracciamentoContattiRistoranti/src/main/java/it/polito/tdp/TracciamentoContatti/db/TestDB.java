@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.sql.Date;
 import it.polito.tdp.TracciamentoContatti.model.Cliente;
 import it.polito.tdp.TracciamentoContatti.model.Ristorante;
@@ -40,7 +41,7 @@ import it.polito.tdp.TracciamentoContatti.model.Tavolo;
 			System.out.println(codiceRistorante);
 			
 			//cerco tavoli liberi nel ristorante selezioneto e li stampo
-			LocalDate data1 = LocalDate.of(2022, 01, 18);
+			LocalDate data1 = LocalDate.of(2022, 01, 21);
 			List<Tavolo> tavoliLiberi = dao.cercaTavoli(codiceRistorante, Date.valueOf(data1));
 			for(Tavolo tav : tavoliLiberi) {
 				System.out.println(tav);
@@ -50,13 +51,46 @@ import it.polito.tdp.TracciamentoContatti.model.Tavolo;
 		//LocalDate data1 = LocalDate.of(2022, 01, 18); creo oggetto data e con valueof la converto nel formato sql
 			//Date.valueOf(data);
 	
-			
-		// int codicePrenotazione = dao.prenotazione(dao, "La figlia del marinaio","Grinaldi", "Salvatore", "3463474887", 4, Date.valueOf(data1));
+		//effettuo una prenotazione e ricavo il relativo codice assegnato 	
+		  //int codicePrenotazione = dao.prenotazione(dao, "La figlia del marinaio","Cancello", "Ciro", "3463474887", 4, Date.valueOf(data1));
 		// System.out.println(codicePrenotazione);			
-		//	int codicePrenotazione = 25;// la devo togliere perche la ricavo prima
-		   // dao.inserisciClienti(codicePrenotazione, "Cancello", "Luca", "CL123LC", "3563652556",  Date.valueOf(data));
-		   // dao.inserisciClienti(codicePrenotazione, "Cancello", "Vincenzo", "CV587VC", "3563652556",  Date.valueOf(data));
-		   // dao.inserisciClienti(codicePrenotazione, "Cancello", "Nadia", "CN123NC", "3563652556",  Date.valueOf(data));
+//			int codicePrenotazione = 26;// la devo togliere perche la ricavo prima
+//			int numeroPersone = dao.cercaNumeroPersone(codicePrenotazione); // recupero il codice del tavolo 
+//			int codicet = dao.cercaCodiceTavoloPrenotato(codicePrenotazione); //recupero il numero del tavolo assegnato	
+//			System.out.println(codicePrenotazione+ " "+ numeroPersone+ " " +codicet);
+//			
+//			String cognome = null;
+//			String nome = null;
+//			String cartaIdentita1 = null;
+//			String telefono = null;
+//			
+//			Scanner input = new Scanner(System.in);
+//			
+//			int cont = 1;
+//			System.out.println("clienti da inserire "+numeroPersone);
+//			
+//			while  (numeroPersone > 0) {
+//				
+//				System.out.println("Inserisci il cliente n.ro "+ cont);
+//				
+//				System.out.print("cognome " );
+//				cognome = input.nextLine();
+//				System.out.print("nome " );
+//				nome = input.nextLine();
+//				System.out.print("carta identita " );
+//				cartaIdentita = input.nextLine();
+//				System.out.print("telefono " );
+//				telefono = input.nextLine();				
+//				dao.inserisciCliente(codicet, cognome, nome, cartaIdentita, telefono,  Date.valueOf(data1));
+//				
+//				numeroPersone--;
+//				cont++;
+//			}
+//			System.out.println("Tavolata completata, buon apetito");
+			//dao.inserisciCliente(codicePrenotazione, "Cancello", "Ciro", "CC589CC", "3463474887",  Date.valueOf(data1));
+		   // dao.cliente(codicePrenotazione, "Cancello", "Luca", "CL123LC", "3563652556",  Date.valueOf(data1));
+		   // dao.cliente(codicePrenotazione, "Cancello", "Vincenzo", "CV587VC", "3563652556",  Date.valueOf(data1));
+		   // dao.cliente(codicePrenotazione, "Cancello", "Giovanni", "GN123GC", "3545898856",  Date.valueOf(data1));
 		    
 		}	
 		

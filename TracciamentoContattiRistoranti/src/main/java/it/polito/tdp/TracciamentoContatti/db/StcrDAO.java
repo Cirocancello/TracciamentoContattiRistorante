@@ -288,7 +288,7 @@ public class StcrDAO {
 	}
 
 	
-	private int cercaCodiceTavoloPrenotato(int codiceP) {
+	public int cercaCodiceTavoloPrenotato(int codiceP) {
 		
 		  String sql1 = "SELECT CodiceTavolo "
 	  		       + "FROM tavoliprenotati "
@@ -296,7 +296,7 @@ public class StcrDAO {
 		  
 		  int codTP=0;
 		  
-	try {
+	 try {
 			Connection conn = DBConnect.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql1);				
 			
@@ -317,11 +317,10 @@ public class StcrDAO {
 	   return codTP;	
 	}
 	
-	public void inserisciClienti(int codicePrenotazione, String cognome, String nome, String numCartaIdentita, String telefono,
-			Date data) {			
+
 	
-		int codicet = cercaCodiceTavoloPrenotato(codicePrenotazione);
-		if(codicet!=0) {
+	public void inserisciCliente(int codicet, String cognome, String nome, String numCartaIdentita, String telefono,
+			Date data) {			
 			
 			String sql = "INSERT INTO clienti (CodiceTavolo, Cognome, Nome, NumeroCartaIdentita, Telefono, DATA) "
 					+ "VALUES ('"+codicet+"','"+cognome+"','"+nome+"','"+numCartaIdentita+"','"+telefono+"','"+data+"' ) "; 
@@ -336,9 +335,33 @@ public class StcrDAO {
 			   conn.close();			
 			} catch (SQLException e) {
 				throw new RuntimeException("Database error in insert into prenotazioni", e) ;
-			}		
-		
-		}
+			}				
 	}
+
+	
+	
+	public int cercaNumeroPersone(int codicePrenotazione) {
+		
+		String sql = "SELECT NumeroPersone "
+				+ "FROM prenotazioni "
+				+ "WHERE codice = ? ";
+		
+	    try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);				
+				
+			st.setInt(1,codicePrenotazione);			
+			ResultSet res = st.executeQuery();	
+				
+			res.first();
+			int numP = res.getInt("NumeroPersone");
+			return numP;
+	   
+	  } catch (SQLException e) {
+	  	 throw new RuntimeException("Database error in read into prenotazioni", e) ;
+	  }		
+   }
+	    
+
 }
 	
