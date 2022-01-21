@@ -27,6 +27,7 @@ import it.polito.tdp.TracciamentoContatti.model.Tavolo;
 			// trovo il codice del ristorante in cui voglio prenotare
 			StcrDAO dao = new StcrDAO();
 			
+		
 			String cartaIdentita = "AC675CA";	
 			LocalDate data = LocalDate.of(2022, 01, 17);
 			
@@ -42,7 +43,7 @@ import it.polito.tdp.TracciamentoContatti.model.Tavolo;
 			
 			//cerco tavoli liberi nel ristorante selezioneto e li stampo
 			LocalDate data1 = LocalDate.of(2022, 01, 21);
-			List<Tavolo> tavoliLiberi = dao.cercaTavoli(codiceRistorante, Date.valueOf(data1));
+			List<Tavolo> tavoliLiberi = dao.getTavoliDisponibili(codiceRistorante, Date.valueOf(data1),4);
 			for(Tavolo tav : tavoliLiberi) {
 				System.out.println(tav);
 			}
@@ -52,7 +53,7 @@ import it.polito.tdp.TracciamentoContatti.model.Tavolo;
 			//Date.valueOf(data);
 	
 		//effettuo una prenotazione e ricavo il relativo codice assegnato 	
-		  //int codicePrenotazione = dao.prenotazione(dao, "La figlia del marinaio","Cancello", "Ciro", "3463474887", 4, Date.valueOf(data1));
+		    int codicePrenotazione = dao.creaPrenotazione(2,"Cancello", "Ciro", "3463474887", 4, Date.valueOf(data1));
 		// System.out.println(codicePrenotazione);			
 //			int codicePrenotazione = 26;// la devo togliere perche la ricavo prima
 //			int numeroPersone = dao.cercaNumeroPersone(codicePrenotazione); // recupero il codice del tavolo 

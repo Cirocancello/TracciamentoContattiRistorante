@@ -10,8 +10,14 @@ import java.util.List;
 import it.polito.tdp.TracciamentoContatti.db.DBConnect;
 import it.polito.tdp.TracciamentoContatti.model.Ristorante;
 
+
 public class RistoranteDAO {
 	
+	/**
+	 * visualizzo informazioni sui ristoranti in base dati
+	 * 
+	 * @return informazioni ristoranti
+	 */
 	public List<Ristorante> readRistoranti() {		
 			
 			String sql = "SELECT * "
@@ -40,6 +46,8 @@ public class RistoranteDAO {
 
 	}
 	
+	
+
 	
 }			
 	
