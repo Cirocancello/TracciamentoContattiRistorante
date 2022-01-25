@@ -15,38 +15,51 @@ import it.polito.tdp.TracciamentoContatti.model.Tavolo;
 
 public class StcrDAO {
 
-	/**
-	 * cerca il codice del ristorante in cui voglio effettuare la prenotazione
-	 * riceve come parametro il nome del ristorante
-	 * 
-	 * @param nome nome del ristorante
-	 * @return ritorna il codice del ristorante
-	 */
-	public int getCodiceRistorante(String nome) {
+	public int creaPrenotazione(int codiceRistorante, String cognome, String nome, String telefono, int numeroPersone,
+			Date data) {
 
-		String sql = "SELECT codice " + "FROM ristoranti " + "WHERE nome = ? ";
+		int codicePrenotazione = 0;
 
-		try {
-			Connection conn = DBConnect.getConnection();
-			PreparedStatement st = conn.prepareStatement(sql);
+		List<Tavolo> tavoliLiberi = getTavoliDisponibili(codiceRistorante, data, numeroPersone);
 
-			st.setString(1, nome);
-			ResultSet res = st.executeQuery();
+		if (tavoliLiberi.size() > 0) {
+			int codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
+			System.out.println("Tavolo prenotato per il : " + data + ", codice tavolo assegnato "
+					+ tavoliLiberi.get(0).getCodice());
 
-			res.first();
-			int codiceRistorante = res.getInt("codice");
+			String sql = "INSERT INTO prenotazioni (CodiceTavolo, Cognome,Nome,Telefono,NumeroPersone, DATA) VALUES ( ?, ?, ?, ?, ? ,?) ";
 
-			res.close();
-			st.close();
-			conn.close();
+			try {
+				Connection conn = DBConnect.getConnection();
+				PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				st.setInt(1, codiceTavoloDisponibile );
+				st.setString(2, cognome);
+				st.setString(3, nome);
+				st.setString(4, telefono);
+				st.setInt(5, numeroPersone);
+				st.setDate(6, data);
 
-			return codiceRistorante;
+				st.executeUpdate();
+				try (ResultSet generatedKeys = st.getGeneratedKeys()) {
+					if (generatedKeys.next()) {
+						codicePrenotazione = generatedKeys.getInt(1);
+					} else {
+						throw new SQLException("errore nella creazione della prenotazione");
+					}
+				}
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				throw new RuntimeException("Database error in insert into prenotazioni", e);
+			}			
 
-		} catch (SQLException e) {
-			throw new RuntimeException("Database error in cerca codice ristorante", e);
+		} else {
+			System.out.println("Tavolo non disponibile");
 		}
-
+		return codicePrenotazione;
 	}
+		
+
 
 	/**
 	 * ricerca dei tavoli liberi nel ristorante in cui si deve fare una prenotazione
@@ -144,51 +157,8 @@ public class StcrDAO {
 		return clientidaContattare;
 	}
 
-	public int creaPrenotazione(int codiceRistorante, String cognome, String nome, String telefono, int numeroPersone,
-			Date data) {
 
-		int codicePrenotazione = 0;
-
-		List<Tavolo> tavoliLiberi = getTavoliDisponibili(codiceRistorante, data, numeroPersone);
-
-		if (tavoliLiberi.size() > 0) {
-			int codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
-			System.out.println("Tavolo prenotato per il : " + data + ", codice tavolo assegnato "
-					+ tavoliLiberi.get(0).getCodice());
-
-			String sql = "INSERT INTO prenotazioni (CodiceTavolo, Cognome,Nome,Telefono,NumeroPersone, DATA) VALUES ( ?, ?, ?, ?, ? ,?) ";
-
-			try {
-				Connection conn = DBConnect.getConnection();
-				PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-				st.setInt(1, codiceTavoloDisponibile );
-				st.setString(2, cognome);
-				st.setString(3, nome);
-				st.setString(4, telefono);
-				st.setInt(5, numeroPersone);
-				st.setDate(6, data);
-
-				st.executeUpdate();
-				try (ResultSet generatedKeys = st.getGeneratedKeys()) {
-					if (generatedKeys.next()) {
-						codicePrenotazione = generatedKeys.getInt(1);
-					} else {
-						throw new SQLException("errore nella creazione della prenotazione");
-					}
-				}
-				st.close();
-				conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException("Database error in insert into prenotazioni", e);
-			}			
-
-		} else {
-			System.out.println("Tavolo non disponibile");
-		}
-		return codicePrenotazione;
-	}
-		
-
+	
 	public int cercaCodiceprenotazione(String cognome, String nome, Date data) {
 
 		int codiceP;
@@ -219,53 +189,73 @@ public class StcrDAO {
 		return codiceP;
 	}
 
-	public int cercaCodiceTavoloPrenotato(int codiceP) {
+	public int cercaCodiceTavoloPrenotato(int codicePrenotazione) {
 
-		String sql1 = "SELECT CodiceTavolo " + "FROM tavoliprenotati " + "WHERE CodicePrenotazione = ? ";
+		String sql = "SELECT CodiceTavolo "
+				+"FROM prenotazioni "
+				+"WHERE Codice = ? ";
 
-		int codTP = 0;
-
-		try {
-			Connection conn = DBConnect.getConnection();
-			PreparedStatement st = conn.prepareStatement(sql1);
-
-			st.setInt(1, codiceP);
-
-			ResultSet res = st.executeQuery();
-
-			res.first();
-			codTP = res.getInt("CodiceTavolo");
-
-			res.close();
-			st.close();
-			conn.close();
-		} catch (SQLException e) {
-			throw new RuntimeException("Database error in cerca codice ristorante", e);
-		}
-
-		return codTP;
-	}
-
-	public void inserisciCliente(int codicet, String cognome, String nome, String numCartaIdentita, String telefono,
-			Date data) {
-
-		String sql = "INSERT INTO clienti (CodiceTavolo, Cognome, Nome, NumeroCartaIdentita, Telefono, DATA) "
-				+ "VALUES ('" + codicet + "','" + cognome + "','" + nome + "','" + numCartaIdentita + "','" + telefono
-				+ "','" + data + "' ) ";
+		int codiceTavoloPrenotato = 0;
 
 		try {
 			Connection conn = DBConnect.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
 
-			st.execute(sql);
+			st.setInt(1, codicePrenotazione);
 
+			ResultSet res = st.executeQuery();
+
+			res.first();
+			codiceTavoloPrenotato = res.getInt("CodiceTavolo");
+
+			res.close();
+			st.close();
+			conn.close();
+			
+			return codiceTavoloPrenotato;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("Database error in cerca codice tavolo prenotato", e);
+		}
+
+		
+	}
+
+	public void inserisciCliente(int codiceTavolo, String cognome, String nome, String numeroCartaIdentita, String telefono,
+			Date data) {
+
+		String sql = "INSERT INTO clienti (CodiceTavolo, Cognome, Nome, NumeroCartaIdentita, Telefono, DATA) "
+				+ "VALUES ( ?, ?, ?, ?, ?, ? ) ";
+
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+
+			st.setInt(1, codiceTavolo);
+			st.setString(2,cognome);
+			st.setString(3, nome);
+			st.setString(4, numeroCartaIdentita);
+			st.setString(5,telefono);
+			st.setDate(6, data);	
+			
+			st.executeUpdate();
+//			try (ResultSet generatedKeys = st.getGeneratedKeys()) {
+//				if (generatedKeys.next()) {
+//					codicePrenotazione = generatedKeys.getInt(1);
+//				} else {
+//					throw new SQLException("errore nella creazione della prenotazione");
+//				}
+//			}
 			st.close();
 			conn.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Database error in insert into prenotazioni", e);
-		}
+			throw new RuntimeException("Database error in insert into clienti", e);
+		}			
+			
 	}
 
+	
+	
 	public int cercaNumeroPersone(int codicePrenotazione) {
 
 		String sql = "SELECT NumeroPersone " + "FROM prenotazioni " + "WHERE codice = ? ";

@@ -15,7 +15,7 @@ public class Model {
   public List<Ristorante> getRistoranti() {
 		if (this.ristoranti==null) {
 			RistoranteDAO dao = new RistoranteDAO() ;
-			this.ristoranti = dao.readRistoranti() ;
+			this.ristoranti = dao.getRistoranti() ;
 		}
 		return this.ristoranti;
 	}

@@ -18,7 +18,7 @@ public class RistoranteDAO {
 	 * 
 	 * @return informazioni ristoranti
 	 */
-	public List<Ristorante> readRistoranti() {		
+	public List<Ristorante> getRistoranti() {		
 			
 			String sql = "SELECT * "
 					+ "FROM ristoranti ";
@@ -47,7 +47,38 @@ public class RistoranteDAO {
 	}
 	
 	
+	/**
+	 * cerca il codice del ristorante in cui voglio effettuare la prenotazione
+	 * riceve come parametro il nome del ristorante
+	 * 
+	 * @param nome nome del ristorante
+	 * @return ritorna il codice del ristorante
+	 */
+	public int getCodiceRistorante(String nome) {
 
+		String sql = "SELECT codice " + "FROM ristoranti " + "WHERE nome = ? ";
+
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+
+			st.setString(1, nome);
+			ResultSet res = st.executeQuery();
+
+			res.first();
+			int codiceRistorante = res.getInt("codice");
+
+			res.close();
+			st.close();
+			conn.close();
+
+			return codiceRistorante;
+
+		} catch (SQLException e) {
+			throw new RuntimeException("Database error in cerca codice ristorante", e);
+		}
+
+	}
 	
 }			
 	

@@ -14,7 +14,7 @@ public class TestModel {
 			
 		RistoranteDAO dao = new RistoranteDAO();
 		
-		List<Ristorante> ristoranti = dao.readRistoranti() ;
+		List<Ristorante> ristoranti = dao.getRistoranti() ;
 		
 		for(Ristorante risto: ristoranti) {		
 			System.out.println(risto);
