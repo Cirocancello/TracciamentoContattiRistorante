@@ -1,4 +1,4 @@
-package it.polito.tdp.TracciamentoContatti.db;
+package it.TracciamentoContatti.db;
 
 import java.sql.Date;
 import java.sql.Connection;
@@ -9,10 +9,11 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import it.polito.tdp.TracciamentoContatti.model.Cliente;
-import it.polito.tdp.TracciamentoContatti.model.Prenotazione;
-import it.polito.tdp.TracciamentoContatti.model.Ristorante;
-import it.polito.tdp.TracciamentoContatti.model.Tavolo;
+
+import it.TracciamentoContatti.model.Cliente;
+import it.TracciamentoContatti.model.Prenotazione;
+import it.TracciamentoContatti.model.Ristorante;
+import it.TracciamentoContatti.model.Tavolo;
 
 public class TracciaContattiDAO {
     

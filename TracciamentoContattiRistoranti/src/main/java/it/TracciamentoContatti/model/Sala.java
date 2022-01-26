@@ -1,10 +1,10 @@
-package it.polito.tdp.TracciamentoContatti.model;
+package it.TracciamentoContatti.model;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import it.polito.tdp.TracciamentoContatti.model.Sala;
+import it.TracciamentoContatti.model.Sala;
 
 public class Sala {
 	

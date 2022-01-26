@@ -1,4 +1,4 @@
-package it.polito.tdp.TracciamentoContatti;
+package it.TracciamentoContatti;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import it.polito.tdp.TracciamentoContatti.model.Model;
-import it.polito.tdp.TracciamentoContatti.model.Prenotazione;
+import it.TracciamentoContatti.model.Model;
+import it.TracciamentoContatti.model.Prenotazione;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;

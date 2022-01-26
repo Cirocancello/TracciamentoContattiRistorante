@@ -1,4 +1,4 @@
-package it.polito.tdp.TracciamentoContatti.model;
+package it.TracciamentoContatti.model;
 
 import java.sql.Date;
 import java.util.LinkedList;

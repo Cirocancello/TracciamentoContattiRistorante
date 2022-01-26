@@ -1,4 +1,4 @@
-package it.polito.tdp.TracciamentoContatti.model;
+package it.TracciamentoContatti.model;
 
 
 import java.text.ParseException;
@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Scanner;
 import java.sql.Date;
 
-import it.polito.tdp.TracciamentoContatti.db.ClienteDAO;
-import it.polito.tdp.TracciamentoContatti.db.PrenotazioniDAO;
-import it.polito.tdp.TracciamentoContatti.db.RistoranteDAO;
-import it.polito.tdp.TracciamentoContatti.db.TracciaContattiDAO;
-import it.polito.tdp.TracciamentoContatti.model.Cliente;
-import it.polito.tdp.TracciamentoContatti.model.Prenotazione;
-import it.polito.tdp.TracciamentoContatti.model.Ristorante;
-import it.polito.tdp.TracciamentoContatti.model.Sala;
-import it.polito.tdp.TracciamentoContatti.model.Tavolo;
+import it.TracciamentoContatti.db.ClienteDAO;
+import it.TracciamentoContatti.db.PrenotazioniDAO;
+import it.TracciamentoContatti.db.RistoranteDAO;
+import it.TracciamentoContatti.db.TracciaContattiDAO;
+import it.TracciamentoContatti.model.Cliente;
+import it.TracciamentoContatti.model.Prenotazione;
+import it.TracciamentoContatti.model.Ristorante;
+import it.TracciamentoContatti.model.Sala;
+import it.TracciamentoContatti.model.Tavolo;
 
 	public class Model {
 		public static void main(String[] args) {			

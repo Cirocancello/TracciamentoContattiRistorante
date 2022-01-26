@@ -1,11 +1,11 @@
-package it.polito.tdp.TracciamentoContatti;
+package it.TracciamentoContatti;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import it.polito.tdp.TracciamentoContatti.model.Model;
+import it.TracciamentoContatti.model.Model;
 
 public class Controller {
 	

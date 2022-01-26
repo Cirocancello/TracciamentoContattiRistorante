@@ -1,4 +1,4 @@
-package it.polito.tdp.TracciamentoContatti;
+package it.TracciamentoContatti;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

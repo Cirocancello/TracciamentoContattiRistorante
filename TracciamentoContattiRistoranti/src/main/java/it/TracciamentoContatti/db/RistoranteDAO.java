@@ -1,4 +1,4 @@
-package it.polito.tdp.TracciamentoContatti.db;
+package it.TracciamentoContatti.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polito.tdp.TracciamentoContatti.db.DBConnect;
-import it.polito.tdp.TracciamentoContatti.model.Ristorante;
+import it.TracciamentoContatti.db.DBConnect;
+import it.TracciamentoContatti.model.Ristorante;
 
 
 public class RistoranteDAO {

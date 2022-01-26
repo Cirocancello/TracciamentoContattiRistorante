@@ -1,9 +1,9 @@
-package it.polito.tdp.TracciamentoContatti;
+package it.TracciamentoContatti;
 
 import java.awt.EventQueue;
 
-import it.polito.tdp.TracciamentoContatti.Controller;
-import it.polito.tdp.TracciamentoContatti.model.Model;
+import it.TracciamentoContatti.Controller;
+import it.TracciamentoContatti.model.Model;
 
 public class Main {		
 		
