@@ -1,22 +1,23 @@
 package it.polito.tdp.TracciamentoContatti.model;
 
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Prenotazione {
+public class Prenotazione {	
 	
 	private int codice;
 	private String cognome;
 	private String nome;
 	private String telefono;
 	private int numeroPersone;
-	private String data;
+	private Date data;
 
 	private Cliente cliente;
 	private List<Tavolo> tavoliPrenotati = new LinkedList<>();
 	
-	public Prenotazione(int codice, String cognome, String nome, String telefono, int numeroPersone, String data) {
+	public Prenotazione(int codice, String cognome, String nome, String telefono, int numeroPersone, Date data) {
 		this.codice = codice;
 		this.cognome = cognome;
 		this.nome = nome;
@@ -25,13 +26,43 @@ public class Prenotazione {
 		this.data = data;
 	}
 
+	
+	
 	public int getCodice() {
 		return codice;
 	}
 
+
+
 	public void setCodice(int codice) {
 		this.codice = codice;
 	}
+
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+
+
+	public List<Tavolo> getTavoliPrenotati() {
+		return tavoliPrenotati;
+	}
+
+
+
+	public void setTavoliPrenotati(List<Tavolo> tavoliPrenotati) {
+		this.tavoliPrenotati = tavoliPrenotati;
+	}
+
+
 
 	public String getCognome() {
 		return cognome;
@@ -65,35 +96,19 @@ public class Prenotazione {
 		this.numeroPersone = numeroPersone;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(codice);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Prenotazione other = (Prenotazione) obj;
-		return codice == other.codice;
-	}
 
 	@Override
 	public String toString() {
-		return "Prenotazione [codice=" + codice + ", cognome=" + cognome + ", nome=" + nome + ", telefono=" + telefono
-				+ ", numeroPersone=" + numeroPersone + ", data=" + data + "]";
+		return "Prenotazione a nome di " + cognome + ", " + nome + ", " + telefono
+				+ ", numeroPersone prenotate " + numeroPersone + ", in data " + data ;
 	}
 	
 	

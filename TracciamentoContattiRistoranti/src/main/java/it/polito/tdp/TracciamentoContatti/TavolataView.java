@@ -21,6 +21,10 @@ public class TavolataView extends JFrame {
 	 * Create the frame.
 	 */
 	public TavolataView() {
+		
+		setResizable(false);
+		setVisible(true);
+		
 		setTitle("Tavolata");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(400, 200, 358, 226);

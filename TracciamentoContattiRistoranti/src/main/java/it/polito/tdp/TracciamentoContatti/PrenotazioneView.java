@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import it.polito.tdp.TracciamentoContatti.model.Model;
+import it.polito.tdp.TracciamentoContatti.model.Prenotazione;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -14,6 +18,8 @@ import java.awt.TextField;
 import java.awt.Scrollbar;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JScrollBar;
@@ -24,16 +30,23 @@ public class PrenotazioneView extends JFrame {
 	private JTextField textPrenotaCognome;
 	private JTextField textPrenotaNome;
 	private JTextField textPrenotaTelefono;
-	private JTextField textPrenotaNumeroPersone;
+	private JTextField textPrenotaNumeroPersone;	
 	
-	public View frame;
-	public Controller controller;
+	private Controller controller;
+	private View frame;
+	private JButton btnEffettuaPrenotazione;
+	private Model model;
+	private Prenotazione prenotazione;
 
 
 	/**
 	 * Create the frame.
 	 */
 	public PrenotazioneView() {
+		
+		setResizable(false);
+		setVisible(true);
+		
 		setFont(null);
 		setTitle("Prenotazione");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -43,29 +56,29 @@ public class PrenotazioneView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Cognome");
-		lblNewLabel.setBounds(57, 67, 79, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblCognome = new JLabel("Cognome");
+		lblCognome.setBounds(57, 67, 79, 14);
+		contentPane.add(lblCognome);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nome");
-		lblNewLabel_1.setBounds(57, 98, 46, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setBounds(57, 98, 46, 14);
+		contentPane.add(lblNome);
 		
-		JLabel lblNewLabel_2 = new JLabel("Telefono");
-		lblNewLabel_2.setBounds(57, 129, 46, 14);
-		contentPane.add(lblNewLabel_2);
+		JLabel lblTelefono = new JLabel("Telefono");
+		lblTelefono.setBounds(57, 129, 46, 14);
+		contentPane.add(lblTelefono);
 		
-		JLabel lblNewLabel_3 = new JLabel("Numero di persone");
-		lblNewLabel_3.setBounds(57, 160, 90, 14);
-		contentPane.add(lblNewLabel_3);
+		JLabel lblNumeroPersone = new JLabel("Numero di persone");
+		lblNumeroPersone.setBounds(57, 160, 90, 14);
+		contentPane.add(lblNumeroPersone);
 		
-		JLabel lblNewLabel_4 = new JLabel("Data");
-		lblNewLabel_4.setBounds(57, 196, 46, 14);
-		contentPane.add(lblNewLabel_4);
+		JLabel lblData = new JLabel("Data");
+		lblData.setBounds(57, 196, 46, 14);
+		contentPane.add(lblData);
 		
-		JLabel lblNewLabel_5 = new JLabel("Ristorante");
-		lblNewLabel_5.setBounds(179, 196, 66, 14);
-		contentPane.add(lblNewLabel_5);
+		JLabel lblRistorante = new JLabel("Ristorante");
+		lblRistorante.setBounds(179, 196, 66, 14);
+		contentPane.add(lblRistorante);
 		
 		textPrenotaCognome = new JTextField();
 		textPrenotaCognome.setBounds(168, 64, 126, 20);
@@ -91,19 +104,18 @@ public class PrenotazioneView extends JFrame {
 		comboBox.setBounds(168, 192, 127, 22);
 		contentPane.add(comboBox);
 		
-		JButton btnNewButton = new JButton("Effettua prenotazione");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	
+		btnEffettuaPrenotazione = new JButton("Effettua prenotazione");
+		btnEffettuaPrenotazione.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {					
 			
-				controller.stampa("ciao");
-			
-				//System.out.println("ciao");
+				//model.Stampa(textPrenotaCognome.getText());
+				System.out.println("Cognome "+textPrenotaCognome.getText());
 				dispose();
-			
+							
 			}
 		});
-		btnNewButton.setBounds(143, 240, 151, 23);
-		contentPane.add(btnNewButton);
+		btnEffettuaPrenotazione.setBounds(126, 240, 190, 23);
+		contentPane.add(btnEffettuaPrenotazione);
 		
 		JLabel lblNewLabel_6 = new JLabel("Prenotazione");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.ITALIC, 15));
@@ -135,6 +147,7 @@ public class PrenotazioneView extends JFrame {
 		return textPrenotaNumeroPersone;
 	}
 
+	
 	
 	
 }

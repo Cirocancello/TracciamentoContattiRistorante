@@ -81,8 +81,8 @@ public class Sala {
 
 	@Override
 	public String toString() {
-		return "Sala [codice=" + codice + ", codiceRistorante=" + codiceRistorante + ", nome=" + nome + ", tavoli="
-				+ tavoli + ", camerieri=" + camerieri + "]";
+		return "codice = " + codice + ", codice Ristorante =" + codiceRistorante + ", nome =" + nome ;
+				
 	}
 	
 	

@@ -28,6 +28,11 @@ public class View extends JFrame {
 	private JPanel contentPane;
 		
 	public Controller controller;
+	
+	public JButton btnPrenota;
+	public JButton btnTracciaContatti;
+	public JButton btnTavolata;
+	public JButton btnNuovoRistorante;
 
 	/**
 	 * Create the frame.
@@ -46,54 +51,54 @@ public class View extends JFrame {
 		lblNewLabel.setBounds(54, 27, 370, 42);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Prenotazione");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PrenotazioneView prenotazioneView = new PrenotazioneView();	
-				prenotazioneView.setResizable(false);
-				prenotazioneView.setVisible(true);
+		btnPrenota = new JButton("Prenotazione");
+		btnPrenota.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				
+				controller.Actionperformed(e);
 				
 			}
 		});
-		btnNewButton.setBounds(54, 101, 119, 23);
-		contentPane.add(btnNewButton);
+		btnPrenota.setBounds(54, 101, 119, 23);
+		contentPane.add(btnPrenota);
 		
-		JButton btnNewButton_1 = new JButton("Nuovo ristorante");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnNuovoRistorante = new JButton("Nuovo ristorante");
+		btnNuovoRistorante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("ciao");
+				controller.Actionperformed(e);
 			}
 		});
-		btnNewButton_1.setBounds(237, 146, 119, 23);
-		contentPane.add(btnNewButton_1);
+		btnNuovoRistorante.setBounds(237, 146, 119, 23);
+		contentPane.add(btnNuovoRistorante);
 		
-		JButton btnNewButton_2 = new JButton("Tracia contatti");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		btnTracciaContatti = new JButton("Tracia contatti");
+		btnTracciaContatti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TracciaContattiView tracciaContatti = new TracciaContattiView();
-				tracciaContatti.setResizable(false);
-				tracciaContatti.setVisible(true);
+				
+				controller.Actionperformed(e);
+				
 			}
 		});
-		btnNewButton_2.setBounds(236, 101, 120, 23);
-		contentPane.add(btnNewButton_2);
+		btnTracciaContatti.setBounds(236, 101, 120, 23);
+		contentPane.add(btnTracciaContatti);
 		
-		JButton btnNewButton_3 = new JButton("Tavolata");
-		btnNewButton_3.addActionListener(new ActionListener() {
+		btnTavolata = new JButton("Tavolata");
+		btnTavolata.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TavolataView tavolataView = new TavolataView();
-				tavolataView.setResizable(false);
-				tavolataView.setVisible(true);
+				
+				controller.Actionperformed(e);
+			
 			}
 		});
-		btnNewButton_3.setBounds(54, 146, 119, 23);
-		contentPane.add(btnNewButton_3);
+		btnTavolata.setBounds(54, 146, 119, 23);
+		contentPane.add(btnTavolata);
 	}
 	
 	public void setController(Controller controller) {
 		
-		this.controller = controller;
-		
+		this.controller = controller;		
 		
 	}
+	
 }

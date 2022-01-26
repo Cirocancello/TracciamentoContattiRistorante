@@ -14,14 +14,13 @@ import it.polito.tdp.TracciamentoContatti.model.Ristorante;
 public class RistoranteDAO {
 	
 	/**
-	 * visualizzo informazioni sui ristoranti in base dati
+	 * visualizzo le informazioni sui ristoranti in base dati
 	 * 
 	 * @return informazioni ristoranti
 	 */
 	public List<Ristorante> getRistoranti() {		
 			
-			String sql = "SELECT * "
-					+ "FROM ristoranti ";
+			String sql = "SELECT * FROM ristoranti ";
 			
 			List<Ristorante> ristoranti = new ArrayList<>();
 			
@@ -56,7 +55,7 @@ public class RistoranteDAO {
 	 */
 	public int getCodiceRistorante(String nome) {
 
-		String sql = "SELECT codice " + "FROM ristoranti " + "WHERE nome = ? ";
+		String sql = "SELECT codice FROM ristoranti WHERE nome = ? ";
 
 		try {
 			Connection conn = DBConnect.getConnection();

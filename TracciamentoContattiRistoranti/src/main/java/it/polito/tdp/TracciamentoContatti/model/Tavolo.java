@@ -73,8 +73,8 @@ public class Tavolo {
 
 	@Override
 	public String toString() {
-		return "Tavolo [codice=" + codice + ", codiceSala=" + codiceSala + ", nome=" + nome + ", capacitaMassima="
-				+ capacitaMassima + "]";
+		return "codice tavolo = " + codice + ", codice sala a cui appartiene = " + codiceSala + ", nome = " + nome 
+				+ ", capacitaMassima = " + capacitaMassima ;
 	}
 	
 	

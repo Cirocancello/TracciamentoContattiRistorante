@@ -19,12 +19,12 @@ public class Ristorante {
 	private List<Cliente> clienti = new LinkedList<>();
 	
 	public Ristorante(String codice, String nome, String indirizzo, String citta, String provincia, String telefono) {
+		this.codice = codice;
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.citta = citta;
-		this.provincia = provincia;
+		this.provincia = provincia; 
 		this.telefono = telefono;
-		this.sale = sale;
 	}
 
 	public String getCodice() {
@@ -110,9 +110,7 @@ public class Ristorante {
 
 	@Override
 	public String toString() {
-		return "Ristorante [codice=" + codice + ", nome=" + nome + ", indirizzo=" + indirizzo + ", citta=" + citta
-				+ ", provincia=" + provincia + ", telefono=" + telefono + ", sale=" + sale + ", clienti=" + clienti
-				+ "]";
+		return "codice ristorante = "+ codice + ", " + nome + ", " + indirizzo + ", " + citta + ", " + provincia + ", telefono = " + telefono ;
 	}
 	
 	

@@ -24,6 +24,9 @@ public class TracciaContattiView extends JFrame {
 	 * Create the frame.
 	 */
 	public TracciaContattiView() {
+		
+		setResizable(false);
+		setVisible(true);
 		setTitle("Tracciamento Contatti");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(455, 300, 501, 216);
@@ -69,7 +72,7 @@ public class TracciaContattiView extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(282, 129, 173, 23);
+		btnNewButton_1.setBounds(240, 129, 215, 23);
 		contentPane.add(btnNewButton_1);
 	}
 

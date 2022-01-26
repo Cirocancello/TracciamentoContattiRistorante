@@ -15,10 +15,10 @@ public class Main {
 				public void run() {
 					try {
 						
-						View frame = new View();						
-      					//Model model = new Model();
-					  // Controller controller = new Controller(frame, model);
-				  		Controller controller = new Controller();
+						View frame = new View();					
+      					Model model = new Model();
+					    Controller controller = new Controller(frame, model);
+				  	//	Controller controller = new Controller();
 						frame.setController(controller);						
 						frame.setResizable(false);
 						frame.setVisible(true);
@@ -28,5 +28,7 @@ public class Main {
 					}
 				}
 			});
+		
 		}
+	
 }
