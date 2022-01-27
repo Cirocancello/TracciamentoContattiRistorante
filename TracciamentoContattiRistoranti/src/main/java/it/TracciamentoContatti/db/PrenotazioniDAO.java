@@ -28,25 +28,25 @@ public class PrenotazioniDAO {
 	 * 
 	 * @return il metodo ritorna il codice della eventuale prenotazione registrata
 	 */
-	public int creaPrenotazione(int codiceRistorante, String cognome, String nome, String telefono, int numeroPersone,
+	public Integer creaPrenotazione(Integer codiceTavoloDisponibile, Integer codiceRistorante, String cognome, String nome, String telefono, Integer numeroPersone,
 			Date data) {
 
-		int codicePrenotazione = 0;
+		Integer codicePrenotazione = 0;
 		
-		//___________________________Cerco eventuali tavoli disponibili
-		List<Tavolo> tavoliLiberi = getTavoliDisponibili(codiceRistorante, data, numeroPersone);
-
-		if (tavoliLiberi.size() > 0) {
-			int codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
-			System.out.println("Tavolo prenotato per il : " + data + ", codice tavolo assegnato "
-					+ tavoliLiberi.get(0).getCodice());
+//		//___________________________Cerco eventuali tavoli disponibili
+//		List<Tavolo> tavoliLiberi = getTavoliDisponibili(codiceRistorante, data, numeroPersone);
+//
+//		if (tavoliLiberi.size() > 0) {
+//			Integer codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
+			//System.out.println("Tavolo prenotato per il : " + data + ", codice tavolo assegnato "
+				//	+ tavoliLiberi.get(0).getCodice());
 
 			String sql = "INSERT INTO prenotazioni (CodiceTavolo, Cognome,Nome,Telefono,NumeroPersone, DATA) VALUES ( ?, ?, ?, ?, ? ,?) ";
 
 			try {
 				Connection conn = DBConnect.getConnection();
 				PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-				st.setInt(1, codiceTavoloDisponibile );
+				st.setInt(1, codiceTavoloDisponibile);
 				st.setString(2, cognome);
 				st.setString(3, nome);
 				st.setString(4, telefono);
@@ -67,9 +67,9 @@ public class PrenotazioniDAO {
 				throw new RuntimeException("Database error in insert into prenotazioni", e);
 			}			
 
-		} else {
-			System.out.println("Tavolo non disponibile");
-		}
+//		} else {
+//			System.out.println("Tavolo non disponibile");
+//		}
 		return codicePrenotazione;
 	}
 		

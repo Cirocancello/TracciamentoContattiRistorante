@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.swing.JTextField;
+
 import java.sql.Date;
 
 import it.TracciamentoContatti.db.ClienteDAO;
@@ -20,7 +23,58 @@ import it.TracciamentoContatti.model.Sala;
 import it.TracciamentoContatti.model.Tavolo;
 
 	public class Model {
-		public static void main(String[] args) {			
+		
+//		public void stampa() {
+//			System.out.println("Sono il model");
+//		}		
+		
+		public List<Ristorante> getRistoranti() {
+			
+			RistoranteDAO ristoranteDao = new RistoranteDAO();
+			
+			// visualizzo le informazioni sui ristoranti
+			List<Ristorante> ristoranti = ristoranteDao.getRistoranti() ;
+			
+			return ristoranti;
+		
+		}
+		
+		public  List<Cliente> tracciaContatti(String cartaIdentita, Date data) {
+			
+			TracciaContattiDAO tracciaContattiDao = new TracciaContattiDAO();			
+			
+			
+			//traccia contatti in caso di contagio simulando uno scenario di contagio
+			List<Cliente> clientidaContattare =  tracciaContattiDao.tracciaContatti(cartaIdentita, data); // passare anche la data come pararmetro
+
+			
+			return clientidaContattare;
+			
+			
+		}
+		
+		
+		public Integer getTavoliDisponibili(Integer codiceRistorante, Date data, Integer numeroPersone) {
+			//___________________________Cerco eventuali tavoli disponibili
+			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+			
+			List<Tavolo> tavoliLiberi = prenotazioneDao.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
+			
+			Integer codiceTavoloDisponibile = null;
+			
+			if (tavoliLiberi.size() > 0) {
+				codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
+			
+			} else {
+			    System.out.println("Tavolo non disponibile");
+		    }
+			
+			return codiceTavoloDisponibile;
+		}
+		
+		
+	
+		public static void main(String[] args) {				
 		
 			RistoranteDAO ristoranteDao = new RistoranteDAO();
 	
@@ -30,6 +84,7 @@ import it.TracciamentoContatti.model.Tavolo;
 			for(Ristorante risto:ristoranti) {
 				System.out.println(risto);
 			}
+			
 			
 			TracciaContattiDAO tracciaContattiDao = new TracciaContattiDAO();
 			
@@ -55,13 +110,15 @@ import it.TracciamentoContatti.model.Tavolo;
 	
 		    //effettuo una prenotazione e ricavo il relativo codice assegnato 
 	        //il codice del ristorante lo devo passare come parametro, dall' interfccia grafica 
-	    
-	        //scelgo il ristorante recupero il codice invocando il metodi getCodiceRistorante e il cognome, nome, ecc....		
-		    // int codicePrenotazione = dao.creaPrenotazione(2,"Cancello", "Ciro", "3463474887", 1, Date.valueOf(data1));
-	
+	         
 			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
-			//cerco tavoli liberi nel ristorante selezioneto e li stampo
 			LocalDate data1 = LocalDate.of(2022, 01, 21);
+	        //scelgo il ristorante recupero il codice invocando il metodi getCodiceRistorante e il cognome, nome, ecc....		
+		    int codicePrenotazione = prenotazioneDao.creaPrenotazione(1,2,"Cancello", "Ciro", "3463474887", 1, Date.valueOf(data1));
+	
+			
+			//cerco tavoli liberi nel ristorante selezioneto e li stampo
+			LocalDate data2 = LocalDate.of(2022, 01, 21);
 			List<Tavolo> tavoliLiberi = prenotazioneDao.getTavoliDisponibili(codiceRistorante, Date.valueOf(data1), 4);
 		
 			System.out.println("Tavoli liberi");
@@ -101,8 +158,10 @@ import it.TracciamentoContatti.model.Tavolo;
 			
 			
 			
-		}	
-			
+		}
+
+
+				
 			 
 			
 		//________________________________________________________________________	

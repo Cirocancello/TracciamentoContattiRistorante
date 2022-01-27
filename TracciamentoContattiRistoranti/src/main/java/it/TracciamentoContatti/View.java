@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import it.TracciamentoContatti.model.Model;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -33,6 +36,8 @@ public class View extends JFrame {
 	public JButton btnTracciaContatti;
 	public JButton btnTavolata;
 	public JButton btnNuovoRistorante;
+	
+	public Model model;
 
 	/**
 	 * Create the frame.
@@ -53,23 +58,24 @@ public class View extends JFrame {
 		
 		btnPrenota = new JButton("Prenotazione");
 		btnPrenota.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	
+			public void actionPerformed(ActionEvent ePrenota) {	
+			
+				controller.Actionperformed(ePrenota);
 				
-				controller.Actionperformed(e);
 				
 			}
 		});
-		btnPrenota.setBounds(54, 101, 119, 23);
+		btnPrenota.setBounds(54, 101, 145, 23);
 		contentPane.add(btnPrenota);
 		
 		btnNuovoRistorante = new JButton("Nuovo ristorante");
 		btnNuovoRistorante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("ciao");
+			
 				controller.Actionperformed(e);
 			}
 		});
-		btnNuovoRistorante.setBounds(237, 146, 119, 23);
+		btnNuovoRistorante.setBounds(211, 146, 145, 23);
 		contentPane.add(btnNuovoRistorante);
 		
 		btnTracciaContatti = new JButton("Tracia contatti");
@@ -80,7 +86,7 @@ public class View extends JFrame {
 				
 			}
 		});
-		btnTracciaContatti.setBounds(236, 101, 120, 23);
+		btnTracciaContatti.setBounds(211, 101, 145, 23);
 		contentPane.add(btnTracciaContatti);
 		
 		btnTavolata = new JButton("Tavolata");
@@ -91,7 +97,7 @@ public class View extends JFrame {
 			
 			}
 		});
-		btnTavolata.setBounds(54, 146, 119, 23);
+		btnTavolata.setBounds(54, 146, 145, 23);
 		contentPane.add(btnTavolata);
 	}
 	

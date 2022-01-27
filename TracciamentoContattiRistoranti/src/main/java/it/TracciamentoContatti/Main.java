@@ -18,8 +18,9 @@ public class Main {
 						View frame = new View();					
       					Model model = new Model();
 					    Controller controller = new Controller(frame, model);
-				  	//	Controller controller = new Controller();
-						frame.setController(controller);						
+				  
+						frame.setController(controller);
+						
 						frame.setResizable(false);
 						frame.setVisible(true);
 						

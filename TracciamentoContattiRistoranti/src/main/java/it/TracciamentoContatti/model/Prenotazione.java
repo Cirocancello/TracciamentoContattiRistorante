@@ -11,13 +11,13 @@ public class Prenotazione {
 	private String cognome;
 	private String nome;
 	private String telefono;
-	private int numeroPersone;
+	private Integer numeroPersone;
 	private Date data;
 
 	private Cliente cliente;
 	private List<Tavolo> tavoliPrenotati = new LinkedList<>();
-	
-	public Prenotazione(int codice, String cognome, String nome, String telefono, int numeroPersone, Date data) {
+	//_______________________________________________________________
+	public Prenotazione(int codice, String cognome, String nome, String telefono, Integer numeroPersone, Date data) {
 		this.codice = codice;
 		this.cognome = cognome;
 		this.nome = nome;
@@ -26,7 +26,14 @@ public class Prenotazione {
 		this.data = data;
 	}
 
-	
+	public Prenotazione(String cognome, String nome, String telefono, Integer numeroPersone, Date data) {
+		
+		this.cognome = cognome;
+		this.nome = nome;
+		this.telefono = telefono;
+		this.numeroPersone = numeroPersone;
+		this.data = data;
+	}
 	
 	public int getCodice() {
 		return codice;
@@ -88,11 +95,11 @@ public class Prenotazione {
 		this.telefono = telefono;
 	}
 
-	public int getNumeroPersone() {
+	public Integer getNumeroPersone() {
 		return numeroPersone;
 	}
 
-	public void setNumeroPersone(int numeroPersone) {
+	public void setNumeroPersone(Integer numeroPersone) {
 		this.numeroPersone = numeroPersone;
 	}
 
