@@ -34,10 +34,11 @@ public class View extends JFrame {
 	
 	public JButton btnPrenota;
 	public JButton btnTracciaContatti;
-	public JButton btnTavolata;
+	public JButton btnTavolataPrenotata;
 	public JButton btnNuovoRistorante;
 	
 	public Model model;
+	private JButton btnTavolataNonPrenotata;
 
 	/**
 	 * Create the frame.
@@ -65,7 +66,7 @@ public class View extends JFrame {
 				
 			}
 		});
-		btnPrenota.setBounds(54, 101, 145, 23);
+		btnPrenota.setBounds(44, 101, 162, 23);
 		contentPane.add(btnPrenota);
 		
 		btnNuovoRistorante = new JButton("Nuovo ristorante");
@@ -75,10 +76,10 @@ public class View extends JFrame {
 				controller.Actionperformed(e);
 			}
 		});
-		btnNuovoRistorante.setBounds(211, 146, 145, 23);
+		btnNuovoRistorante.setBounds(211, 190, 162, 23);
 		contentPane.add(btnNuovoRistorante);
 		
-		btnTracciaContatti = new JButton("Tracia contatti");
+		btnTracciaContatti = new JButton("Traccia contatti");
 		btnTracciaContatti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -86,19 +87,23 @@ public class View extends JFrame {
 				
 			}
 		});
-		btnTracciaContatti.setBounds(211, 101, 145, 23);
+		btnTracciaContatti.setBounds(44, 146, 162, 23);
 		contentPane.add(btnTracciaContatti);
 		
-		btnTavolata = new JButton("Tavolata");
-		btnTavolata.addActionListener(new ActionListener() {
+		btnTavolataPrenotata = new JButton("Tavolata prenotata");
+		btnTavolataPrenotata.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				  
 				controller.Actionperformed(e);
 			
 			}
 		});
-		btnTavolata.setBounds(54, 146, 145, 23);
-		contentPane.add(btnTavolata);
+		btnTavolataPrenotata.setBounds(211, 101, 162, 23);
+		contentPane.add(btnTavolataPrenotata);
+		
+		btnTavolataNonPrenotata = new JButton("Tavolata non prenotata");
+		btnTavolataNonPrenotata.setBounds(211, 146, 162, 23);
+		contentPane.add(btnTavolataNonPrenotata);
 	}
 	
 	public void setController(Controller controller) {
@@ -106,5 +111,4 @@ public class View extends JFrame {
 		this.controller = controller;		
 		
 	}
-	
 }

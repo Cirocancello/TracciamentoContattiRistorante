@@ -73,6 +73,44 @@ import it.TracciamentoContatti.model.Tavolo;
 		}
 		
 		
+		
+		public Integer creaPrenotazione(Integer codiceTavoloDisponibile, Integer codiceRistorante, String cognome,
+				                        String nome, String telefono, Integer numeroPersone, Date data) {
+			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+			prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, codiceRistorante, cognome, nome, telefono, numeroPersone, data);
+			return null;
+		}
+		
+		public void InserisciCliente(Integer codiceTavoloPrenotato, String cognome, String nome, String cartaIdentita, String telefono, Date data) {
+			
+			ClienteDAO clienteDao = new ClienteDAO();			
+				
+			clienteDao.inserisciCliente(codiceTavoloPrenotato, cognome, nome, cartaIdentita, telefono, data);
+			
+			
+		}
+		
+		public List<Prenotazione> cercaPrenotazione(Integer codicePrenotazione) {
+			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+			List<Prenotazione> prenotazione = prenotazioneDao.cercaPrenotazione(codicePrenotazione);
+			
+			return prenotazione;
+		}
+		
+		
+		
+		public String cercaNomeSala(Integer codicePrenotazione) {
+			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+			
+			String nomeSala = prenotazioneDao.cercaNomeSala(codicePrenotazione);
+			
+			return nomeSala;
+			
+		}
+		
+//____________________________________________________________________________________________		
+		
+		
 	
 		public static void main(String[] args) {				
 		
@@ -159,6 +197,12 @@ import it.TracciamentoContatti.model.Tavolo;
 			
 			
 		}
+
+		
+
+
+
+		
 
 
 				

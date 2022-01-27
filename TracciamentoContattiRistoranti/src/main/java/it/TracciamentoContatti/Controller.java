@@ -53,27 +53,22 @@ public class Controller {
 			TracciaContattiView tracciaContatti = new TracciaContattiView();
 		}
 		
-		if(e.getSource() == frame.btnTavolata) {
-			TavolataView tavolataView = new TavolataView();
-		}
-		
 		if(e.getSource() == frame.btnNuovoRistorante) {
 			RistoranteView ristoranteView = new RistoranteView();
 		}
+		
+		if(e.getSource() == frame.btnTavolataPrenotata) {
+			
+			ClienteView clienteView = new ClienteView();
+			
+		}
+
 	}
 
 	public void effettuaPrenotazione(Prenotazione prenotazione, JTextField textCodiceRistorante) {
-		System.out.println("Ciao");
-		System.out.println(textCodiceRistorante.getText());
-		System.out.println(prenotazione.getCognome());			
-		System.out.println(prenotazione.getNome());
-		System.out.println(prenotazione.getTelefono());		
-		System.out.println(prenotazione.getNumeroPersone());
-		System.out.println(prenotazione.getData());
-		
+	
 		Model model = new Model();
-
-		PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+		
 		//LocalDate data1 = LocalDate.of(2022, 01, 21);
 		Integer codiceRistorante = Integer.parseInt(textCodiceRistorante.getText());
 		String cognome = prenotazione.getCognome();
@@ -81,13 +76,12 @@ public class Controller {
 		String telefono = prenotazione.getTelefono();
 		Integer numeroPersone = prenotazione.getNumeroPersone();
 	    Date data =  prenotazione.getData(); 
-	  
 	    
 		Integer codiceTavoloDisponibile = model.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
         
 		if (codiceTavoloDisponibile != null) {
 		   //scelgo il ristorante recupero il codice invocando il metodi getCodiceRistorante e il cognome, nome, ecc....		
-	       Integer codicePrenotazione = prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, codiceRistorante, cognome, nome, telefono, numeroPersone, data);
+	       Integer codicePrenotazione = model.creaPrenotazione(codiceTavoloDisponibile, codiceRistorante, cognome, nome, telefono, numeroPersone, data);
 	       //prenotazione effettuata
 	       JOptionPane.showMessageDialog(null,  "Tavolo prenotato per il : "+data+"\ncodice tavolo assegnato "+codiceTavoloDisponibile, "Prenotazione effettuata!!!", JOptionPane.INFORMATION_MESSAGE);
 
@@ -99,8 +93,10 @@ public class Controller {
 	}
 
 	public void StampaRistoranti(TextArea textAreaRistoranti) {
+		
 		Model model = new Model();
-		List<Ristorante> ristoranti = model.getRistoranti();	
+		
+		List<Ristorante> ristoranti = model.getRistoranti();			
 		
 		for(Ristorante risto:ristoranti) {
 			textAreaRistoranti.append(risto.getCodice()+" ");
@@ -108,14 +104,11 @@ public class Controller {
 			textAreaRistoranti.append(risto.getCitta()+" ");			
 			textAreaRistoranti.append(risto.getIndirizzo()+" ");
 			textAreaRistoranti.append(risto.getProvincia()+" ");
-			textAreaRistoranti.append(risto.getTelefono()+"\n");
-			
+			textAreaRistoranti.append(risto.getTelefono()+"\n");			
 			
 		}
 		
 	}
-	
-
 	
 
 	public void TracciaContatti(JTextField textCartaIdentita, JTextField textData, TextArea textAreaTraccia) throws IOException {
@@ -128,15 +121,52 @@ public class Controller {
 		for(Cliente c : clientidaContattare) {			
 			textAreaTraccia.append(c.getNome()+" ");
 			textAreaTraccia.append(c.getCognome()+" ");
-			textAreaTraccia.append(c.getTelefono()+"\n");
-			
-		}
-		
-		
+			textAreaTraccia.append(c.getTelefono()+"\n");			
+		}			
 		
 	}
 
-	
+	public void inserisciCliente(Cliente cliente, JTextArea textAreaClientiInseriti) {
+		
+		Model model = new Model();			
+		
+		
+		Integer codiceTavoloPrenotato = cliente.getCodiceTavolo();
+		String cognome = cliente.getCognome();
+		String nome = cliente.getNome();
+		String cartaIdentita = cliente.getNumeroCartaIdentita();
+		String telefono = cliente.getTelefono();
+		Date data = cliente.getData();		
+		
+		model.InserisciCliente(codiceTavoloPrenotato,cognome,
+				nome,cartaIdentita,telefono,data);		
+		
+		textAreaClientiInseriti.append(cliente.getNome()+" ");
+		textAreaClientiInseriti.append(cliente.getCognome()+" ");
+		textAreaClientiInseriti.append(cliente.getTelefono()+" ");
+		textAreaClientiInseriti.append(cliente.getNumeroCartaIdentita()+"\n");			
+		
+	}
+
+	public void cercaPrenotazione(Integer codicePrenotazione, JTextArea textAreaPrenotazione) {
+          
+		Model model = new Model();
+		
+		List<Prenotazione> prenotazione = model.cercaPrenotazione(codicePrenotazione);
+		String nomeSala = model.cercaNomeSala(codicePrenotazione);
+		
+		for(Prenotazione p : prenotazione) {
+			//textAreaPrenotazione.append(p.getCodice()+" ");
+			textAreaPrenotazione.append(p.getCognome()+" ");
+			textAreaPrenotazione.append(p.getNome()+" - ");
+			textAreaPrenotazione.append("tel : "+p.getTelefono()+" - ");
+			textAreaPrenotazione.append("n.ro persone prenotate "+p.getNumeroPersone()+" - ");
+			textAreaPrenotazione.append("in data "+ p.getData()+"\n");
+			textAreaPrenotazione.append("Sala prenotata : "+ nomeSala);
+		
+		}
+
+	}	
 	
 }
 	

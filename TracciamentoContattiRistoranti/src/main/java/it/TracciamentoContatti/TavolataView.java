@@ -11,12 +11,12 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class TavolataView extends JFrame {
 
 	private JPanel contentPane;
-
-
+	private Controller controller;
 	/**
 	 * Create the frame.
 	 */
@@ -27,7 +27,7 @@ public class TavolataView extends JFrame {
 		
 		setTitle("Tavolata");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(400, 200, 358, 226);
+		setBounds(400, 200, 466, 361);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -35,28 +35,19 @@ public class TavolataView extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Tavolata");
 		lblNewLabel.setFont(new Font("Tahoma", Font.ITALIC, 15));
-		lblNewLabel.setBounds(137, 37, 102, 14);
+		lblNewLabel.setBounds(176, 24, 102, 14);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Aggiungi cliente");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ClienteView clienteView = new ClienteView();
-				clienteView.setResizable(false);
-				clienteView.setVisible(true);
-			}
-		});
-		btnNewButton.setBounds(19, 97, 137, 23);
-		contentPane.add(btnNewButton);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(32, 60, 384, 192);
+		contentPane.add(textArea);
 		
-		JButton btnNewButton_1 = new JButton("Completa tavolata");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnNewButton_1.setBounds(181, 97, 137, 23);
-		contentPane.add(btnNewButton_1);
+		JButton btnAggiungiCliente = new JButton("Aggiungi cliente");
+		btnAggiungiCliente.setBounds(32, 273, 150, 23);
+		contentPane.add(btnAggiungiCliente);
+		
+		JButton btnChiudi = new JButton("Chiudi");
+		btnChiudi.setBounds(327, 273, 89, 23);
+		contentPane.add(btnChiudi);
 	}
-
 }

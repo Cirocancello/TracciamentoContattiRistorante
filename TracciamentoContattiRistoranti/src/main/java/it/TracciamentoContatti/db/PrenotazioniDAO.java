@@ -122,22 +122,52 @@ public class PrenotazioniDAO {
 
 	/**
 	 * recupero le informazioni della prenotazione per registrare i clienti al momento che si presentano al ristorante
-	 * e visualizzo il nome della sala in cui è stata effettuata la prenotazione
+	 * e visualizzo nome, cognome, telefono, numero delle persone prenotate
 	 * 
 	 * @param codicePrenotazione
 	 * 
 	 * @return ritorna le informazioni della prenotazione
 	 */
-	public List<Prenotazione> cercaPrenotazione(int codicePrenotazione) {		
+	public List<Prenotazione> cercaPrenotazione(Integer codicePrenotazione) {		
 		
-		String sql ="SELECT s.Nome, p.codice, p.cognome, p.nome, p.telefono, p.NumeroPersone, p.`Data` "
+		String sql ="SELECT * "
+				+ "FROM prenotazioni "
+		        + "WHERE codice = ? ";
+		
+		List<Prenotazione> prenotazione = new ArrayList<>();
+		
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			
+			st.setInt(1, codicePrenotazione);
+			
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				Prenotazione p = new Prenotazione(res.getInt("codice"), res.getString("cognome"), res.getString("nome"), 
+						res.getString("telefono"),res.getInt("numeroPersone"), res.getDate("data"));
+				prenotazione.add(p);
+			}					
+				
+			res.close();
+			st.close();
+			conn.close();
+		} catch (SQLException e) {
+			throw new RuntimeException("Database error in cerca codice tavolo prenotato", e);
+		}	
+		
+		return prenotazione;
+	}		
+			
+    public String cercaNomeSala(Integer codicePrenotazione)	{	
+	
+		String sql ="SELECT s.Nome "
                   + "FROM prenotazioni p, tavoli t, sale s "				 
                   + "WHERE p.codiceTavolo = t.Codice "
                   + "AND p.codice = ? "
                   + "AND t.CodiceSala = s.Codice ";			
 		
-		String nomeSala;
-		List<Prenotazione> prenotazione = new ArrayList<>();
+		String nomeSala;		
 		
 		try {
 			Connection conn = DBConnect.getConnection();
@@ -145,29 +175,19 @@ public class PrenotazioniDAO {
 
 			st.setInt(1, codicePrenotazione);
 			
-			ResultSet res1 = st.executeQuery();
-			res1.first();
-			nomeSala = res1.getString("s.nome");
-			System.out.println("nome della sala in cui è stata effettuata la prenotazione : "+ nomeSala);
-			res1.close();
-			
 			ResultSet res = st.executeQuery();
-			while (res.next()) {
-				Prenotazione p = new Prenotazione(res.getInt("p.codice"), res.getString("p.cognome"), res.getString("p.nome"), 
-						res.getString("p.telefono"),res.getInt("p.numeroPersone"), res.getDate("p.data"));
-				prenotazione.add(p);
-			}					
-				
-			res.close();
-			st.close();
-			conn.close();
-			
-			return prenotazione;
+			res.first();
+			nomeSala = res.getString("s.nome");
+			//System.out.println("nome della sala in cui è stata effettuata la prenotazione : "+ nomeSala);
+			res.close();			
+		    st.close();
+		    conn.close();
+		    
 			
 		} catch (SQLException e) {
 			throw new RuntimeException("Database error in cerca codice tavolo prenotato", e);
 		}
-		
+		return nomeSala;		
 		
 	}
 }

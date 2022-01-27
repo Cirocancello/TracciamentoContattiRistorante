@@ -43,7 +43,7 @@ public class PrenotazioneView extends JFrame {
 	private JTextField textData;
 	private JTextField textCodiceRistorante;
 	private JTextArea textArea;
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -113,6 +113,7 @@ public class PrenotazioneView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 			    Controller controller = new Controller();
+			    
 			    String cognome = textPrenotaCognome.getText();
 			    String nome = textPrenotaNome.getText();
 			    String telefono = textPrenotaTelefono.getText();
@@ -145,10 +146,10 @@ public class PrenotazioneView extends JFrame {
 		textArea = new JTextArea();
 		textArea.setBounds(20, 175, 503, 201);
 		for(Ristorante r : ristoranti) {
-			textArea.append(r.getCodice()+" ");
-			textArea.append(r.getNome()+" ");		
-			textArea.append(r.getIndirizzo()+" ");
-			textArea.append(r.getCitta()+" ");
+			textArea.append("codice "+ r.getCodice()+", ");
+			textArea.append(r.getNome()+", ");		
+			textArea.append(r.getIndirizzo()+", ");
+			textArea.append(r.getCitta()+", ");
 			textArea.append(r.getProvincia()+" ");
 			textArea.append(r.getTelefono()+"\n");
 		}
@@ -163,6 +164,7 @@ public class PrenotazioneView extends JFrame {
 		textCodiceRistorante.setBounds(409, 105, 86, 20);
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);
+
 	}
 
 
