@@ -63,6 +63,15 @@ public class RistoranteView extends JFrame {
 		textAreaRistoranti.setBounds(29, 77, 380, 160);
 		contentPane.add(textAreaRistoranti);		
 		
+		JButton btnChiudi = new JButton("Chiudi");
+		btnChiudi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnChiudi.setBounds(320, 369, 89, 23);
+		contentPane.add(btnChiudi);
+		
 		
 		
 		

@@ -7,7 +7,8 @@ import java.util.Objects;
 
 public class Prenotazione {	
 	
-	private int codice;
+	private Integer codice;
+	private Integer codiceTavolo;
 	private String cognome;
 	private String nome;
 	private String telefono;
@@ -17,8 +18,9 @@ public class Prenotazione {
 	private Cliente cliente;
 	private List<Tavolo> tavoliPrenotati = new LinkedList<>();
 	//_______________________________________________________________
-	public Prenotazione(int codice, String cognome, String nome, String telefono, Integer numeroPersone, Date data) {
+	public Prenotazione(Integer codice, Integer codiceTavolo, String cognome, String nome, String telefono, Integer numeroPersone, Date data) {
 		this.codice = codice;
+		this.codiceTavolo = codiceTavolo;
 		this.cognome = cognome;
 		this.nome = nome;
 		this.telefono = telefono;
@@ -35,41 +37,21 @@ public class Prenotazione {
 		this.data = data;
 	}
 	
-	public int getCodice() {
+	public Integer getCodice() {
 		return codice;
 	}
 
-
-
-	public void setCodice(int codice) {
+	public void setCodice(Integer codice) {
 		this.codice = codice;
 	}
 
-
-
-	public Cliente getCliente() {
-		return cliente;
+	public Integer getCodiceTavolo() {
+		return codiceTavolo;
 	}
 
-
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setCodiceTavolo(Integer codiceTavolo) {
+		this.codiceTavolo = codiceTavolo;
 	}
-
-
-
-	public List<Tavolo> getTavoliPrenotati() {
-		return tavoliPrenotati;
-	}
-
-
-
-	public void setTavoliPrenotati(List<Tavolo> tavoliPrenotati) {
-		this.tavoliPrenotati = tavoliPrenotati;
-	}
-
-
 
 	public String getCognome() {
 		return cognome;
@@ -110,7 +92,6 @@ public class Prenotazione {
 	public void setData(Date data) {
 		this.data = data;
 	}
-
 
 	@Override
 	public String toString() {

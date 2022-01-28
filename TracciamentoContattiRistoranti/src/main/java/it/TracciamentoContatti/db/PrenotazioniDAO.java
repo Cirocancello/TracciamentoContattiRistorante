@@ -46,6 +46,7 @@ public class PrenotazioniDAO {
 			try {
 				Connection conn = DBConnect.getConnection();
 				PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				
 				st.setInt(1, codiceTavoloDisponibile);
 				st.setString(2, cognome);
 				st.setString(3, nome);
@@ -65,60 +66,13 @@ public class PrenotazioniDAO {
 				conn.close();
 			} catch (SQLException e) {
 				throw new RuntimeException("Database error in insert into prenotazioni", e);
-			}			
+			}	
 
-//		} else {
-//			System.out.println("Tavolo non disponibile");
-//		}
 		return codicePrenotazione;
 	}
 		
 
 
-	/**
-	 * ricerca dei tavoli liberi nel ristorante in cui si deve fare una prenotazione
-	 * 
-	 * @param codiceRistorante
-	 * 
-	 * @return ritorna una lista di tavoli liberi
-	 */
-	public List<Tavolo> getTavoliDisponibili(int codiceRistorante, Date data, int numeroPersone) {
-
-		String sql = "SELECT t.* " + "FROM tavoli t " + "INNER JOIN sale s ON t.codiceSala = s.codice "
-				+ "INNER JOIN ristoranti r ON s.codiceRistorante  = r.codice "
-				+ "WHERE r.Codice = ? AND  t.CapacitaMassima >= ? AND t.codice NOT IN(SELECT p.CodiceTavolo " + "FROM prenotazioni p "				
-				+ "INNER JOIN tavoli t ON p.codicetavolo = t.Codice " + "INNER JOIN sale s ON t.codiceSala = s.codice "
-				+ "INNER JOIN ristoranti r ON s.codiceRistorante = r.codice " + "WHERE r.codice = ? AND  p.data = ?) "
-				+ "ORDER BY t.CapacitaMassima ASC ";
-		
-		// s.codiceRistorante è il codice che ho messo come parametro
-		List<Tavolo> tavoliLiberi = new ArrayList<>();
-
-		try {
-			Connection conn = DBConnect.getConnection();
-			PreparedStatement st = conn.prepareStatement(sql);
-
-			st.setInt(1, codiceRistorante);
-			st.setInt(2, numeroPersone);
-			st.setInt(3, codiceRistorante);
-			st.setDate(4, data);
-
-			ResultSet res = st.executeQuery();
-
-			while (res.next()) {
-				Tavolo t = new Tavolo(res.getInt("codice"), res.getInt("codicesala"), res.getString("nome"),
-						res.getInt("CapacitaMassima"));
-				tavoliLiberi.add(t);
-			}
-			res.close();
-			st.close();
-			conn.close();
-		} catch (SQLException e) {
-			throw new RuntimeException("Database error in cerca tavoli liberi", e);
-		}
-		return tavoliLiberi;
-
-	}
 
 	/**
 	 * recupero le informazioni della prenotazione per registrare i clienti al momento che si presentano al ristorante
@@ -144,7 +98,7 @@ public class PrenotazioniDAO {
 			
 			ResultSet res = st.executeQuery();
 			while (res.next()) {
-				Prenotazione p = new Prenotazione(res.getInt("codice"), res.getString("cognome"), res.getString("nome"), 
+				Prenotazione p = new Prenotazione(res.getInt("codice"),res.getInt("codicetavolo"), res.getString("cognome"), res.getString("nome"), 
 						res.getString("telefono"),res.getInt("numeroPersone"), res.getDate("data"));
 				prenotazione.add(p);
 			}					
@@ -159,35 +113,9 @@ public class PrenotazioniDAO {
 		return prenotazione;
 	}		
 			
-    public String cercaNomeSala(Integer codicePrenotazione)	{	
-	
-		String sql ="SELECT s.Nome "
-                  + "FROM prenotazioni p, tavoli t, sale s "				 
-                  + "WHERE p.codiceTavolo = t.Codice "
-                  + "AND p.codice = ? "
-                  + "AND t.CodiceSala = s.Codice ";			
-		
-		String nomeSala;		
-		
-		try {
-			Connection conn = DBConnect.getConnection();
-			PreparedStatement st = conn.prepareStatement(sql);
 
-			st.setInt(1, codicePrenotazione);
-			
-			ResultSet res = st.executeQuery();
-			res.first();
-			nomeSala = res.getString("s.nome");
-			//System.out.println("nome della sala in cui è stata effettuata la prenotazione : "+ nomeSala);
-			res.close();			
-		    st.close();
-		    conn.close();
-		    
-			
-		} catch (SQLException e) {
-			throw new RuntimeException("Database error in cerca codice tavolo prenotato", e);
-		}
-		return nomeSala;		
-		
-	}
+    
+    
+    
+    
 }

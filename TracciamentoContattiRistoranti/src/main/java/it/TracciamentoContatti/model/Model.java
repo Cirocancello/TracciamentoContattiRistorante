@@ -15,6 +15,8 @@ import java.sql.Date;
 import it.TracciamentoContatti.db.ClienteDAO;
 import it.TracciamentoContatti.db.PrenotazioniDAO;
 import it.TracciamentoContatti.db.RistoranteDAO;
+import it.TracciamentoContatti.db.SaleDAO;
+import it.TracciamentoContatti.db.TavoliDAO;
 import it.TracciamentoContatti.db.TracciaContattiDAO;
 import it.TracciamentoContatti.model.Cliente;
 import it.TracciamentoContatti.model.Prenotazione;
@@ -22,11 +24,7 @@ import it.TracciamentoContatti.model.Ristorante;
 import it.TracciamentoContatti.model.Sala;
 import it.TracciamentoContatti.model.Tavolo;
 
-	public class Model {
-		
-//		public void stampa() {
-//			System.out.println("Sono il model");
-//		}		
+	public class Model {	
 		
 		public List<Ristorante> getRistoranti() {
 			
@@ -54,31 +52,31 @@ import it.TracciamentoContatti.model.Tavolo;
 		}
 		
 		
-		public Integer getTavoliDisponibili(Integer codiceRistorante, Date data, Integer numeroPersone) {
+		public List<Tavolo> getTavoliDisponibili(Integer codiceRistorante, Date data, Integer numeroPersone) {
 			//___________________________Cerco eventuali tavoli disponibili
-			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+			TavoliDAO tavoliDao = new TavoliDAO();
 			
-			List<Tavolo> tavoliLiberi = prenotazioneDao.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
+			List<Tavolo> tavoliLiberi = tavoliDao.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
 			
 			Integer codiceTavoloDisponibile = null;
 			
 			if (tavoliLiberi.size() > 0) {
 				codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
+			} 
 			
-			} else {
-			    System.out.println("Tavolo non disponibile");
-		    }
-			
-			return codiceTavoloDisponibile;
+			//return codiceTavoloDisponibile;
+			return tavoliLiberi;
 		}
 		
 		
 		
 		public Integer creaPrenotazione(Integer codiceTavoloDisponibile, Integer codiceRistorante, String cognome,
-				                        String nome, String telefono, Integer numeroPersone, Date data) {
+				                     String nome, String telefono, Integer numeroPersone, Date data) {
+		
 			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
-			prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, codiceRistorante, cognome, nome, telefono, numeroPersone, data);
-			return null;
+			Integer codicePrenotazione = prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, codiceRistorante, cognome, nome, telefono, numeroPersone, data);
+			
+			return codicePrenotazione;
 		}
 		
 		public void InserisciCliente(Integer codiceTavoloPrenotato, String cognome, String nome, String cartaIdentita, String telefono, Date data) {
@@ -90,7 +88,9 @@ import it.TracciamentoContatti.model.Tavolo;
 			
 		}
 		
+		
 		public List<Prenotazione> cercaPrenotazione(Integer codicePrenotazione) {
+			
 			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
 			List<Prenotazione> prenotazione = prenotazioneDao.cercaPrenotazione(codicePrenotazione);
 			
@@ -100,14 +100,24 @@ import it.TracciamentoContatti.model.Tavolo;
 		
 		
 		public String cercaNomeSala(Integer codicePrenotazione) {
-			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
 			
-			String nomeSala = prenotazioneDao.cercaNomeSala(codicePrenotazione);
+			SaleDAO saleDao = new SaleDAO();
+			
+			String nomeSala = saleDao.cercaNomeSala(codicePrenotazione);
 			
 			return nomeSala;
 			
 		}
 		
+		public String cercaNomeSalaNonPrenotata(Integer tavoloLibero, Integer codiceRistorante) {
+			
+			SaleDAO saleDao = new SaleDAO();
+			
+			String nomeSala = saleDao.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
+			
+			return nomeSala;
+		}
+	
 //____________________________________________________________________________________________		
 		
 		
@@ -149,15 +159,16 @@ import it.TracciamentoContatti.model.Tavolo;
 		    //effettuo una prenotazione e ricavo il relativo codice assegnato 
 	        //il codice del ristorante lo devo passare come parametro, dall' interfccia grafica 
 	         
-			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+			TavoliDAO tavoliDao = new TavoliDAO();
 			LocalDate data1 = LocalDate.of(2022, 01, 21);
-	        //scelgo il ristorante recupero il codice invocando il metodi getCodiceRistorante e il cognome, nome, ecc....		
-		    int codicePrenotazione = prenotazioneDao.creaPrenotazione(1,2,"Cancello", "Ciro", "3463474887", 1, Date.valueOf(data1));
+	        PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+			//scelgo il ristorante recupero il codice invocando il metodi getCodiceRistorante e il cognome, nome, ecc....		
+		    int codicePrenotazione = prenotazioneDao .creaPrenotazione(1,2,"Cancello", "Ciro", "3463474887", 1, Date.valueOf(data1));
 	
 			
 			//cerco tavoli liberi nel ristorante selezioneto e li stampo
 			LocalDate data2 = LocalDate.of(2022, 01, 21);
-			List<Tavolo> tavoliLiberi = prenotazioneDao.getTavoliDisponibili(codiceRistorante, Date.valueOf(data1), 4);
+			List<Tavolo> tavoliLiberi = tavoliDao.getTavoliDisponibili(codiceRistorante, Date.valueOf(data1), 4);
 		
 			System.out.println("Tavoli liberi");
 			for(Tavolo tav : tavoliLiberi) {
@@ -197,6 +208,8 @@ import it.TracciamentoContatti.model.Tavolo;
 			
 			
 		}
+
+	
 
 		
 

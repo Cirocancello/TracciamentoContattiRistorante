@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-import it.TracciamentoContatti.db.PrenotazioniDAO;
 import it.TracciamentoContatti.model.Cliente;
 import it.TracciamentoContatti.model.Model;
 import it.TracciamentoContatti.model.Prenotazione;
@@ -59,17 +58,21 @@ public class Controller {
 		
 		if(e.getSource() == frame.btnTavolataPrenotata) {
 			
-			ClienteView clienteView = new ClienteView();
+			TavolataPrenotataView tavolataPrenotataView = new TavolataPrenotataView();
 			
+		}
+		
+		if(e.getSource() == frame.btnTavolataNonPrenotata) {
+			
+			TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView();
 		}
 
 	}
 
 	public void effettuaPrenotazione(Prenotazione prenotazione, JTextField textCodiceRistorante) {
 	
-		Model model = new Model();
-		
-		//LocalDate data1 = LocalDate.of(2022, 01, 21);
+		Model model = new Model();		
+	
 		Integer codiceRistorante = Integer.parseInt(textCodiceRistorante.getText());
 		String cognome = prenotazione.getCognome();
 		String nome = prenotazione.getNome();
@@ -77,13 +80,16 @@ public class Controller {
 		Integer numeroPersone = prenotazione.getNumeroPersone();
 	    Date data =  prenotazione.getData(); 
 	    
-		Integer codiceTavoloDisponibile = model.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
-        
+		List<Tavolo> tavoliLiberi = model.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
+        Integer codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
+		
 		if (codiceTavoloDisponibile != null) {
 		   //scelgo il ristorante recupero il codice invocando il metodi getCodiceRistorante e il cognome, nome, ecc....		
 	       Integer codicePrenotazione = model.creaPrenotazione(codiceTavoloDisponibile, codiceRistorante, cognome, nome, telefono, numeroPersone, data);
 	       //prenotazione effettuata
-	       JOptionPane.showMessageDialog(null,  "Tavolo prenotato per il : "+data+"\ncodice tavolo assegnato "+codiceTavoloDisponibile, "Prenotazione effettuata!!!", JOptionPane.INFORMATION_MESSAGE);
+	       JOptionPane.showMessageDialog(null, "Tavolo prenotato per il : "+data
+	    		   +"\ncodice prenotazione "+codicePrenotazione
+	    		   +"\ncodice tavolo assegnato "+codiceTavoloDisponibile, "Prenotazione effettuata!!!", JOptionPane.INFORMATION_MESSAGE);
 
 		}
 		else {
@@ -130,7 +136,6 @@ public class Controller {
 		
 		Model model = new Model();			
 		
-		
 		Integer codiceTavoloPrenotato = cliente.getCodiceTavolo();
 		String cognome = cliente.getCognome();
 		String nome = cliente.getNome();
@@ -139,7 +144,7 @@ public class Controller {
 		Date data = cliente.getData();		
 		
 		model.InserisciCliente(codiceTavoloPrenotato,cognome,
-				nome,cartaIdentita,telefono,data);		
+				               nome,cartaIdentita,telefono,data);		
 		
 		textAreaClientiInseriti.append(cliente.getNome()+" ");
 		textAreaClientiInseriti.append(cliente.getCognome()+" ");
@@ -153,20 +158,63 @@ public class Controller {
 		Model model = new Model();
 		
 		List<Prenotazione> prenotazione = model.cercaPrenotazione(codicePrenotazione);
-		String nomeSala = model.cercaNomeSala(codicePrenotazione);
 		
-		for(Prenotazione p : prenotazione) {
-			//textAreaPrenotazione.append(p.getCodice()+" ");
-			textAreaPrenotazione.append(p.getCognome()+" ");
-			textAreaPrenotazione.append(p.getNome()+" - ");
-			textAreaPrenotazione.append("tel : "+p.getTelefono()+" - ");
-			textAreaPrenotazione.append("n.ro persone prenotate "+p.getNumeroPersone()+" - ");
-			textAreaPrenotazione.append("in data "+ p.getData()+"\n");
-			textAreaPrenotazione.append("Sala prenotata : "+ nomeSala);
+		if(prenotazione.size() > 0) {
+			String nomeSala = model.cercaNomeSala(codicePrenotazione);		
+		    for(Prenotazione p : prenotazione) {
+		    	
+		    	//textAreaPrenotazione.append(p.getCodice()+" ");
+			    textAreaPrenotazione.append("Prenotazione a nome di \n"+p.getCognome()+" ");
+			    textAreaPrenotazione.append(p.getNome()+" - ");
+			    textAreaPrenotazione.append("tel : "+p.getTelefono()+" - ");
+			    textAreaPrenotazione.append("n.ro persone prenotate "+p.getNumeroPersone()+" - ");
+			    textAreaPrenotazione.append("in data "+ p.getData()+"\n");
+			    textAreaPrenotazione.append("tavolo prenotato "+p.getCodiceTavolo() +"   ");
+			    textAreaPrenotazione.append("Sala prenotata : "+ nomeSala);
 		
-		}
+		   }
+		}else {
+			JOptionPane.showMessageDialog(null,  "prenotazione non presente in base dati!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
-	}	
+		}
+		
+	}
+
+	public void cercaTavoloLibero(ActionEvent e, JTextField textCodiceRistorante, JTextField textData, JTextField textNumeroPersone
+								 ,JTextArea textAreaClienti) {
+		
+		Model model = new Model();
+		Integer codiceRistorante = Integer.parseInt(textCodiceRistorante.getText());
+		Date data = Date.valueOf(textData.getText());
+		Integer numeroPersone = Integer.parseInt(textNumeroPersone.getText());
+		
+		if(numeroPersone > 6) {
+			JOptionPane.showMessageDialog(null,  "numero di persone deve essere al più 6 ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+			return;
+		}
+		//cerco il primo tavolo disponibile
+		List<Tavolo> tavoliLiberi = model.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
+		if(tavoliLiberi.size() > 0) {
+		   Integer tavoloLibero = tavoliLiberi.get(0).getCodice();
+		  		
+		   if(tavoloLibero != null) {
+			   //visualizzo il messaggio del tavolo libero con il suo codice e il nome della sala
+			   String nomeSala = model.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
+		       JOptionPane.showMessageDialog(null,  "codice tavolo libero  "+tavoloLibero
+		    		  +"\nnome della sala "+nomeSala, "Tavolo disponibile !!!", JOptionPane.INFORMATION_MESSAGE);
+		    }
+		}
+		else {
+     	    //tavolo non disponibile per quel giorno
+			JOptionPane.showMessageDialog(null,  "nessun tavolo disponibile ", "Attenzione!!!", JOptionPane.INFORMATION_MESSAGE);
+		} 
+			
+	}
+
+	
+	
+	
 	
 }
 	

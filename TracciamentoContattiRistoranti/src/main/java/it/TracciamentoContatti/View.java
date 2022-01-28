@@ -36,9 +36,7 @@ public class View extends JFrame {
 	public JButton btnTracciaContatti;
 	public JButton btnTavolataPrenotata;
 	public JButton btnNuovoRistorante;
-	
-	public Model model;
-	private JButton btnTavolataNonPrenotata;
+	public JButton btnTavolataNonPrenotata;	
 
 	/**
 	 * Create the frame.
@@ -76,7 +74,7 @@ public class View extends JFrame {
 				controller.Actionperformed(e);
 			}
 		});
-		btnNuovoRistorante.setBounds(211, 190, 162, 23);
+		btnNuovoRistorante.setBounds(44, 186, 162, 23);
 		contentPane.add(btnNuovoRistorante);
 		
 		btnTracciaContatti = new JButton("Traccia contatti");
@@ -98,12 +96,27 @@ public class View extends JFrame {
 			
 			}
 		});
-		btnTavolataPrenotata.setBounds(211, 101, 162, 23);
+		btnTavolataPrenotata.setBounds(211, 101, 174, 23);
 		contentPane.add(btnTavolataPrenotata);
 		
 		btnTavolataNonPrenotata = new JButton("Tavolata non prenotata");
-		btnTavolataNonPrenotata.setBounds(211, 146, 162, 23);
+		btnTavolataNonPrenotata.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				controller.Actionperformed(e);
+			}
+		});
+		btnTavolataNonPrenotata.setBounds(211, 146, 174, 23);
 		contentPane.add(btnTavolataNonPrenotata);
+		
+		JButton btnNewButton = new JButton("Chiudi");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(324, 215, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 	
 	public void setController(Controller controller) {

@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Scrollbar;
 import javax.swing.JTextArea;
 
-public class ClienteView extends JFrame {
+public class TavolataPrenotataView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textCognome;
@@ -38,13 +38,13 @@ public class ClienteView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClienteView() {
+	public TavolataPrenotataView() {
 		
 		setResizable(false);
 		setVisible(true);
 		setTitle("Inserimento Cliente");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(400, 200, 558, 481);
+		setBounds(400, 200, 558, 506);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -112,7 +112,7 @@ public class ClienteView extends JFrame {
 			    textTelefono.setText(" ");
 			    textCartaIdentita.setText(" ");
 			    textData.setText(" ");
-				//dispose();
+				
 			}
 		});
 		btnInserisciClienti.setBounds(369, 244, 137, 23);
@@ -124,7 +124,7 @@ public class ClienteView extends JFrame {
 		textData.setColumns(10);
 		
 		textAreaClientiInseriti = new JTextArea();
-		textAreaClientiInseriti.setBounds(27, 283, 477, 148);
+		textAreaClientiInseriti.setBounds(27, 283, 477, 137);
 		contentPane.add(textAreaClientiInseriti);
 		
 		textAreaPrenotazione = new JTextArea();
@@ -168,5 +168,14 @@ public class ClienteView extends JFrame {
 		lblNewLabel_8 = new JLabel("Inserisci i dati dei clienti ");
 		lblNewLabel_8.setBounds(29, 103, 184, 14);
 		contentPane.add(lblNewLabel_8);
+		
+		JButton btnChiudi = new JButton("Chiudi");
+		btnChiudi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		btnChiudi.setBounds(415, 433, 89, 23);
+		contentPane.add(btnChiudi);
 	}
 }
