@@ -10,15 +10,19 @@ import javax.swing.border.EmptyBorder;
 import it.TracciamentoContatti.model.Cliente;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.awt.TextArea;
 import java.awt.Label;
+import com.toedter.calendar.JDateChooser;
 
 public class TavolataNonPrenotataView extends JFrame {
 
@@ -29,7 +33,6 @@ public class TavolataNonPrenotataView extends JFrame {
 	private JTextField textTelefono;
 	private JTextField textNome;
 	private JTextField textCognome;
-	private JTextField textData;
 	private JTextField textCodiceTavoloAssegnato;
 	private JTextArea textAreaClienti;
 	private JButton btnChiudi;
@@ -37,7 +40,8 @@ public class TavolataNonPrenotataView extends JFrame {
 	private JButton btnCercaTavoloLibero;
 	private JTextField textCodiceRistorante;
 	private JLabel lblNewLabel;
-	
+	private JDateChooser dateChooser;
+	private String data;
 	
 	/**
 	 * Create the frame.
@@ -61,14 +65,41 @@ public class TavolataNonPrenotataView extends JFrame {
 				
 				Controller controller = new Controller();					
 				
-				String codiceTavolo = textCodiceTavoloAssegnato.getText();
+				String codiceTavolo = textCodiceTavoloAssegnato.getText();			
+				   
+				if(codiceTavolo.length() == 0) {			           
+					JOptionPane.showMessageDialog(null,  "Campo codice tavolo vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
 				String cognome = textCognome.getText();
+				if(cognome.length() == 0) {			           
+					JOptionPane.showMessageDialog(null,  "Campo cognome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
+		
 				String nome = textNome.getText();
+				if(nome.length() == 0) {			           
+					JOptionPane.showMessageDialog(null,  "Campo nome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
+				
 				String telefono = textTelefono.getText();
-				String cartaIdentita = textCartaIdentita.getText();				    
-				String data = textData.getText();
+				if(telefono.length() == 0) {			           
+					JOptionPane.showMessageDialog(null,  "Campo telefono vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
+				
+				String cartaIdentita = textCartaIdentita.getText();	
+				if(cartaIdentita.length() == 0) {			           
+					JOptionPane.showMessageDialog(null,  "Campo carta identità vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }			
+	
+				
+				
+				Date theData = Date.valueOf(data);
 				    
-				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognome, nome, telefono, cartaIdentita, Date.valueOf(data));
+				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognome, nome, telefono, cartaIdentita, theData);
 			    controller.inserisciCliente(cliente, textAreaClienti);
 				
 			    textCodiceTavoloAssegnato.setText(" ");
@@ -76,7 +107,7 @@ public class TavolataNonPrenotataView extends JFrame {
 			    textNome.setText(" ");
 			    textTelefono.setText(" ");
 			    textCartaIdentita.setText(" ");
-			    textData.setText(" ");
+			  
 				
 				
 			}
@@ -88,7 +119,7 @@ public class TavolataNonPrenotataView extends JFrame {
 		btnChiudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				//dispose(); è la stessa cosa
+			
 			}
 		});
 		btnChiudi.setBounds(337, 412, 89, 23);
@@ -131,11 +162,6 @@ public class TavolataNonPrenotataView extends JFrame {
 		textCognome.setBounds(100, 112, 102, 20);
 		contentPane.add(textCognome);
 		
-		textData = new JTextField();
-		textData.setColumns(10);
-		textData.setBounds(100, 52, 70, 20);
-		contentPane.add(textData);
-		
 		textCodiceTavoloAssegnato = new JTextField();
 		textCodiceTavoloAssegnato.setColumns(10);
 		textCodiceTavoloAssegnato.setBounds(370, 174, 56, 20);
@@ -167,10 +193,34 @@ public class TavolataNonPrenotataView extends JFrame {
 		
 		btnCercaTavoloLibero = new JButton("Cerca tavolo libero");
 		btnCercaTavoloLibero.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				
 				Controller controller = new Controller();
-				controller.cercaTavoloLibero(e, textCodiceRistorante, textData, textNumeroPersone,textAreaClienti);
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				
+				data = null;
+				try {
+				   data = dateFormat.format(dateChooser.getDate());
+				}catch(Exception ex) {
+					JOptionPane.showMessageDialog(null,  "Devi inserire una data valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				String numeroPersone = textNumeroPersone.getText();;
+				   
+				if(numeroPersone.length() == 0) {			           
+					JOptionPane.showMessageDialog(null,  "Campo numero persone vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
+				
+				String codiceRistorante = textCodiceRistorante.getText();;
+				   
+				if(codiceRistorante.length() == 0) {			           
+					JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
+				
+				controller.cercaTavoloLibero(e, textCodiceRistorante, dateChooser, textNumeroPersone,textAreaClienti);
 					
 			}
 		});
@@ -185,5 +235,9 @@ public class TavolataNonPrenotataView extends JFrame {
 		lblNewLabel = new JLabel("Codice Ristorante");
 		lblNewLabel.setBounds(195, 11, 113, 14);
 		contentPane.add(lblNewLabel);
+		
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(70, 50, 102, 20);
+		contentPane.add(dateChooser);
 	}
 }

@@ -96,7 +96,7 @@ public class Prenotazione {
 	@Override
 	public String toString() {
 		return "Prenotazione a nome di " + cognome + ", " + nome + ", " + telefono
-				+ ", numeroPersone prenotate " + numeroPersone + ", in data " + data ;
+				+ ", numeroPersone prenotate " + numeroPersone + ", in data " + data +", "+ codice;
 	}
 	
 	

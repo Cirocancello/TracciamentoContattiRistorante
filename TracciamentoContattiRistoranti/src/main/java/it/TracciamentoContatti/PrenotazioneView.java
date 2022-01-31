@@ -11,6 +11,7 @@ import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Ristorante;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.Choice;
@@ -19,6 +20,7 @@ import java.awt.Scrollbar;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -26,6 +28,7 @@ import java.awt.Font;
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import java.awt.Color;
+import com.toedter.calendar.JDateChooser;
 
 public class PrenotazioneView extends JFrame {
 
@@ -39,9 +42,9 @@ public class PrenotazioneView extends JFrame {
 	private JButton btnEffettuaPrenotazione;
 	
 	private Prenotazione prenotazione;
-	private JTextField textData;
 	private JTextField textCodiceRistorante;
 	private JTextArea textArea;
+	private JDateChooser dateChooser;
 	
 	/**
 	 * Create the frame.
@@ -112,12 +115,45 @@ public class PrenotazioneView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 			    Controller controller = new Controller();
-			    
-			    String cognome = textPrenotaCognome.getText();
+				
+			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				
+			    String data = null;
+				try {
+				   data = dateFormat.format(dateChooser.getDate());
+				}catch(Exception ex) {
+					JOptionPane.showMessageDialog(null,  "Devi inserire una data valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				String cognome = textPrenotaCognome.getText();;
+			   
+				if(cognome.length() == 0) {			           
+					JOptionPane.showMessageDialog(null,  "Campo cognome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
+ 
 			    String nome = textPrenotaNome.getText();
+			    if(nome.length() == 0) {
+					JOptionPane.showMessageDialog(null,  "Campo nome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
 			    String telefono = textPrenotaTelefono.getText();
+			    if(telefono.length() == 0) {
+					JOptionPane.showMessageDialog(null,  "Campo telefono vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
 			    String numeroPersone = textPrenotaNumeroPersone.getText();
-			    String data = textData.getText();
+			    if(numeroPersone.length() == 0) {
+					JOptionPane.showMessageDialog(null,  "Campo numero persone vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
+			    String codiceRistorante = textCodiceRistorante.getText();
+			    if(codiceRistorante.length() == 0) {
+					JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+
+			    }
 			    
 			    Prenotazione prenotazione = new Prenotazione(cognome, nome, telefono, Integer.valueOf(numeroPersone), Date.valueOf(data));
 			    
@@ -136,11 +172,6 @@ public class PrenotazioneView extends JFrame {
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.ITALIC, 15));
 		lblNewLabel_6.setBounds(230, 11, 119, 14);
 		contentPane.add(lblNewLabel_6);
-		
-		textData = new JTextField();
-		textData.setBounds(119, 105, 75, 20);
-		contentPane.add(textData);
-		textData.setColumns(10);
 		
 		textArea = new JTextArea();
 		textArea.setBounds(20, 175, 503, 201);
@@ -163,6 +194,10 @@ public class PrenotazioneView extends JFrame {
 		textCodiceRistorante.setBounds(409, 105, 86, 20);
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);
+		
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(119, 108, 126, 20);
+		contentPane.add(dateChooser);
 
 	}
 

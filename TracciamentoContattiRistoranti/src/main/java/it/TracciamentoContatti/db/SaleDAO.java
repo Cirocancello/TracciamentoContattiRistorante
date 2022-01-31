@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.toedter.calendar.JDateChooser;
+
 public class SaleDAO {
 
-    public String cercaNomeSala(Integer codicePrenotazione)	{	
+    public String cercaNomeSala(Integer codice)	{	
     	
 		String sql ="SELECT s.Nome "
                   + "FROM prenotazioni p, tavoli t, sale s "				 
@@ -21,7 +23,7 @@ public class SaleDAO {
 			Connection conn = DBConnect.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
 
-			st.setInt(1, codicePrenotazione);
+			st.setInt(1, codice);
 			
 			ResultSet res = st.executeQuery();
 			res.first();

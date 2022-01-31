@@ -6,8 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JTextField;
+
+import com.toedter.calendar.JDateChooser;
 
 import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Tavolo;
@@ -77,24 +82,28 @@ public class PrenotazioniDAO {
 	/**
 	 * recupero le informazioni della prenotazione per registrare i clienti al momento che si presentano al ristorante
 	 * e visualizzo nome, cognome, telefono, numero delle persone prenotate
+	 * la ricerca avviene fornanedo la data della prenotazione ed il cognome con cui il cliente si è registrato
 	 * 
 	 * @param codicePrenotazione
 	 * 
 	 * @return ritorna le informazioni della prenotazione
 	 */
-	public List<Prenotazione> cercaPrenotazione(Integer codicePrenotazione) {		
+	public List<Prenotazione> cercaPrenotazione(String theData, String cognome) {		
 		
 		String sql ="SELECT * "
 				+ "FROM prenotazioni "
-		        + "WHERE codice = ? ";
+		        + "WHERE data = ? "
+				+ "AND cognome = ? ";
 		
 		List<Prenotazione> prenotazione = new ArrayList<>();
+		Date data = Date.valueOf(theData);
 		
 		try {
 			Connection conn = DBConnect.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
 			
-			st.setInt(1, codicePrenotazione);
+			st.setDate(1, data);
+			st.setString(2, cognome);
 			
 			ResultSet res = st.executeQuery();
 			while (res.next()) {

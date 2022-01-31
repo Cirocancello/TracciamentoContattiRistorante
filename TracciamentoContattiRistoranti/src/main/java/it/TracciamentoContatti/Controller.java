@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,6 +13,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
+
+import com.toedter.calendar.JDateChooser;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -20,6 +24,7 @@ import it.TracciamentoContatti.model.Model;
 import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Ristorante;
 import it.TracciamentoContatti.model.Tavolo;
+import javafx.scene.chart.PieChart.Data;
 
 public class Controller {
 	
@@ -117,18 +122,23 @@ public class Controller {
 	}
 	
 
-	public void TracciaContatti(JTextField textCartaIdentita, JTextField textData, TextArea textAreaTraccia) throws IOException {
-		Model model = new Model();
-		String cartaIdentita = textCartaIdentita.getText();
-		String data = textData.getText();
+	public void TracciaContatti(String cartaIdentita, String data, TextArea textAreaTraccia) throws IOException {
+		Model model = new Model();		
+	
+		List<Cliente> clientidaContattare = model.tracciaContatti(cartaIdentita, data); 		
 		
-		List<Cliente> clientidaContattare = model.tracciaContatti(cartaIdentita, Date.valueOf(data)); 		
+		if(clientidaContattare.size() > 0) {
+		
+	  	   for(Cliente c : clientidaContattare) {			
+			   textAreaTraccia.append(c.getNome()+" ");
+			   textAreaTraccia.append(c.getCognome()+" ");
+			   textAreaTraccia.append(c.getTelefono()+"\n");			
+		   }
+		}else {
+			JOptionPane.showMessageDialog(null,  "Nessuna tavolata presente in quel giorno", "Attenzione!!!", JOptionPane.INFORMATION_MESSAGE);
 			
-		for(Cliente c : clientidaContattare) {			
-			textAreaTraccia.append(c.getNome()+" ");
-			textAreaTraccia.append(c.getCognome()+" ");
-			textAreaTraccia.append(c.getTelefono()+"\n");			
-		}			
+		}
+			
 		
 	}
 
@@ -153,23 +163,27 @@ public class Controller {
 		
 	}
 
-	public void cercaPrenotazione(Integer codicePrenotazione, JTextArea textAreaPrenotazione) {
+	public void cercaPrenotazione(String data, String cognome,JTextArea textAreaPrenotazione) {
           
-		Model model = new Model();
+		Model model = new Model();				
 		
-		List<Prenotazione> prenotazione = model.cercaPrenotazione(codicePrenotazione);
+		//String cognome = textCognome.getText();
+		
+		List<Prenotazione> prenotazione = model.cercaPrenotazione(data, cognome);
 		
 		if(prenotazione.size() > 0) {
-			String nomeSala = model.cercaNomeSala(codicePrenotazione);		
+		//TODO devo recuperare il codice della prenotazione da prenotazione e cercare il nome sala	
+				
 		    for(Prenotazione p : prenotazione) {
-		    	
-		    	//textAreaPrenotazione.append(p.getCodice()+" ");
+		    	Integer codice = p.getCodice();
+		    	String nomeSala = model.cercaNomeSala(codice);
+		    	textAreaPrenotazione.append("Codcie pernotazione "+p.getCodice()+"\n");
 			    textAreaPrenotazione.append("Prenotazione a nome di \n"+p.getCognome()+" ");
 			    textAreaPrenotazione.append(p.getNome()+" - ");
 			    textAreaPrenotazione.append("tel : "+p.getTelefono()+" - ");
 			    textAreaPrenotazione.append("n.ro persone prenotate "+p.getNumeroPersone()+" - ");
 			    textAreaPrenotazione.append("in data "+ p.getData()+"\n");
-			    textAreaPrenotazione.append("tavolo prenotato "+p.getCodiceTavolo() +"   ");
+			    textAreaPrenotazione.append("tavolo prenotato "+p.getCodiceTavolo() +"\n");
 			    textAreaPrenotazione.append("Sala prenotata : "+ nomeSala);
 		
 		   }
@@ -180,12 +194,16 @@ public class Controller {
 		
 	}
 
-	public void cercaTavoloLibero(ActionEvent e, JTextField textCodiceRistorante, JTextField textData, JTextField textNumeroPersone
+	public void cercaTavoloLibero(ActionEvent e, JTextField textCodiceRistorante, JDateChooser dateChooser, JTextField textNumeroPersone
 								 ,JTextArea textAreaClienti) {
 		
 		Model model = new Model();
 		Integer codiceRistorante = Integer.parseInt(textCodiceRistorante.getText());
-		Date data = Date.valueOf(textData.getText());
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String theDate = dateFormat.format(dateChooser.getDate());	
+		
+		Date data = Date.valueOf(theDate);
 		Integer numeroPersone = Integer.parseInt(textNumeroPersone.getText());
 		
 		if(numeroPersone > 6) {

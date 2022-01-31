@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JTextField;
+
 import it.TracciamentoContatti.model.Cliente;
 import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Ristorante;
@@ -27,7 +29,7 @@ public class TracciaContattiDAO {
 	 * @return ritorna il nome, cognome e telefono delle persone che hanno avuto
 	 *         contatto con il contagiato
 	 */
-	public List<Cliente> tracciaContatti(String cartaIdentita, Date data) {
+	public List<Cliente> tracciaContatti(String cartaIdentita, String data1) {
 
 		String sql = "SELECT Cognome, Nome,Telefono " + "FROM clienti " + "WHERE CodiceTavolo IN "
 				+ "(SELECT codiceTavolo FROM clienti " + "WHERE DATA = ? " + "AND codiceTavolo IN ( "
@@ -42,7 +44,8 @@ public class TracciaContattiDAO {
 		
 		
 		List<Cliente> clientidaContattare = new ArrayList<>();
-
+		Date data = Date.valueOf(data1);
+		
 		try {
 			Connection conn = DBConnect.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);

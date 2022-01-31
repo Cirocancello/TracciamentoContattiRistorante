@@ -12,19 +12,24 @@ import javax.swing.JLabel;
 import java.awt.Scrollbar;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.Choice;
 import java.awt.TextArea;
+import com.toedter.calendar.JDateChooser;
 
 public class TracciaContattiView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textCartaIdentita;
 	private JButton btnTraccia;
-	private JTextField textData;
 	private TextArea textAreaTraccia;
+	
+	private JDateChooser dateChooser;
 
 	/**
 	 * Create the frame.
@@ -50,13 +55,31 @@ public class TracciaContattiView extends JFrame {
 		btnTraccia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controller controller = new Controller();
+				
+				String cartaIdentita = textCartaIdentita.getText();
+				if (cartaIdentita.length() == 0) {
+					JOptionPane.showMessageDialog(null,  "Devi inserire una carta di identità valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+				}	
+			
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				String data = null;
 				try {
-					controller.TracciaContatti(textCartaIdentita, textData, textAreaTraccia);
+				   data = dateFormat.format(dateChooser.getDate());
+				}catch(Exception ex) {
+					JOptionPane.showMessageDialog(null,  "Devi inserire una data valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+				}
+				try {
+					controller.TracciaContatti(cartaIdentita, data, textAreaTraccia);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
+					
+					
+				
+			
 		});
 		btnTraccia.setBounds(361, 103, 89, 23);
 		contentPane.add(btnTraccia);
@@ -84,21 +107,16 @@ public class TracciaContattiView extends JFrame {
 		btnTornaAlMenu.setBounds(260, 396, 215, 23);
 		contentPane.add(btnTornaAlMenu);
 		
-		Choice choice = new Choice();
-		choice.setBounds(216, 96, 89, 20);
-		contentPane.add(choice);
-		
 		textAreaTraccia = new TextArea();
 		textAreaTraccia.setBounds(25, 148, 436, 230);
 		contentPane.add(textAreaTraccia);
 		
-		textData = new JTextField();
-		textData.setBounds(338, 70, 86, 20);
-		contentPane.add(textData);
-		textData.setColumns(10);
-		
 		JLabel lblNewLabel = new JLabel("Clienti da contattare");
 		lblNewLabel.setBounds(25, 127, 159, 14);
 		contentPane.add(lblNewLabel);
+		
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(342, 70, 108, 20);
+		contentPane.add(dateChooser);
 	}
 }
