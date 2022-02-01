@@ -29,6 +29,8 @@ import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PrenotazioneView extends JFrame {
 
@@ -45,7 +47,11 @@ public class PrenotazioneView extends JFrame {
 	private JTextField textCodiceRistorante;
 	private JTextArea textArea;
 	private JDateChooser dateChooser;
-	
+	private  String telefono ;
+	private String cognome;
+	private String nome;
+	private String codiceRistorante;	
+	private  String numeroPersone; 
 	/**
 	 * Create the frame.
 	 */
@@ -91,21 +97,107 @@ public class PrenotazioneView extends JFrame {
 		contentPane.add(lblRistoranti);
 		
 		textPrenotaCognome = new JTextField();
+		textPrenotaCognome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {			
+				
+				//JTextField to accept only alfabets
+				//code for JTextField that acept letter whitespace and delete backspace key only
+				char c = e.getKeyChar();
+				if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+					//ISOControl for edit operation (delete key and backspace key allow)
+					//if enter character is letter, space and isocontrol char than allow to edit
+					textPrenotaCognome.setEditable(true);					
+				}else {
+					textPrenotaCognome.setEditable(false);
+				}				
+				
+			}
+		});
 		textPrenotaCognome.setBounds(119, 36, 126, 20);
 		contentPane.add(textPrenotaCognome);
 		textPrenotaCognome.setColumns(10);
 		
 		textPrenotaNome = new JTextField();
+		textPrenotaNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				//JTextField to accept only alfabets
+				//code for JTextField that acept letter whitespace and delete backspace key only
+				char c = e.getKeyChar();
+				if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+					//ISOControl for edit operation (delete key and backspace key allow)
+					//if enter character is letter, space and isocontrol char than allow to edit
+					textPrenotaNome.setEditable(true);					
+				}else {
+					textPrenotaNome.setEditable(false);
+				}
+				nome = textPrenotaNome.getText();
+				
+			}
+		});
 		textPrenotaNome.setBounds(409, 36, 126, 20);
 		contentPane.add(textPrenotaNome);
 		textPrenotaNome.setColumns(10);
 		
 		textPrenotaTelefono = new JTextField();
+		textPrenotaTelefono.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+			    
+			    //JTextField phone number validation/ accept only numbers
+			    //action when key is press
+			    //get JTextField string
+				telefono = textPrenotaTelefono.getText();
+			    //get length of string
+			    int length = telefono.length();
+			    
+			    char c = e.getKeyChar();
+			    //check for number 0 to 9
+			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
+			    	//check for length not more than 10 digit
+			    	if(length<10) {
+			    		//editable true
+			    		textPrenotaTelefono.setEditable(true);
+			    	}else {
+			    		textPrenotaTelefono.setEditable(false);
+			    	}
+			    	
+			    }else {
+			    	//now allow for keys 'back space' and 'delete' for edit
+			    	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+			    		//than allow editable
+			    		textPrenotaTelefono.setEditable(true);
+			    	}else {
+			    		textPrenotaTelefono.setEditable(false);
+			    	}
+			    }		  
+				
+			}
+		});
 		textPrenotaTelefono.setBounds(119, 67, 126, 20);
 		contentPane.add(textPrenotaTelefono);
 		textPrenotaTelefono.setColumns(10);
 		
 		textPrenotaNumeroPersone = new JTextField();
+		textPrenotaNumeroPersone.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				//JTextField to accept only numbers
+				char c = e.getKeyChar();
+				
+				if(Character.isLetter(c)) {
+					//can't able to enter in textField if enter char is not number
+					textPrenotaNumeroPersone.setEditable(false);
+					JOptionPane.showMessageDialog(null,  "Devi iserire solo numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+				}else {
+					textPrenotaNumeroPersone.setEditable(true);
+				}
+			}
+		});
 		textPrenotaNumeroPersone.setBounds(409, 67, 125, 20);
 		contentPane.add(textPrenotaNumeroPersone);
 		textPrenotaNumeroPersone.setColumns(10);
@@ -124,31 +216,27 @@ public class PrenotazioneView extends JFrame {
 				}catch(Exception ex) {
 					JOptionPane.showMessageDialog(null,  "Devi inserire una data valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
+				} 		   
+			
+				cognome = textPrenotaCognome.getText();
+				if (cognome.length() == 0) {
+					JOptionPane.showMessageDialog(null,  "Campo cognome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
 				}
 				
-				String cognome = textPrenotaCognome.getText();;
-			   
-				if(cognome.length() == 0) {			           
-					JOptionPane.showMessageDialog(null,  "Campo cognome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
-					return;
-			    }
- 
-			    String nome = textPrenotaNome.getText();
-			    if(nome.length() == 0) {
+				nome = textPrenotaNome.getText();
+				if (nome.length() == 0) {
 					JOptionPane.showMessageDialog(null,  "Campo nome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
-					return;
-			    }
-			    String telefono = textPrenotaTelefono.getText();
-			    if(telefono.length() == 0) {
-					JOptionPane.showMessageDialog(null,  "Campo telefono vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
-					return;
-			    }
-			    String numeroPersone = textPrenotaNumeroPersone.getText();
+
+				}
+			    
+			    numeroPersone = textPrenotaNumeroPersone.getText();
 			    if(numeroPersone.length() == 0) {
 					JOptionPane.showMessageDialog(null,  "Campo numero persone vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 			    }
-			    String codiceRistorante = textCodiceRistorante.getText();
+			    
+			    codiceRistorante = textCodiceRistorante.getText();
 			    if(codiceRistorante.length() == 0) {
 					JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
@@ -191,6 +279,43 @@ public class PrenotazioneView extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		textCodiceRistorante = new JTextField();
+		textCodiceRistorante.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				codiceRistorante = textCodiceRistorante.getText().trim();
+				//JTextField phone number validation/ accept only numbers
+			    //action when key is press
+			    //get JTextField string			   
+			    
+			    int length = codiceRistorante.length();
+			    
+			    char c = e.getKeyChar();
+			    //check for number 0 to 9
+			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
+			    	//check for length not more than 2 digit
+			    	if(length<2) {
+			    		//editable true
+			    		textCodiceRistorante.setEditable(true);
+			    	}else {
+			    		textCodiceRistorante.setEditable(false);
+						JOptionPane.showMessageDialog(null,  "Il codice riatorante max 2 cifre!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+			    	}
+			    	
+			    }else {
+			    	//now allow for keys 'back space' and 'delete' for edit
+			    	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+			    		//than allow editable
+			    		textCodiceRistorante.setEditable(true);
+			    	}else {
+			    		textCodiceRistorante.setEditable(false);
+						JOptionPane.showMessageDialog(null,  "Devi iserire solo numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+			    	}
+			    }
+			}
+			
+		});
 		textCodiceRistorante.setBounds(409, 105, 86, 20);
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);

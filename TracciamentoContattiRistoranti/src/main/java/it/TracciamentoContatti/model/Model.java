@@ -58,13 +58,7 @@ import it.TracciamentoContatti.model.Tavolo;
 			//___________________________Cerco eventuali tavoli disponibili
 			TavoliDAO tavoliDao = new TavoliDAO();
 			
-			List<Tavolo> tavoliLiberi = tavoliDao.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
-			
-			Integer codiceTavoloDisponibile = null;
-			
-			if (tavoliLiberi.size() > 0) {
-				codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
-			} 
+			List<Tavolo> tavoliLiberi = tavoliDao.getTavoliDisponibili(codiceRistorante, data, numeroPersone);	
 			
 			//return codiceTavoloDisponibile;
 			return tavoliLiberi;
@@ -72,11 +66,11 @@ import it.TracciamentoContatti.model.Tavolo;
 		
 		
 		
-		public Integer creaPrenotazione(Integer codiceTavoloDisponibile, Integer codiceRistorante, String cognome,
+		public Integer creaPrenotazione(Integer codiceTavoloDisponibile, String cognome,
 				                     String nome, String telefono, Integer numeroPersone, Date data) {
 		
 			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
-			Integer codicePrenotazione = prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, codiceRistorante, cognome, nome, telefono, numeroPersone, data);
+			Integer codicePrenotazione = prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, cognome, nome, telefono, numeroPersone, data);
 			
 			return codicePrenotazione;
 		}

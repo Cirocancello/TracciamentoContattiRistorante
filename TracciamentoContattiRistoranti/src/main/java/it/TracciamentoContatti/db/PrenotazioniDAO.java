@@ -33,20 +33,12 @@ public class PrenotazioniDAO {
 	 * 
 	 * @return il metodo ritorna il codice della eventuale prenotazione registrata
 	 */
-	public Integer creaPrenotazione(Integer codiceTavoloDisponibile, Integer codiceRistorante, String cognome, String nome, String telefono, Integer numeroPersone,
+	public Integer creaPrenotazione(Integer codiceTavoloDisponibile, String cognome, String nome, String telefono, Integer numeroPersone,
 			Date data) {
 
 		Integer codicePrenotazione = 0;
 		
-//		//___________________________Cerco eventuali tavoli disponibili
-//		List<Tavolo> tavoliLiberi = getTavoliDisponibili(codiceRistorante, data, numeroPersone);
-//
-//		if (tavoliLiberi.size() > 0) {
-//			Integer codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
-			//System.out.println("Tavolo prenotato per il : " + data + ", codice tavolo assegnato "
-				//	+ tavoliLiberi.get(0).getCodice());
-
-			String sql = "INSERT INTO prenotazioni (CodiceTavolo, Cognome,Nome,Telefono,NumeroPersone, DATA) VALUES ( ?, ?, ?, ?, ? ,?) ";
+			String sql = "INSERT INTO prenotazioni (CodiceTavolo, Cognome, Nome, Telefono, NumeroPersone, DATA) VALUES ( ?, ?, ?, ?, ? ,?) ";
 
 			try {
 				Connection conn = DBConnect.getConnection();

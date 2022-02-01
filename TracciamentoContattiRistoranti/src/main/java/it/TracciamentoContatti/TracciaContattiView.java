@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 import java.awt.Choice;
 import java.awt.TextArea;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TracciaContattiView extends JFrame {
 
@@ -30,6 +32,7 @@ public class TracciaContattiView extends JFrame {
 	private TextArea textAreaTraccia;
 	
 	private JDateChooser dateChooser;
+	private String cartaIdentita;
 
 	/**
 	 * Create the frame.
@@ -47,6 +50,37 @@ public class TracciaContattiView extends JFrame {
 		contentPane.setLayout(null);
 		
 		textCartaIdentita = new JTextField();
+		textCartaIdentita.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+
+				  cartaIdentita = textCartaIdentita.getText().trim();
+				  int length = cartaIdentita.length();
+				    
+				    char c = e.getKeyChar();
+				    //check for number 0 to 9 or letter
+				    if(Character.isLetterOrDigit(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+						//ISOControl for edit operation (delete key and backspace key allow)
+						//if enter character is letter, space and isocontrol char than allow to edit
+				    	if(length<9) {
+				    		//editable true
+				    		textCartaIdentita.setEditable(true);
+				    	}else {
+				    		textCartaIdentita.setEditable(false);
+				    	}
+				    	
+				    }else {
+				    	//now allow for keys 'back space' and 'delete' for edit
+				    	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+				    		//than allow editable
+				    		textCartaIdentita.setEditable(true);
+				    	}else {
+				    		textCartaIdentita.setEditable(false);
+				    	}
+				    }
+			}			
+			
+		});
 		textCartaIdentita.setBounds(131, 70, 138, 20);
 		contentPane.add(textCartaIdentita);
 		textCartaIdentita.setColumns(10);
@@ -56,7 +90,7 @@ public class TracciaContattiView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Controller controller = new Controller();
 				
-				String cartaIdentita = textCartaIdentita.getText();
+				cartaIdentita = textCartaIdentita.getText();
 				if (cartaIdentita.length() == 0) {
 					JOptionPane.showMessageDialog(null,  "Devi inserire una carta di identità valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 				}	

@@ -23,6 +23,8 @@ import javax.swing.JTextField;
 import java.awt.TextArea;
 import java.awt.Label;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TavolataNonPrenotataView extends JFrame {
 
@@ -42,6 +44,14 @@ public class TavolataNonPrenotataView extends JFrame {
 	private JLabel lblNewLabel;
 	private JDateChooser dateChooser;
 	private String data;
+	private String telefono;
+	private String cognome;
+	private String nome;
+	private String codiceTavolo;
+	private String cartaIdentita;
+	private String numeroPersone;
+	private String codiceRistorante;
+	
 	
 	/**
 	 * Create the frame.
@@ -65,31 +75,31 @@ public class TavolataNonPrenotataView extends JFrame {
 				
 				Controller controller = new Controller();					
 				
-				String codiceTavolo = textCodiceTavoloAssegnato.getText();			
+				codiceTavolo = textCodiceTavoloAssegnato.getText();			
 				   
 				if(codiceTavolo.length() == 0) {			           
 					JOptionPane.showMessageDialog(null,  "Campo codice tavolo vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 			    }
-				String cognome = textCognome.getText();
+				cognome = textCognome.getText();
 				if(cognome.length() == 0) {			           
 					JOptionPane.showMessageDialog(null,  "Campo cognome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 			    }
 		
-				String nome = textNome.getText();
+				nome = textNome.getText();
 				if(nome.length() == 0) {			           
 					JOptionPane.showMessageDialog(null,  "Campo nome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 			    }
 				
-				String telefono = textTelefono.getText();
+				telefono = textTelefono.getText();
 				if(telefono.length() == 0) {			           
 					JOptionPane.showMessageDialog(null,  "Campo telefono vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 			    }
 				
-				String cartaIdentita = textCartaIdentita.getText();	
+				cartaIdentita = textCartaIdentita.getText();	
 				if(cartaIdentita.length() == 0) {			           
 					JOptionPane.showMessageDialog(null,  "Campo carta identità vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
@@ -130,6 +140,43 @@ public class TavolataNonPrenotataView extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		textNumeroPersone = new JTextField();
+		textNumeroPersone.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				numeroPersone = textNumeroPersone.getText().trim();
+				//JTextField phone number validation/ accept only numbers
+			    //action when key is press
+			    //get JTextField string			   
+			    
+			    int length = numeroPersone.length();
+			    
+			    char c = e.getKeyChar();
+			    //check for number 0 to 9
+			    if(e.getKeyChar()>='0' && e.getKeyChar()<='6') {
+			    	//check for length not more than 10 digit
+			    	if(length<1) {
+			    		//editable true
+			    		textNumeroPersone.setEditable(true);
+			    	}else {
+			    		textNumeroPersone.setEditable(false);
+						JOptionPane.showMessageDialog(null,  "Devi iserire un solo numero!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+			    	}
+			    	
+			    }else {
+			    	//now allow for keys 'back space' and 'delete' for edit
+			    	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+			    		//than allow editable
+			    		textNumeroPersone.setEditable(true);
+			    	}else {
+			    		textNumeroPersone.setEditable(false);
+						JOptionPane.showMessageDialog(null,  "Devi iserire solo numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+			    	}
+			    }
+			}
+		});
 		textNumeroPersone.setBounds(121, 8, 48, 20);
 		contentPane.add(textNumeroPersone);
 		textNumeroPersone.setColumns(10);
@@ -143,26 +190,162 @@ public class TavolataNonPrenotataView extends JFrame {
 		contentPane.add(label);
 		
 		textCartaIdentita = new JTextField();
+		textCartaIdentita.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				  cartaIdentita = textCartaIdentita.getText().trim();
+				  int length = cartaIdentita.length();
+				    
+				    char c = e.getKeyChar();
+				    //check for number 0 to 9 or letter
+				    if(Character.isLetterOrDigit(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+						//ISOControl for edit operation (delete key and backspace key allow)
+						//if enter character is letter, space and isocontrol char than allow to edit
+				    	if(length<9) {
+				    		//editable true
+				    		textCartaIdentita.setEditable(true);
+				    	}else {
+				    		textCartaIdentita.setEditable(false);
+				    	}
+				    	
+				    }else {
+				    	//now allow for keys 'back space' and 'delete' for edit
+				    	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+				    		//than allow editable
+				    		textCartaIdentita.setEditable(true);
+				    	}else {
+				    		textCartaIdentita.setEditable(false);
+				    	}
+				    }
+			}				
+			
+		});
 		textCartaIdentita.setBounds(324, 143, 102, 20);
 		contentPane.add(textCartaIdentita);
 		textCartaIdentita.setColumns(10);
 		
 		textTelefono = new JTextField();
+		textTelefono.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				telefono = textTelefono.getText().trim();
+				//JTextField phone number validation/ accept only numbers
+			    //action when key is press
+			    //get JTextField string			   
+			    
+			    int length = telefono.length();
+			    
+			    char c = e.getKeyChar();
+			    //check for number 0 to 9
+			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
+			    	//check for length not more than 10 digit
+			    	if(length<10) {
+			    		//editable true
+			    		textTelefono.setEditable(true);
+			    	}else {
+			    		textTelefono.setEditable(false);
+			    	}
+			    	
+			    }else {
+			    	//now allow for keys 'back space' and 'delete' for edit
+			    	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+			    		//than allow editable
+			    		textTelefono.setEditable(true);
+			    	}else {
+			    		textTelefono.setEditable(false);
+			    	}
+			    }
+				
+				
+			}
+		});
 		textTelefono.setBounds(100, 178, 102, 20);
 		contentPane.add(textTelefono);
 		textTelefono.setColumns(10);
 		
 		textNome = new JTextField();
+		textNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				//JTextField to accept only alfabets
+				//code for JTextField that acept letter whitespace and delete backspace key only
+				char c = e.getKeyChar();
+				if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+					//ISOControl for edit operation (delete key and backspace key allow)
+					//if enter character is letter, space and isocontrol char than allow to edit
+					textNome.setEditable(true);					
+				}else {
+					textNome.setEditable(false);
+				}
+				nome = textNome.getText();
+				
+			}
+		});
 		textNome.setBounds(100, 143, 102, 20);
 		contentPane.add(textNome);
 		textNome.setColumns(10);
 		
 		textCognome = new JTextField();
+		textCognome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				//JTextField to accept only alfabets
+				//code for JTextField that acept letter whitespace and delete backspace key only
+				char c = e.getKeyChar();
+				if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+					//ISOControl for edit operation (delete key and backspace key allow)
+					//if enter character is letter, space and isocontrol char than allow to edit
+					textCognome.setEditable(true);					
+				}else {
+					textCognome.setEditable(false);
+				}
+				cognome = textCognome.getText();
+			}
+		});
 		textCognome.setColumns(10);
 		textCognome.setBounds(100, 112, 102, 20);
 		contentPane.add(textCognome);
 		
 		textCodiceTavoloAssegnato = new JTextField();
+		textCodiceTavoloAssegnato.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				codiceTavolo = textCodiceTavoloAssegnato.getText().trim();
+				//JTextField phone number validation/ accept only numbers
+			    //action when key is press
+			    //get JTextField string			   
+			    
+			    int length = codiceTavolo.length();
+			    
+			    char c = e.getKeyChar();
+			    //check for number 0 to 9
+			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
+			    	//check for length not more than 2 digit
+			    	if(length<2) {
+			    		//editable true
+			    		textCodiceTavoloAssegnato.setEditable(true);
+			    	}else {
+			    		textCodiceTavoloAssegnato.setEditable(false);
+						JOptionPane.showMessageDialog(null,  "Devi iserire al max 2 numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+			    	}
+			    	
+			    }else {
+			    	//now allow for keys 'back space' and 'delete' for edit
+			    	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+			    		//than allow editable
+			    		textCodiceTavoloAssegnato.setEditable(true);
+			    	}else {
+			    		textCodiceTavoloAssegnato.setEditable(false);
+						JOptionPane.showMessageDialog(null,  "Devi iserire solo numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+			    	}
+			    }
+			}
+		});
 		textCodiceTavoloAssegnato.setColumns(10);
 		textCodiceTavoloAssegnato.setBounds(370, 174, 56, 20);
 		contentPane.add(textCodiceTavoloAssegnato);
@@ -206,14 +389,14 @@ public class TavolataNonPrenotataView extends JFrame {
 					return;
 				}
 				
-				String numeroPersone = textNumeroPersone.getText();;
+				numeroPersone = textNumeroPersone.getText();;
 				   
 				if(numeroPersone.length() == 0) {			           
 					JOptionPane.showMessageDialog(null,  "Campo numero persone vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 			    }
 				
-				String codiceRistorante = textCodiceRistorante.getText();;
+				codiceRistorante = textCodiceRistorante.getText();;
 				   
 				if(codiceRistorante.length() == 0) {			           
 					JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
@@ -228,6 +411,42 @@ public class TavolataNonPrenotataView extends JFrame {
 		contentPane.add(btnCercaTavoloLibero);
 		
 		textCodiceRistorante = new JTextField();
+		textCodiceRistorante.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				codiceRistorante = textCodiceRistorante.getText().trim();
+				//JTextField phone number validation/ accept only numbers
+			    //action when key is press
+			    //get JTextField string			   
+			    
+			    int length = codiceRistorante.length();
+			    
+			    char c = e.getKeyChar();
+			    //check for number 0 to 9
+			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
+			    	//check for length not more than 2 digit
+			    	if(length<2) {
+			    		//editable true
+			    		textCodiceRistorante.setEditable(true);
+			    	}else {
+			    		textCodiceRistorante.setEditable(false);
+						JOptionPane.showMessageDialog(null,  "Il codice riatorante max 2 cifre!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+			    	}
+			    	
+			    }else {
+			    	//now allow for keys 'back space' and 'delete' for edit
+			    	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+			    		//than allow editable
+			    		textCodiceRistorante.setEditable(true);
+			    	}else {
+			    		textCodiceRistorante.setEditable(false);
+						JOptionPane.showMessageDialog(null,  "Devi iserire solo numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+			    	}
+			    }
+			}
+		});
 		textCodiceRistorante.setBounds(318, 8, 48, 20);
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);

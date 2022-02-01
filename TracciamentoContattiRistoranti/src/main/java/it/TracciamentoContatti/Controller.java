@@ -86,18 +86,18 @@ public class Controller {
 	    Date data =  prenotazione.getData(); 
 	    
 		List<Tavolo> tavoliLiberi = model.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
-        Integer codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();
 		
-		if (codiceTavoloDisponibile != null) {
+		if(tavoliLiberi.size()>0) {
+            Integer codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();	
+		
 		   //scelgo il ristorante recupero il codice invocando il metodi getCodiceRistorante e il cognome, nome, ecc....		
-	       Integer codicePrenotazione = model.creaPrenotazione(codiceTavoloDisponibile, codiceRistorante, cognome, nome, telefono, numeroPersone, data);
+	       Integer codicePrenotazione = model.creaPrenotazione(codiceTavoloDisponibile, cognome, nome, telefono, numeroPersone, data);
 	       //prenotazione effettuata
 	       JOptionPane.showMessageDialog(null, "Tavolo prenotato per il : "+data
 	    		   +"\ncodice prenotazione "+codicePrenotazione
 	    		   +"\ncodice tavolo assegnato "+codiceTavoloDisponibile, "Prenotazione effettuata!!!", JOptionPane.INFORMATION_MESSAGE);
 
-		}
-		else {
+		}else {
 			//tavolo non disponibile per quel giorno
 			JOptionPane.showMessageDialog(null,  "Tavolo non disponibile per quel giorno", "Attenzione!!!", JOptionPane.INFORMATION_MESSAGE);
 		}
