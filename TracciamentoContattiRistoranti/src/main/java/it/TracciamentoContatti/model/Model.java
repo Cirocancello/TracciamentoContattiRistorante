@@ -18,6 +18,7 @@ import it.TracciamentoContatti.db.ClienteDAO;
 import it.TracciamentoContatti.db.PrenotazioniDAO;
 import it.TracciamentoContatti.db.RistoranteDAO;
 import it.TracciamentoContatti.db.SaleDAO;
+import it.TracciamentoContatti.db.StatisticaGiornalieraDAO;
 import it.TracciamentoContatti.db.TavoliDAO;
 import it.TracciamentoContatti.db.TracciaContattiDAO;
 import it.TracciamentoContatti.model.Cliente;
@@ -113,6 +114,19 @@ import it.TracciamentoContatti.model.Tavolo;
 			
 			return nomeSala;
 		}
+
+		//public Integer statisticaGiornaliera(String codiceRistorante, String data) {
+			
+			
+			StatisticaGiornalieraDAO  statiscticaGiornalieraDao = new StatisticaGiornalieraDAO();
+			
+		//	Integer statisctica = statiscticaGiornalieraDao.totaliAvventoriGiornalieri(codiceRistorante,data);
+					
+			
+		//	return statisctica;
+		     
+			
+		//}
 	
 }
 	

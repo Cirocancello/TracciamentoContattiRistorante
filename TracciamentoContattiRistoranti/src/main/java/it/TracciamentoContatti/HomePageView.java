@@ -26,7 +26,7 @@ import java.awt.List;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButtonMenuItem;
 
-public class View extends JFrame {
+public class HomePageView extends JFrame {
 
 	private JPanel contentPane;
 		
@@ -41,10 +41,10 @@ public class View extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public View() {
-		setTitle("Sistema tracciamento contatti");
+	public HomePageView() {
+		setTitle("Home Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 200, 450, 300);
+		setBounds(400, 200, 450, 351);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -67,14 +67,14 @@ public class View extends JFrame {
 		btnPrenota.setBounds(44, 101, 162, 23);
 		contentPane.add(btnPrenota);
 		
-		btnNuovoRistorante = new JButton("Nuovo ristorante");
+		btnNuovoRistorante = new JButton("Statistiche");
 		btnNuovoRistorante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
 				controller.Actionperformed(e);
 			}
 		});
-		btnNuovoRistorante.setBounds(44, 186, 162, 23);
+		btnNuovoRistorante.setBounds(128, 185, 162, 23);
 		contentPane.add(btnNuovoRistorante);
 		
 		btnTracciaContatti = new JButton("Traccia contatti");
@@ -115,7 +115,7 @@ public class View extends JFrame {
 			setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(324, 215, 89, 23);
+		btnNewButton.setBounds(318, 278, 89, 23);
 		contentPane.add(btnNewButton);
 	}
 	

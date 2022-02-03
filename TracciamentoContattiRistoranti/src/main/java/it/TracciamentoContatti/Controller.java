@@ -28,13 +28,13 @@ import javafx.scene.chart.PieChart.Data;
 
 public class Controller {
 	
-	private View frame;
+	private HomePageView frame;
 	private Model model;
 	
 	private PrenotazioneView prenotazioneView;
 	
 	
-	public Controller(View frame, Model model) {
+	public Controller(HomePageView frame, Model model) {
 	    this.frame = frame;
 	    this.model = model;
 	}
@@ -58,7 +58,7 @@ public class Controller {
 		}
 		
 		if(e.getSource() == frame.btnNuovoRistorante) {
-			RistoranteView ristoranteView = new RistoranteView();
+			StatisticaView ristoranteView = new StatisticaView();
 		}
 		
 		if(e.getSource() == frame.btnTavolataPrenotata) {
@@ -172,7 +172,6 @@ public class Controller {
 		List<Prenotazione> prenotazione = model.cercaPrenotazione(data, cognome);
 		
 		if(prenotazione.size() > 0) {
-		//TODO devo recuperare il codice della prenotazione da prenotazione e cercare il nome sala	
 				
 		    for(Prenotazione p : prenotazione) {
 		    	Integer codice = p.getCodice();
@@ -229,6 +228,15 @@ public class Controller {
 		} 
 			
 	}
+
+//	public void statiscticaGiornaliera(String codiceRistorante, String data, TextArea textAreaStatisctica) {
+//		Model model = new Model();
+//		
+//		Integer statistica = model.statisticaGiornaliera(codiceRistorante,data);
+//		
+//		textAreaStatisctica.append("Totale avventori in data "+ data +" :    "+ statistica+"\n");		
+//		
+//	}
 
 	
 	

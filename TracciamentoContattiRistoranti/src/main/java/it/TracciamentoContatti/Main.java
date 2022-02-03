@@ -15,7 +15,7 @@ public class Main {
 				public void run() {
 					try {
 						
-						View frame = new View();					
+						HomePageView frame = new HomePageView();					
       					Model model = new Model();
 					    Controller controller = new Controller(frame, model);
 				  

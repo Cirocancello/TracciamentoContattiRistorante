@@ -51,7 +51,7 @@ public class PrenotazioneView extends JFrame {
 	private String cognome;
 	private String nome;
 	private String codiceRistorante;	
-	private  String numeroPersone; 
+	private String numeroPersone; 
 	/**
 	 * Create the frame.
 	 */
