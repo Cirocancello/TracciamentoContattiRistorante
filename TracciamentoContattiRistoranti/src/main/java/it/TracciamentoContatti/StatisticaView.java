@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import it.TracciamentoContatti.model.Model;
@@ -35,7 +36,7 @@ public class StatisticaView extends JFrame {
 	private JTextField textCodiceRistorante;
 	private String codiceRistorante;
 	private JDateChooser dateChooser;
-	private TextArea textAreaStatisctica;
+	private JTextArea textAreaStatisctica;
 
 	/**
 	 * Create the frame.
@@ -143,24 +144,24 @@ public class StatisticaView extends JFrame {
 		btnGiornaliera.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Controller controller = new Controller();				
-		
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-					
-			String data = null;
-			try {
-			   data = dateFormat.format(dateChooser.getDate());
-			}catch(Exception ex) {
-				JOptionPane.showMessageDialog(null,  "Devi inserire una data valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
-				return;
-			} 	
+//		
+//			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//					
+//			String data = null;
+//			try {
+//			   data = dateFormat.format(dateChooser.getDate());
+//			}catch(Exception ex) {
+//				JOptionPane.showMessageDialog(null,  "Devi inserire una data valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+//				return;
+//			} 	
 					
 			codiceRistorante = textCodiceRistorante.getText();
 			if(codiceRistorante.length() == 0) {
 				JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			
-//			controller.statiscticaGiornaliera(codiceRistorante, data, textAreaStatisctica);
+		
+			controller.statiscticaGiornaliera(codiceRistorante, textAreaStatisctica);
 			
 		}
 		});
@@ -171,7 +172,7 @@ public class StatisticaView extends JFrame {
 		btnMensile.setBounds(310, 188, 99, 23);
 		contentPane.add(btnMensile);
 		
-		textAreaStatisctica = new TextArea();
+		textAreaStatisctica = new JTextArea();
 		textAreaStatisctica.setBounds(28, 244, 380, 160);
 		contentPane.add(textAreaStatisctica);
 		

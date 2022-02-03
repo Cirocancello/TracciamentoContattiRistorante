@@ -23,8 +23,11 @@ import it.TracciamentoContatti.model.Cliente;
 import it.TracciamentoContatti.model.Model;
 import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Ristorante;
+import it.TracciamentoContatti.model.Statistica;
 import it.TracciamentoContatti.model.Tavolo;
 import javafx.scene.chart.PieChart.Data;
+import it.TracciamentoContatti.model.Statistica;
+
 
 public class Controller {
 	
@@ -229,14 +232,21 @@ public class Controller {
 			
 	}
 
-//	public void statiscticaGiornaliera(String codiceRistorante, String data, TextArea textAreaStatisctica) {
-//		Model model = new Model();
-//		
-//		Integer statistica = model.statisticaGiornaliera(codiceRistorante,data);
-//		
-//		textAreaStatisctica.append("Totale avventori in data "+ data +" :    "+ statistica+"\n");		
-//		
-//	}
+	public void statiscticaGiornaliera(String codiceRistorante, JTextArea textAreaStatistica) {
+		Model model = new Model();
+	
+		List<Statistica> statistica = model.statisticaGiornaliera(codiceRistorante);		
+
+    	
+    	System.out.println("Statistica giornaliera\n");
+    	
+	    for(Statistica s : statistica) {
+	      textAreaStatistica.append("In data " +s.getData()+" ");
+	      textAreaStatistica.append("totale avventori "+s.getTotaleAvventori()+"\n");
+	    }
+			
+		
+	}
 
 	
 	

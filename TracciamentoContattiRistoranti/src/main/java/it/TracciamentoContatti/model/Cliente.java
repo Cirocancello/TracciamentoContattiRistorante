@@ -23,8 +23,8 @@ public class Cliente {
 		
 	}
 	
-	public Cliente(Integer codiceTavolo, String cognome, String nome, String numeroCartaIdentita,
-			String telefono, Date data) {
+	public Cliente(Integer codiceTavolo, String cognome, String nome,String telefono,
+			String numeroCartaIdentita, Date data) {
 		
 		this.codiceTavolo = codiceTavolo;
 		this.cognome = cognome;

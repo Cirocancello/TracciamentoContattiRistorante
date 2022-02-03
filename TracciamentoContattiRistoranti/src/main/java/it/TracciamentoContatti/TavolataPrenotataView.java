@@ -215,7 +215,12 @@ public class TavolataPrenotataView extends JFrame {
 					JOptionPane.showMessageDialog(null,  "Campo cognome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				//TODO aggiungi anche i controlli sugli altri campi che non devono essere vuoti come il cognome1
+				
+				nome = textNome.getText().trim();
+				if(nome.length() == 0) {
+					JOptionPane.showMessageDialog(null,  "Campo nome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				
 				cartaIdentita = textCartaIdentita.getText().trim();
 				if(cartaIdentita.length() == 0) {
@@ -225,7 +230,7 @@ public class TavolataPrenotataView extends JFrame {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				String theDate = dateFormat.format(dateChooser.getDate());
 			
-				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognome1, nome, cartaIdentita, telefono, Date.valueOf(theDate));
+				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognome1, nome, telefono,  cartaIdentita, Date.valueOf(theDate));
 			    controller.inserisciCliente(cliente, textAreaClientiInseriti);
 				
 			    //textCodiceTavolo.setText("");

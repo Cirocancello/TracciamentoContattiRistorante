@@ -26,6 +26,7 @@ import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Ristorante;
 import it.TracciamentoContatti.model.Sala;
 import it.TracciamentoContatti.model.Tavolo;
+import it.TracciamentoContatti.model.Statistica;
 
 	public class Model {	
 		
@@ -115,18 +116,18 @@ import it.TracciamentoContatti.model.Tavolo;
 			return nomeSala;
 		}
 
-		//public Integer statisticaGiornaliera(String codiceRistorante, String data) {
+		public List<Statistica> statisticaGiornaliera(String codiceRistorante) {
 			
 			
 			StatisticaGiornalieraDAO  statiscticaGiornalieraDao = new StatisticaGiornalieraDAO();
 			
-		//	Integer statisctica = statiscticaGiornalieraDao.totaliAvventoriGiornalieri(codiceRistorante,data);
+			List<Statistica> statistica = statiscticaGiornalieraDao.totaliAvventoriGiornalieri(codiceRistorante);
 					
 			
-		//	return statisctica;
+			return statistica;
 		     
 			
-		//}
+		}
 	
 }
 	
