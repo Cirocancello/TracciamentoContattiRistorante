@@ -1,21 +1,17 @@
 package it.TracciamentoContatti.db;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.TracciamentoContatti.model.Cliente;
-import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Statistica;
 
-public class StatisticaGiornalieraDAO {
-
+public class StatisticaMensileDAO {
+	
 	public static  List<Statistica> totaliAvventoriGiornalieri(String codiceRistorante) {
 
 		Integer codiceRistorante1 = Integer.parseInt(codiceRistorante);
@@ -26,7 +22,7 @@ public class StatisticaGiornalieraDAO {
 				+ "AND c.CodiceTavolo = t.Codice "
 				+ "AND t.CodiceSala = s.Codice "
 				+ "AND s.CodiceRistorante = r.Codice "
-				+ "Group BY data ";
+				+ "Group BY MONTH (data) ";
 
 		List<Statistica> statistica = new ArrayList<>();
 		
@@ -55,7 +51,7 @@ public class StatisticaGiornalieraDAO {
 	
 	}
 
+ 
 }
-
 
 

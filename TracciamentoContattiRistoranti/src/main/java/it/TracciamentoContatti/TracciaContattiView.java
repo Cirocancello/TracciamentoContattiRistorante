@@ -128,7 +128,7 @@ public class TracciaContattiView extends JFrame {
 		
 		JLabel lblTracciaContatti = new JLabel("Tracciamento contatti, in seguito contagio covid-19");
 		lblTracciaContatti.setFont(new Font("Tahoma", Font.ITALIC, 15));
-		lblTracciaContatti.setBounds(70, 30, 354, 14);
+		lblTracciaContatti.setBounds(70, 11, 354, 33);
 		contentPane.add(lblTracciaContatti);
 		
 		JButton btnTornaAlMenu = new JButton("Torna al menu principale");
@@ -146,6 +146,7 @@ public class TracciaContattiView extends JFrame {
 		contentPane.add(textAreaTraccia);
 		
 		JLabel lblNewLabel = new JLabel("Clienti da contattare");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
 		lblNewLabel.setBounds(25, 127, 159, 14);
 		contentPane.add(lblNewLabel);
 		

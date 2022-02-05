@@ -36,7 +36,7 @@ public class TavolataNonPrenotataView extends JFrame {
 	private JTextField textNome;
 	private JTextField textCognome;
 	private JTextField textCodiceTavoloAssegnato;
-	private JTextArea textAreaClienti;
+	private TextArea textAreaClienti;
 	private JButton btnChiudi;
 	private JButton btnAggiungiCliente;
 	private JButton btnCercaTavoloLibero;
@@ -51,6 +51,8 @@ public class TavolataNonPrenotataView extends JFrame {
 	private String cartaIdentita;
 	private String numeroPersone;
 	private String codiceRistorante;
+	private JTextArea textArea;
+	private JLabel lblNewLabel_2;
 	
 	
 	/**
@@ -63,7 +65,7 @@ public class TavolataNonPrenotataView extends JFrame {
 		
 		setTitle("Tavolata non prenotata");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(400, 200, 459, 488);
+		setBounds(400, 180, 567, 535);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -122,7 +124,7 @@ public class TavolataNonPrenotataView extends JFrame {
 				
 			}
 		});
-		btnAggiungiCliente.setBounds(276, 205, 150, 23);
+		btnAggiungiCliente.setBounds(376, 234, 150, 23);
 		contentPane.add(btnAggiungiCliente);
 		
 		btnChiudi = new JButton("Chiudi");
@@ -132,11 +134,12 @@ public class TavolataNonPrenotataView extends JFrame {
 			
 			}
 		});
-		btnChiudi.setBounds(337, 412, 89, 23);
+		btnChiudi.setBounds(437, 443, 89, 23);
 		contentPane.add(btnChiudi);
 		
 		JLabel lblNewLabel_1 = new JLabel("Numero persone");
-		lblNewLabel_1.setBounds(21, 11, 102, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_1.setBounds(21, 39, 102, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		textNumeroPersone = new JTextField();
@@ -177,16 +180,17 @@ public class TavolataNonPrenotataView extends JFrame {
 			    }
 			}
 		});
-		textNumeroPersone.setBounds(121, 8, 48, 20);
+		textNumeroPersone.setBounds(123, 36, 48, 20);
 		contentPane.add(textNumeroPersone);
 		textNumeroPersone.setColumns(10);
 		
-		textAreaClienti = new JTextArea();
-		textAreaClienti.setBounds(21, 241, 405, 160);
+		textAreaClienti = new TextArea();
+		textAreaClienti.setBounds(21, 277, 505, 160);
 		contentPane.add(textAreaClienti);
 		
 		Label label = new Label("Clienti inseriti");
-		label.setBounds(21, 212, 96, 22);
+		label.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		label.setBounds(21, 249, 150, 22);
 		contentPane.add(label);
 		
 		textCartaIdentita = new JTextField();
@@ -221,7 +225,7 @@ public class TavolataNonPrenotataView extends JFrame {
 			}				
 			
 		});
-		textCartaIdentita.setBounds(324, 143, 102, 20);
+		textCartaIdentita.setBounds(424, 153, 102, 20);
 		contentPane.add(textCartaIdentita);
 		textCartaIdentita.setColumns(10);
 		
@@ -260,7 +264,7 @@ public class TavolataNonPrenotataView extends JFrame {
 				
 			}
 		});
-		textTelefono.setBounds(100, 178, 102, 20);
+		textTelefono.setBounds(424, 184, 102, 20);
 		contentPane.add(textTelefono);
 		textTelefono.setColumns(10);
 		
@@ -283,7 +287,7 @@ public class TavolataNonPrenotataView extends JFrame {
 				
 			}
 		});
-		textNome.setBounds(100, 143, 102, 20);
+		textNome.setBounds(100, 184, 102, 20);
 		contentPane.add(textNome);
 		textNome.setColumns(10);
 		
@@ -306,7 +310,7 @@ public class TavolataNonPrenotataView extends JFrame {
 			}
 		});
 		textCognome.setColumns(10);
-		textCognome.setBounds(100, 112, 102, 20);
+		textCognome.setBounds(100, 153, 102, 20);
 		contentPane.add(textCognome);
 		
 		textCodiceTavoloAssegnato = new JTextField();
@@ -347,37 +351,37 @@ public class TavolataNonPrenotataView extends JFrame {
 			}
 		});
 		textCodiceTavoloAssegnato.setColumns(10);
-		textCodiceTavoloAssegnato.setBounds(370, 174, 56, 20);
+		textCodiceTavoloAssegnato.setBounds(170, 210, 56, 20);
 		contentPane.add(textCodiceTavoloAssegnato);
 		
 		Label label_1 = new Label("Cognome");
-		label_1.setBounds(21, 110, 62, 22);
+		label_1.setBounds(21, 151, 62, 22);
 		contentPane.add(label_1);
 		
 		Label label_2 = new Label("Nome");
-		label_2.setBounds(21, 141, 62, 22);
+		label_2.setBounds(21, 182, 62, 22);
 		contentPane.add(label_2);
 		
 		Label label_3 = new Label("Telefono");
-		label_3.setBounds(21, 178, 62, 22);
+		label_3.setBounds(298, 184, 62, 22);
 		contentPane.add(label_3);
 		
 		Label label_4 = new Label("Carta di identità");
-		label_4.setBounds(228, 141, 89, 22);
+		label_4.setBounds(298, 153, 89, 22);
 		contentPane.add(label_4);
 		
 		Label label_5 = new Label("Data");
-		label_5.setBounds(21, 50, 48, 22);
+		label_5.setBounds(21, 70, 48, 22);
 		contentPane.add(label_5);
 		
 		Label label_6 = new Label("Codice tavolo assegnato");
-		label_6.setBounds(228, 178, 138, 22);
+		label_6.setBounds(21, 210, 138, 22);
 		contentPane.add(label_6);
 		
 		btnCercaTavoloLibero = new JButton("Cerca tavolo libero");
 		btnCercaTavoloLibero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
-				
+								
 				Controller controller = new Controller();
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				
@@ -403,11 +407,11 @@ public class TavolataNonPrenotataView extends JFrame {
 					return;
 			    }
 				
-				controller.cercaTavoloLibero(e, textCodiceRistorante, dateChooser, textNumeroPersone,textAreaClienti);
+				controller.cercaTavoloLibero(e, textCodiceRistorante, dateChooser, textNumeroPersone,textAreaClienti, textArea);
 					
 			}
 		});
-		btnCercaTavoloLibero.setBounds(221, 51, 145, 23);
+		btnCercaTavoloLibero.setBounds(191, 70, 145, 23);
 		contentPane.add(btnCercaTavoloLibero);
 		
 		textCodiceRistorante = new JTextField();
@@ -447,16 +451,27 @@ public class TavolataNonPrenotataView extends JFrame {
 			    }
 			}
 		});
-		textCodiceRistorante.setBounds(318, 8, 48, 20);
+		textCodiceRistorante.setBounds(276, 36, 48, 20);
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);
 		
 		lblNewLabel = new JLabel("Codice Ristorante");
-		lblNewLabel.setBounds(195, 11, 113, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel.setBounds(181, 39, 113, 14);
 		contentPane.add(lblNewLabel);
 		
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(70, 50, 102, 20);
+		dateChooser.setBounds(69, 72, 102, 20);
 		contentPane.add(dateChooser);
+		
+		textArea = new JTextArea();
+		textArea.setBounds(354, 11, 172, 82);
+		textArea.setEditable(false);
+		contentPane.add(textArea);
+		
+		lblNewLabel_2 = new JLabel("Inserisci i dati dei clienti");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblNewLabel_2.setBounds(25, 124, 212, 14);
+		contentPane.add(lblNewLabel_2);
 	}
 }

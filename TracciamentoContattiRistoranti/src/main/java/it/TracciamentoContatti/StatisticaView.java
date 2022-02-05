@@ -25,6 +25,9 @@ import java.awt.Button;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import com.toedter.calendar.JMonthChooser;
+import java.awt.Font;
+
 
 public class StatisticaView extends JFrame {
 
@@ -35,13 +38,15 @@ public class StatisticaView extends JFrame {
 	private TextArea textAreaRistoranti;
 	private JTextField textCodiceRistorante;
 	private String codiceRistorante;
-	private JDateChooser dateChooser;
-	private JTextArea textAreaStatisctica;
+	private TextArea textAreaStatistica;
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public StatisticaView() {
+		setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		setTitle("Statistiche");
 		
 		setResizable(false);
 		setVisible(true);
@@ -83,20 +88,13 @@ public class StatisticaView extends JFrame {
 		contentPane.add(btnChiudi);
 		
 		JLabel lblNewLabel = new JLabel("Ristoranti presenti in base dati");
-		lblNewLabel.setBounds(28, 11, 176, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblNewLabel.setBounds(28, 13, 214, 21);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Data");
-		lblNewLabel_1.setBounds(28, 192, 46, 14);
-		contentPane.add(lblNewLabel_1);
-		
 		JLabel lblNewLabel_2 = new JLabel("Codice ristorante");
-		lblNewLabel_2.setBounds(28, 156, 116, 14);
+		lblNewLabel_2.setBounds(28, 159, 116, 14);
 		contentPane.add(lblNewLabel_2);
-		
-		dateChooser = new JDateChooser();
-		dateChooser.setBounds(84, 186, 116, 20);
-		contentPane.add(dateChooser);
 		
 		textCodiceRistorante = new JTextField();
 		textCodiceRistorante.addKeyListener(new KeyAdapter() {
@@ -144,24 +142,14 @@ public class StatisticaView extends JFrame {
 		btnGiornaliera.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Controller controller = new Controller();				
-//		
-//			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//					
-//			String data = null;
-//			try {
-//			   data = dateFormat.format(dateChooser.getDate());
-//			}catch(Exception ex) {
-//				JOptionPane.showMessageDialog(null,  "Devi inserire una data valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
-//				return;
-//			} 	
-					
+			
 			codiceRistorante = textCodiceRistorante.getText();
 			if(codiceRistorante.length() == 0) {
 				JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 		
-			controller.statiscticaGiornaliera(codiceRistorante, textAreaStatisctica);
+			controller.statiscticaGiornaliera(codiceRistorante, textAreaStatistica);
 			
 		}
 		});
@@ -169,16 +157,33 @@ public class StatisticaView extends JFrame {
 		contentPane.add(btnGiornaliera);
 		
 		JButton btnMensile = new JButton("Mensile");
+		btnMensile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Controller controller = new Controller();				
+				
+				codiceRistorante = textCodiceRistorante.getText();
+				if(codiceRistorante.length() == 0) {
+					JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+							
+				controller.statiscticaMensile(codiceRistorante, textAreaStatistica);				
+				
+			}
+		});
 		btnMensile.setBounds(310, 188, 99, 23);
 		contentPane.add(btnMensile);
 		
-		textAreaStatisctica = new JTextArea();
-		textAreaStatisctica.setBounds(28, 244, 380, 160);
-		contentPane.add(textAreaStatisctica);
+		textAreaStatistica = new TextArea();
+		textAreaStatistica.setBounds(28, 244, 380, 160);
+		contentPane.add(textAreaStatistica);
 		
 		JLabel lblNewLabel_3 = new JLabel("numero totale di avventori ");
-		lblNewLabel_3.setBounds(28, 224, 147, 14);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblNewLabel_3.setBounds(28, 224, 229, 14);
 		contentPane.add(lblNewLabel_3);
+		
+		
 		
 		
 		

@@ -60,7 +60,7 @@ public class PrenotazioneView extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		
-		setFont(null);
+		setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
 		setTitle("Prenotazione");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(450, 200, 562, 472);
@@ -92,7 +92,7 @@ public class PrenotazioneView extends JFrame {
 		JLabel lblRistoranti = new JLabel("Ristoranti");
 		lblRistoranti.setForeground(Color.BLACK);
 		lblRistoranti.setEnabled(false);
-		lblRistoranti.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+		lblRistoranti.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
 		lblRistoranti.setBounds(235, 150, 114, 14);
 		contentPane.add(lblRistoranti);
 		
@@ -255,11 +255,6 @@ public class PrenotazioneView extends JFrame {
 		});
 		btnEffettuaPrenotazione.setBounds(333, 399, 190, 23);
 		contentPane.add(btnEffettuaPrenotazione);
-		
-		JLabel lblNewLabel_6 = new JLabel("Prenotazione");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.ITALIC, 15));
-		lblNewLabel_6.setBounds(230, 11, 119, 14);
-		contentPane.add(lblNewLabel_6);
 		
 		textArea = new JTextArea();
 		textArea.setBounds(20, 175, 503, 201);

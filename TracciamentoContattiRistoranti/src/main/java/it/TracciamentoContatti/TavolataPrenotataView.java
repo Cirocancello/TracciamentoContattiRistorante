@@ -21,6 +21,8 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.Scrollbar;
+import java.awt.TextArea;
+
 import javax.swing.JTextArea;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.KeyAdapter;
@@ -34,8 +36,8 @@ public class TavolataPrenotataView extends JFrame {
 	private JTextField textCartaIdentita;
 	private JTextField textTelefono;
 	private JTextField textCodiceTavolo;
-	private JTextArea textAreaClientiInseriti; 
-	private JTextArea textAreaPrenotazione;
+	private TextArea textAreaClientiInseriti; 
+	private TextArea textAreaPrenotazione;
 	private JButton btnCercaPrenotazione;
 	private JLabel lblNewLabel_8;
 	private JDateChooser dateChooser;
@@ -61,11 +63,11 @@ public class TavolataPrenotataView extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cognome");
-		lblNewLabel_1.setBounds(302, 19, 72, 14);
+		lblNewLabel_1.setBounds(313, 19, 72, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nome");
-		lblNewLabel_2.setBounds(27, 237, 46, 14);
+		lblNewLabel_2.setBounds(32, 267, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Carta di identità");
@@ -120,7 +122,7 @@ public class TavolataPrenotataView extends JFrame {
 				
 			}
 		});
-		textNome.setBounds(130, 234, 121, 20);
+		textNome.setBounds(130, 264, 121, 20);
 		contentPane.add(textNome);
 		textNome.setColumns(10);
 		
@@ -246,12 +248,12 @@ public class TavolataPrenotataView extends JFrame {
 		btnInserisciClienti.setBounds(381, 295, 137, 23);
 		contentPane.add(btnInserisciClienti);
 		
-		textAreaClientiInseriti = new JTextArea();
+		textAreaClientiInseriti = new TextArea();
 		textAreaClientiInseriti.setBounds(27, 329, 477, 91);
 		contentPane.add(textAreaClientiInseriti);
 		
-		textAreaPrenotazione = new JTextArea();
-		textAreaPrenotazione.setBounds(27, 80, 477, 92);
+		textAreaPrenotazione = new TextArea();
+		textAreaPrenotazione.setBounds(27, 80, 477, 102);
 		contentPane.add(textAreaPrenotazione);
 		
 		textCodiceTavolo = new JTextField();
@@ -292,16 +294,17 @@ public class TavolataPrenotataView extends JFrame {
 			}
 			
 		});
-		textCodiceTavolo.setBounds(198, 264, 53, 20);
+		textCodiceTavolo.setBounds(446, 205, 53, 20);
 		contentPane.add(textCodiceTavolo);
 		textCodiceTavolo.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("Codice tavolo assegnato");
-		lblNewLabel_7.setBounds(27, 267, 149, 14);
+		lblNewLabel_7.setBounds(274, 208, 149, 14);
 		contentPane.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel = new JLabel("Clienti inseriti");
-		lblNewLabel.setBounds(27, 304, 90, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblNewLabel.setBounds(27, 304, 189, 14);
 		contentPane.add(lblNewLabel);
 		
 		btnCercaPrenotazione = new JButton("cerca prenotazione");
@@ -334,7 +337,8 @@ public class TavolataPrenotataView extends JFrame {
 		contentPane.add(btnCercaPrenotazione);
 		
 		lblNewLabel_8 = new JLabel("Inserisci i dati dei clienti ");
-		lblNewLabel_8.setBounds(27, 183, 184, 14);
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblNewLabel_8.setBounds(32, 208, 184, 14);
 		contentPane.add(lblNewLabel_8);
 		
 		JButton btnChiudi = new JButton("Chiudi");
@@ -350,7 +354,7 @@ public class TavolataPrenotataView extends JFrame {
 		dateChooser.setBounds(157, 16, 121, 20);
 		contentPane.add(dateChooser);
 		
-		JLabel lblNewLabel_6 = new JLabel("Date Prenotazione");
+		JLabel lblNewLabel_6 = new JLabel("Data Prenotazione");
 		lblNewLabel_6.setBounds(39, 19, 108, 14);
 		contentPane.add(lblNewLabel_6);
 		
@@ -374,12 +378,17 @@ public class TavolataPrenotataView extends JFrame {
 			}				
 			
 		});
-		textCognome1.setBounds(130, 205, 121, 20);
+		textCognome1.setBounds(130, 234, 121, 20);
 		contentPane.add(textCognome1);
 		textCognome1.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Cognome");
-		lblNewLabel_5.setBounds(27, 208, 64, 14);
+		lblNewLabel_5.setBounds(32, 237, 64, 14);
 		contentPane.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_9 = new JLabel("Prenotazione");
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblNewLabel_9.setBounds(27, 46, 224, 28);
+		contentPane.add(lblNewLabel_9);
 	}
 }

@@ -19,6 +19,7 @@ import it.TracciamentoContatti.db.PrenotazioniDAO;
 import it.TracciamentoContatti.db.RistoranteDAO;
 import it.TracciamentoContatti.db.SaleDAO;
 import it.TracciamentoContatti.db.StatisticaGiornalieraDAO;
+import it.TracciamentoContatti.db.StatisticaMensileDAO;
 import it.TracciamentoContatti.db.TavoliDAO;
 import it.TracciamentoContatti.db.TracciaContattiDAO;
 import it.TracciamentoContatti.model.Cliente;
@@ -127,6 +128,16 @@ import it.TracciamentoContatti.model.Statistica;
 			return statistica;
 		     
 			
+		}
+
+		public List<Statistica> statisticaMensile(String codiceRistorante) {
+			StatisticaMensileDAO  statiscticaMensileDao = new StatisticaMensileDAO();
+			
+			List<Statistica> statistica = statiscticaMensileDao.totaliAvventoriGiornalieri(codiceRistorante);
+					
+			
+			return statistica;
+		     
 		}
 	
 }

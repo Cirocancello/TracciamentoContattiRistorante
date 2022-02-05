@@ -145,7 +145,7 @@ public class Controller {
 		
 	}
 
-	public void inserisciCliente(Cliente cliente, JTextArea textAreaClientiInseriti) {
+	public void inserisciCliente(Cliente cliente, TextArea textAreaClientiInseriti) {
 		
 		Model model = new Model();			
 		
@@ -166,11 +166,9 @@ public class Controller {
 		
 	}
 
-	public void cercaPrenotazione(String data, String cognome,JTextArea textAreaPrenotazione) {
+	public void cercaPrenotazione(String data, String cognome,TextArea textAreaPrenotazione) {
           
 		Model model = new Model();				
-		
-		//String cognome = textCognome.getText();
 		
 		List<Prenotazione> prenotazione = model.cercaPrenotazione(data, cognome);
 		
@@ -197,7 +195,7 @@ public class Controller {
 	}
 
 	public void cercaTavoloLibero(ActionEvent e, JTextField textCodiceRistorante, JDateChooser dateChooser, JTextField textNumeroPersone
-								 ,JTextArea textAreaClienti) {
+								 ,TextArea textAreaClienti, JTextArea textArea) {
 		
 		Model model = new Model();
 		Integer codiceRistorante = Integer.parseInt(textCodiceRistorante.getText());
@@ -221,8 +219,8 @@ public class Controller {
 		   if(tavoloLibero != null) {
 			   //visualizzo il messaggio del tavolo libero con il suo codice e il nome della sala
 			   String nomeSala = model.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
-		       JOptionPane.showMessageDialog(null,  "codice tavolo libero  "+tavoloLibero
-		    		  +"\nnome della sala "+nomeSala, "Tavolo disponibile !!!", JOptionPane.INFORMATION_MESSAGE);
+			   textArea.append("tavolo disponibile "+ Integer.toString(tavoloLibero) + "\n");
+			   textArea.append("nome della sala "+ nomeSala);
 		    }
 		}
 		else {
@@ -232,13 +230,10 @@ public class Controller {
 			
 	}
 
-	public void statiscticaGiornaliera(String codiceRistorante, JTextArea textAreaStatistica) {
+	public void statiscticaGiornaliera(String codiceRistorante, TextArea textAreaStatistica) {
 		Model model = new Model();
 	
 		List<Statistica> statistica = model.statisticaGiornaliera(codiceRistorante);		
-
-    	
-    	System.out.println("Statistica giornaliera\n");
     	
 	    for(Statistica s : statistica) {
 	      textAreaStatistica.append("In data " +s.getData()+" ");
@@ -246,6 +241,20 @@ public class Controller {
 	    }
 			
 		
+	}
+
+	public void statiscticaMensile(String codiceRistorante, TextArea textAreaStatistica) {
+		
+		Model model = new Model();
+		
+		textAreaStatistica.append("");
+		
+		List<Statistica> statistica = model.statisticaMensile(codiceRistorante);		
+    	
+	    for(Statistica s : statistica) {
+	      textAreaStatistica.append("In data " +s.getData()+" ");
+	      textAreaStatistica.append("totale avventori "+s.getTotaleAvventori()+"\n");
+	    }
 	}
 
 	
