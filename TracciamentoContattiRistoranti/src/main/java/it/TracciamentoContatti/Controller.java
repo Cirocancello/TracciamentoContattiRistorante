@@ -232,6 +232,8 @@ public class Controller {
 
 	public void statiscticaGiornaliera(String codiceRistorante, TextArea textAreaStatistica) {
 		Model model = new Model();
+		
+		textAreaStatistica.setText("");
 	
 		List<Statistica> statistica = model.statisticaGiornaliera(codiceRistorante);		
     	
@@ -247,7 +249,7 @@ public class Controller {
 		
 		Model model = new Model();
 		
-		textAreaStatistica.append("");
+		textAreaStatistica.setText("");
 		
 		List<Statistica> statistica = model.statisticaMensile(codiceRistorante);		
     	
