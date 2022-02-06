@@ -35,7 +35,7 @@ public class SaleDAO {
 		    
 			
 		} catch (SQLException e) {
-			throw new RuntimeException("Database error in cerca codice tavolo prenotato", e);
+			throw new RuntimeException("Database error", e);
 		}
 		return nomeSala;		
 		

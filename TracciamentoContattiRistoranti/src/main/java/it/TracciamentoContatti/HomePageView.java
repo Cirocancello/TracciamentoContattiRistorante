@@ -46,7 +46,6 @@ public class HomePageView extends JFrame {
 	private JMenuItem mntmNewMenuItem_4;
 	private JMenuItem mntmNewMenuItem_5;
 	private JMenu mnNewMenu_4;
-	private JMenuItem mntmNewMenuItem_7;
 	private JMenuItem mntmNewMenuItem_8;
 	private JLabel lblNewLabel_1;
 
@@ -57,6 +56,7 @@ public class HomePageView extends JFrame {
 		setTitle("Home Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 450, 246);
+		
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -132,11 +132,8 @@ public class HomePageView extends JFrame {
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_4);
 		
-		mnNewMenu_4 = new JMenu("Entra");
+		mnNewMenu_4 = new JMenu("Esci");
 		menuBar.add(mnNewMenu_4);
-		
-		mntmNewMenuItem_7 = new JMenuItem("Login");
-		mnNewMenu_4.add(mntmNewMenuItem_7);
 		
 		mntmNewMenuItem_8 = new JMenuItem("Esci");
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
@@ -154,15 +151,6 @@ public class HomePageView extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
 		lblNewLabel.setBounds(20, 21, 414, 42);
 		contentPane.add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Chiudi");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			}
-		});
-		btnNewButton.setBounds(317, 133, 89, 23);
-		contentPane.add(btnNewButton);
 		
 		lblNewLabel_1 = new JLabel("covid-19");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));

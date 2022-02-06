@@ -49,27 +49,11 @@ public class Controller {
 	
 	public void Actionperformed(ActionEvent ePrenota) {		
 		
-	//	if(e.getSource() == frame.btnPrenota) {			
 			Model model = new Model();
 			List<Ristorante> ristoranti = model.getRistoranti();					
 			
 			PrenotazioneView prenotazioneView = new PrenotazioneView(ristoranti);	
-//		}			
-//		
-//		if(e.getSource() == frame.btnTracciaContatti) {
-//			TracciaContattiView tracciaContatti = new TracciaContattiView();
-//		}
-//		
-//		if(e.getSource() == frame.btnNuovoRistorante) {
-//			StatisticaView ristoranteView = new StatisticaView();
-//		}
-//		
-//		if(e.getSource() == frame.btnTavolataPrenotata) {
-//			
-//			TavolataPrenotataView tavolataPrenotataView = new TavolataPrenotataView();
-//			
-//		}
-//		
+		
 //		if(e.getSource() == frame.btnTavolataNonPrenotata) {
 //			
 //			TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView();

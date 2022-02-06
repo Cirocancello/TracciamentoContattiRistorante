@@ -22,6 +22,7 @@ import it.TracciamentoContatti.db.StatisticaGiornalieraDAO;
 import it.TracciamentoContatti.db.StatisticaMensileDAO;
 import it.TracciamentoContatti.db.TavoliDAO;
 import it.TracciamentoContatti.db.TracciaContattiDAO;
+import it.TracciamentoContatti.db.loginDAO;
 import it.TracciamentoContatti.model.Cliente;
 import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Ristorante;
@@ -138,6 +139,15 @@ import it.TracciamentoContatti.model.Statistica;
 			
 			return statistica;
 		     
+		}
+
+		public Integer login(String userName, String password) {
+			
+			Integer codiceLogin = loginDAO.login(userName, password);
+			
+			return codiceLogin;
+			
+			
 		}
 	
 }

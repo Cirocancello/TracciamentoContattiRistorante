@@ -15,15 +15,23 @@ public class Main {
 				public void run() {
 					try {
 						
-						HomePageView frame = new HomePageView();					
-      					Model model = new Model();
-					    Controller controller = new Controller(frame, model);
-				  
-						frame.setController(controller);
-						
-						frame.setResizable(false);
-						frame.setVisible(true);
-						
+						LoginPage login = new LoginPage();
+						login.setResizable(false);
+						login.setVisible(true);
+//						HomePageView frame = new HomePageView();					
+//      			    Model model = new Model();
+//					    Controller controller = new Controller(frame, model);
+//				  
+//						frame.setController(controller);
+//						
+//						frame.setResizable(false);
+//						frame.setVisible(true);
+//						
+//TODO dopo aver fatto il login recuperare il codice riastorante con la query
+// SELECT r.Nome
+//FROM login l, ristoranti r
+//WHERE l.ID = r.CodiceLogin;
+
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
