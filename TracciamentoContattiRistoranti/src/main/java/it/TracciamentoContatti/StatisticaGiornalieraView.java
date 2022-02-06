@@ -29,7 +29,7 @@ import com.toedter.calendar.JMonthChooser;
 import java.awt.Font;
 
 
-public class StatisticaView extends JFrame {
+public class StatisticaGiornalieraView extends JFrame {
 
 	private JPanel contentPane;
 	
@@ -44,7 +44,7 @@ public class StatisticaView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StatisticaView() {
+	public StatisticaGiornalieraView() {
 		setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
 		setTitle("Statistiche");
 		
@@ -138,7 +138,7 @@ public class StatisticaView extends JFrame {
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);
 		
-		JButton btnGiornaliera = new JButton("Giornaliera");
+		JButton btnGiornaliera = new JButton("Visualizza Statistica");
 		btnGiornaliera.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Controller controller = new Controller();				
@@ -153,26 +153,8 @@ public class StatisticaView extends JFrame {
 			
 		}
 		});
-		btnGiornaliera.setBounds(310, 155, 99, 23);
+		btnGiornaliera.setBounds(247, 190, 152, 23);
 		contentPane.add(btnGiornaliera);
-		
-		JButton btnMensile = new JButton("Mensile");
-		btnMensile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Controller controller = new Controller();				
-				
-				codiceRistorante = textCodiceRistorante.getText();
-				if(codiceRistorante.length() == 0) {
-					JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-							
-				controller.statiscticaMensile(codiceRistorante, textAreaStatistica);				
-				
-			}
-		});
-		btnMensile.setBounds(310, 188, 99, 23);
-		contentPane.add(btnMensile);
 		
 		textAreaStatistica = new TextArea();
 		textAreaStatistica.setBounds(28, 244, 380, 160);

@@ -47,34 +47,69 @@ public class Controller {
 	}
 	
 	
-	public void Actionperformed(ActionEvent e) {
+	public void Actionperformed(ActionEvent ePrenota) {		
 		
-		if(e.getSource() == frame.btnPrenota) {			
+	//	if(e.getSource() == frame.btnPrenota) {			
 			Model model = new Model();
 			List<Ristorante> ristoranti = model.getRistoranti();					
 			
 			PrenotazioneView prenotazioneView = new PrenotazioneView(ristoranti);	
-		}			
-		
-		if(e.getSource() == frame.btnTracciaContatti) {
-			TracciaContattiView tracciaContatti = new TracciaContattiView();
-		}
-		
-		if(e.getSource() == frame.btnNuovoRistorante) {
-			StatisticaView ristoranteView = new StatisticaView();
-		}
-		
-		if(e.getSource() == frame.btnTavolataPrenotata) {
-			
-			TavolataPrenotataView tavolataPrenotataView = new TavolataPrenotataView();
-			
-		}
-		
-		if(e.getSource() == frame.btnTavolataNonPrenotata) {
-			
-			TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView();
-		}
+//		}			
+//		
+//		if(e.getSource() == frame.btnTracciaContatti) {
+//			TracciaContattiView tracciaContatti = new TracciaContattiView();
+//		}
+//		
+//		if(e.getSource() == frame.btnNuovoRistorante) {
+//			StatisticaView ristoranteView = new StatisticaView();
+//		}
+//		
+//		if(e.getSource() == frame.btnTavolataPrenotata) {
+//			
+//			TavolataPrenotataView tavolataPrenotataView = new TavolataPrenotataView();
+//			
+//		}
+//		
+//		if(e.getSource() == frame.btnTavolataNonPrenotata) {
+//			
+//			TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView();
+//		}
 
+	}
+	public void Actionperformed1(ActionEvent eTavNonPrenotata) {
+		Model model = new Model();
+		List<Ristorante> ristoranti = model.getRistoranti();	
+		TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView();
+	}
+	
+
+	public void Actionperformed2(ActionEvent eTavPrenotata) {
+		Model model = new Model();
+		List<Ristorante> ristoranti = model.getRistoranti();	
+		TavolataPrenotataView tavolataPrenotataView = new TavolataPrenotataView();
+		
+	}
+	
+	public void Actionperformed3(ActionEvent eTracciaContatti) {
+		Model model = new Model();
+		List<Ristorante> ristoranti = model.getRistoranti();
+		TracciaContattiView tracciaContatti = new TracciaContattiView();
+	}
+	
+
+	public void Actionperformed4(ActionEvent eStatisticaGiornaliera) {
+		Model model = new Model();
+		List<Ristorante> ristoranti = model.getRistoranti();
+		StatisticaGiornalieraView statiscticaGiornaliera = new StatisticaGiornalieraView();
+		
+	}
+	
+
+	public void Actionperformed5(ActionEvent eStatisticaMensile) {
+		Model model = new Model();
+		List<Ristorante> ristoranti = model.getRistoranti();
+		StatisticaMensileView statisticaMensile = new StatisticaMensileView();
+		
 	}
 
 	public void effettuaPrenotazione(Prenotazione prenotazione, JTextField textCodiceRistorante) {
@@ -252,12 +287,57 @@ public class Controller {
 		textAreaStatistica.setText("");
 		
 		List<Statistica> statistica = model.statisticaMensile(codiceRistorante);		
-    	
-	    for(Statistica s : statistica) {
-	      textAreaStatistica.append("In data " +s.getData()+" ");
+    	String themounth = null;
+	    
+    	for(Statistica s : statistica) {
+	      Integer mese = s.getData().getMonth()+1;
+	     
+	      switch (mese) {
+	         case 1 : themounth = "gennaio";
+	         break;
+	         
+	         case 2 : themounth = "febbraio";
+	         break;
+	         
+	         case 3 : themounth = "marzo";
+	         break;
+	         
+	         case 4 : themounth = "aprile";
+	         break;
+	         
+	         case 5 : themounth = "maggio";
+	         break;
+	         
+	         case 6 : themounth = "giugno";
+	         break;
+	         
+	         case 7 : themounth = "luglio";
+	         break;
+	         
+	         case 8 : themounth = "agosto";
+	         break;
+	         
+	         case 9 : themounth = "settembre";
+	         break;
+	         
+	         case 10 : themounth = "ottobre";
+	         break;
+	         
+	         case 11 : themounth = "novembre";
+	         break;
+	         
+	         case 12 : themounth = "dicembre";
+	         break;
+	      }
+	      textAreaStatistica.append("Nel mese di " +themounth+" ");
 	      textAreaStatistica.append("totale avventori "+s.getTotaleAvventori()+"\n");
 	    }
 	}
+
+
+
+
+
 
 	
 	
