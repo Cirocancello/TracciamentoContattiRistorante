@@ -1,4 +1,4 @@
-package it.TracciamentoContatti;
+package it.TracciamentoContatti.view;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -29,7 +29,7 @@ import com.toedter.calendar.JMonthChooser;
 import java.awt.Font;
 
 
-public class StatisticaMensileView extends JFrame {
+public class StatisticaGiornalieraView extends JFrame {
 
 	private JPanel contentPane;
 	
@@ -44,7 +44,7 @@ public class StatisticaMensileView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StatisticaMensileView() {
+	public StatisticaGiornalieraView() {
 		setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
 		setTitle("Statistiche");
 		
@@ -66,7 +66,7 @@ public class StatisticaMensileView extends JFrame {
 				
 				Controller controller = new Controller();
 				
-				controller.StampaRistoranti(textAreaRistoranti);
+				controller.stampaRistoranti(textAreaRistoranti);
 				
 				
 			}
@@ -138,23 +138,23 @@ public class StatisticaMensileView extends JFrame {
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);
 		
-		JButton btnMensile = new JButton("Visualizza statistica");
-		btnMensile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Controller controller = new Controller();				
-				
-				codiceRistorante = textCodiceRistorante.getText();
-				if(codiceRistorante.length() == 0) {
-					JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-							
-				controller.statiscticaMensile(codiceRistorante, textAreaStatistica);				
-				
+		JButton btnGiornaliera = new JButton("Visualizza Statistica");
+		btnGiornaliera.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			Controller controller = new Controller();				
+			
+			codiceRistorante = textCodiceRistorante.getText();
+			if(codiceRistorante.length() == 0) {
+				JOptionPane.showMessageDialog(null,  "Campo codice ristorante vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
+		
+			controller.statiscticaGiornaliera(codiceRistorante, textAreaStatistica);
+			
+		}
 		});
-		btnMensile.setBounds(250, 188, 159, 23);
-		contentPane.add(btnMensile);
+		btnGiornaliera.setBounds(247, 190, 152, 23);
+		contentPane.add(btnGiornaliera);
 		
 		textAreaStatistica = new TextArea();
 		textAreaStatistica.setBounds(28, 244, 380, 160);
@@ -172,4 +172,3 @@ public class StatisticaMensileView extends JFrame {
 		
 	}
 }
-

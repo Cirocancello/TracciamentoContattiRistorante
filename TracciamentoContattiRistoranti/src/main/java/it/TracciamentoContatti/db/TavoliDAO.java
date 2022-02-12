@@ -18,7 +18,7 @@ public class TavoliDAO {
 	 * 
 	 * @return ritorna una lista di tavoli liberi
 	 */
-	public List<Tavolo> getTavoliDisponibili(Integer codiceRistorante, Date data, Integer numeroPersone) {
+	public List<Tavolo> getTavoloDisponibile(Integer codiceRistorante, Date data, Integer numeroPersone) {
 
 		String sql = "SELECT t.* " + "FROM tavoli t " + "INNER JOIN sale s ON t.codiceSala = s.codice "
 				+ "INNER JOIN ristoranti r ON s.codiceRistorante  = r.codice "

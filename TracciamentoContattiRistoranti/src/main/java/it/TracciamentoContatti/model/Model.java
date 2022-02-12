@@ -17,7 +17,7 @@ import java.sql.Date;
 import it.TracciamentoContatti.db.ClienteDAO;
 import it.TracciamentoContatti.db.PrenotazioniDAO;
 import it.TracciamentoContatti.db.RistoranteDAO;
-import it.TracciamentoContatti.db.SaleDAO;
+import it.TracciamentoContatti.db.SalaDAO;
 import it.TracciamentoContatti.db.StatisticaGiornalieraDAO;
 import it.TracciamentoContatti.db.StatisticaMensileDAO;
 import it.TracciamentoContatti.db.TavoliDAO;
@@ -58,11 +58,11 @@ import it.TracciamentoContatti.model.Statistica;
 		}
 		
 		
-		public List<Tavolo> getTavoliDisponibili(Integer codiceRistorante, Date data, Integer numeroPersone) {
+		public List<Tavolo> getTavoloDisponibile(Integer codiceRistorante, Date data, Integer numeroPersone) {
 			//___________________________Cerco eventuali tavoli disponibili
 			TavoliDAO tavoliDao = new TavoliDAO();
 			
-			List<Tavolo> tavoliLiberi = tavoliDao.getTavoliDisponibili(codiceRistorante, data, numeroPersone);	
+			List<Tavolo> tavoliLiberi = tavoliDao.getTavoloDisponibile(codiceRistorante, data, numeroPersone);	
 			
 			//return codiceTavoloDisponibile;
 			return tavoliLiberi;
@@ -78,6 +78,7 @@ import it.TracciamentoContatti.model.Statistica;
 			
 			return codicePrenotazione;
 		}
+		
 		
 		public void InserisciCliente(Integer codiceTavoloPrenotato, String cognome, String nome, String cartaIdentita, String telefono, Date data) {
 			
@@ -101,7 +102,7 @@ import it.TracciamentoContatti.model.Statistica;
 		
 		public String cercaNomeSala(Integer codice) {
 			
-			SaleDAO saleDao = new SaleDAO();
+			SalaDAO saleDao = new SalaDAO();
 			
 			String nomeSala = saleDao.cercaNomeSala(codice);
 			
@@ -111,7 +112,7 @@ import it.TracciamentoContatti.model.Statistica;
 		
 		public String cercaNomeSalaNonPrenotata(Integer tavoloLibero, Integer codiceRistorante) {
 			
-			SaleDAO saleDao = new SaleDAO();
+			SalaDAO saleDao = new SalaDAO();
 			
 			String nomeSala = saleDao.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
 			

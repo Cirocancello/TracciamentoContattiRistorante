@@ -40,18 +40,8 @@ public class loginDAO {
 		}
 		
 		return codiceLogin;
-	}
-	
-//	public static void main(String[] args) {
-//		
-//		Integer codice = login("Ciro", "root");
-//		if (codice!=null){
-//				System.out.println("ok");
-//		}else {
-//			System.out.println("no");
-//		}
-//			
-//	}
+	}	
+
 	
 }	
 

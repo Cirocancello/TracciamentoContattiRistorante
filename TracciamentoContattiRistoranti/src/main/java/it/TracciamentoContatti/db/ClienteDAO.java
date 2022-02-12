@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class ClienteDAO {
 	
-	public void inserisciCliente(int codiceTavolo, String cognome, String nome, String numeroCartaIdentita, String telefono,
+	public void inserisciCliente(Integer codiceTavolo, String cognome, String nome, String numeroCartaIdentita, String telefono,
 			Date data) {
 
 		String sql = "INSERT INTO clienti (CodiceTavolo, Cognome, Nome, NumeroCartaIdentita, Telefono, DATA) "

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import com.toedter.calendar.JDateChooser;
 
-public class SaleDAO {
+public class SalaDAO {
 
     public String cercaNomeSala(Integer codice)	{	
     	

@@ -1,4 +1,4 @@
-package it.TracciamentoContatti;
+package it.TracciamentoContatti.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -67,15 +67,15 @@ public class TavolataPrenotataView extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nome");
-		lblNewLabel_2.setBounds(32, 267, 46, 14);
+		lblNewLabel_2.setBounds(274, 236, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Carta di identità");
-		lblNewLabel_3.setBounds(279, 267, 95, 14);
+		lblNewLabel_3.setBounds(32, 270, 95, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Telefono");
-		lblNewLabel_4.setBounds(279, 237, 64, 14);
+		lblNewLabel_4.setBounds(274, 270, 64, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		textCognome = new JTextField();
@@ -122,7 +122,7 @@ public class TavolataPrenotataView extends JFrame {
 				
 			}
 		});
-		textNome.setBounds(130, 264, 121, 20);
+		textNome.setBounds(383, 233, 121, 20);
 		contentPane.add(textNome);
 		textNome.setColumns(10);
 		
@@ -157,7 +157,7 @@ public class TavolataPrenotataView extends JFrame {
 				    }
 			}
 		});
-		textCartaIdentita.setBounds(383, 264, 121, 20);
+		textCartaIdentita.setBounds(130, 267, 121, 20);
 		contentPane.add(textCartaIdentita);
 		textCartaIdentita.setColumns(10);
 		
@@ -197,7 +197,7 @@ public class TavolataPrenotataView extends JFrame {
 				
 			}
 		});
-		textTelefono.setBounds(384, 234, 121, 20);
+		textTelefono.setBounds(383, 264, 121, 20);
 		contentPane.add(textTelefono);
 		textTelefono.setColumns(10);
 		

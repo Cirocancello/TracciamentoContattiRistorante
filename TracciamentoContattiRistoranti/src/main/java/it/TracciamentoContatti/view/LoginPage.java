@@ -1,4 +1,4 @@
-package it.TracciamentoContatti;
+package it.TracciamentoContatti.view;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -80,7 +80,7 @@ public class LoginPage extends JFrame {
 				controller.login(userName, password);
 			}
 		});
-		btnLogin.setBounds(40, 144, 89, 23);
+		btnLogin.setBounds(174, 142, 89, 23);
 		contentPane.add(btnLogin);
 		
 		passwordField = new JPasswordField();
@@ -92,7 +92,7 @@ public class LoginPage extends JFrame {
 		passwordField.setBounds(177, 96, 86, 20);
 		contentPane.add(passwordField);
 		
-		JButton btnDelete = new JButton("Delete");
+		JButton btnDelete = new JButton("Cancella");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textUserName.setText("");
@@ -100,16 +100,16 @@ public class LoginPage extends JFrame {
 				
 			}
 		});
-		btnDelete.setBounds(174, 144, 89, 23);
+		btnDelete.setBounds(43, 142, 89, 23);
 		contentPane.add(btnDelete);
 		
-		JButton btnNewButton = new JButton("Close");
+		JButton btnNewButton = new JButton("Chiudi");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(174, 190, 89, 23);
+		btnNewButton.setBounds(196, 219, 89, 23);
 		contentPane.add(btnNewButton);
 	}
 }

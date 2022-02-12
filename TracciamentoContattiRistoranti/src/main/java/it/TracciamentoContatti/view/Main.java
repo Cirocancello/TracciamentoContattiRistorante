@@ -1,9 +1,9 @@
-package it.TracciamentoContatti;
+package it.TracciamentoContatti.view;
 
 import java.awt.EventQueue;
 
-import it.TracciamentoContatti.Controller;
 import it.TracciamentoContatti.model.Model;
+import it.TracciamentoContatti.view.Controller;
 
 public class Main {		
 		private Model model;

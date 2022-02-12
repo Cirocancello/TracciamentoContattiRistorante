@@ -55,23 +55,6 @@ public class Tavolo {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(codice);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Tavolo other = (Tavolo) obj;
-		return codice == other.codice;
-	}
-
-	@Override
 	public String toString() {
 		return "codice tavolo = " + codice + ", codice sala a cui appartiene = " + codiceSala + ", nome = " + nome 
 				+ ", capacitaMassima = " + capacitaMassima ;

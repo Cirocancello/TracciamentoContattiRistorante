@@ -1,4 +1,4 @@
-package it.TracciamentoContatti;
+package it.TracciamentoContatti.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -69,7 +69,7 @@ public class HomePageView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent ePrenota) {
 				
-				controller.Actionperformed(ePrenota);
+				controller.actionPrenota(ePrenota);
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
@@ -83,7 +83,7 @@ public class HomePageView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent eTavNonPrenotata) {
 			
-				controller.Actionperformed1(eTavNonPrenotata);
+				controller.actionTavolataNonPrenotata(eTavNonPrenotata);
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_2);
@@ -92,7 +92,7 @@ public class HomePageView extends JFrame {
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent eTavPrenotata) {
-				controller.Actionperformed2(eTavPrenotata);
+				controller.actionTavolataPrenotata(eTavPrenotata);
 				
 			}
 			
@@ -106,7 +106,7 @@ public class HomePageView extends JFrame {
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent eTracciaContatti) {
-				controller.Actionperformed3(eTracciaContatti);
+				controller.actionTracciaContatti(eTracciaContatti);
 			}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_3);
@@ -118,7 +118,7 @@ public class HomePageView extends JFrame {
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			@Override			
 			public void actionPerformed(ActionEvent eStatisticaGiornaliera) {
-				controller.Actionperformed4(eStatisticaGiornaliera);
+				controller.actionStatisticaGiornaliera(eStatisticaGiornaliera);
 			}
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_5);
@@ -126,7 +126,7 @@ public class HomePageView extends JFrame {
 		mntmNewMenuItem_4 = new JMenuItem("Mensile");
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eStatisticaMensile) {
-				controller.Actionperformed5(eStatisticaMensile);
+				controller.actionStatisticaMensile(eStatisticaMensile);
 				
 			}
 		});

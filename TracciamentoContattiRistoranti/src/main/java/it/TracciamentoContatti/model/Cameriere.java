@@ -42,22 +42,6 @@ public class Cameriere {
 		this.cognome = cognome;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(codice);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cameriere other = (Cameriere) obj;
-		return codice == other.codice;
-	}
 
 	@Override
 	public String toString() {

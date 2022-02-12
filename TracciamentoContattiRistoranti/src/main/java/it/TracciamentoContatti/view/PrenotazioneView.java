@@ -1,4 +1,4 @@
-package it.TracciamentoContatti;
+package it.TracciamentoContatti.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

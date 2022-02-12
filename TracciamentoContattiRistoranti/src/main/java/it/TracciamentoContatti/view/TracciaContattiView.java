@@ -1,4 +1,4 @@
-package it.TracciamentoContatti;
+package it.TracciamentoContatti.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -104,7 +104,7 @@ public class TracciaContattiView extends JFrame {
 
 				}
 				try {
-					controller.TracciaContatti(cartaIdentita, data, textAreaTraccia);
+					controller.tracciaContatti(cartaIdentita, data, textAreaTraccia);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

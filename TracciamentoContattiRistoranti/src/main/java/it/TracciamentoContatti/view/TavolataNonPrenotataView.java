@@ -1,4 +1,4 @@
-package it.TracciamentoContatti;
+package it.TracciamentoContatti.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -225,7 +225,7 @@ public class TavolataNonPrenotataView extends JFrame {
 			}				
 			
 		});
-		textCartaIdentita.setBounds(424, 153, 102, 20);
+		textCartaIdentita.setBounds(135, 184, 102, 20);
 		contentPane.add(textCartaIdentita);
 		textCartaIdentita.setColumns(10);
 		
@@ -287,7 +287,7 @@ public class TavolataNonPrenotataView extends JFrame {
 				
 			}
 		});
-		textNome.setBounds(100, 184, 102, 20);
+		textNome.setBounds(424, 151, 102, 20);
 		contentPane.add(textNome);
 		textNome.setColumns(10);
 		
@@ -310,7 +310,7 @@ public class TavolataNonPrenotataView extends JFrame {
 			}
 		});
 		textCognome.setColumns(10);
-		textCognome.setBounds(100, 153, 102, 20);
+		textCognome.setBounds(135, 151, 102, 20);
 		contentPane.add(textCognome);
 		
 		textCodiceTavoloAssegnato = new JTextField();
@@ -351,7 +351,7 @@ public class TavolataNonPrenotataView extends JFrame {
 			}
 		});
 		textCodiceTavoloAssegnato.setColumns(10);
-		textCodiceTavoloAssegnato.setBounds(170, 210, 56, 20);
+		textCodiceTavoloAssegnato.setBounds(181, 212, 56, 20);
 		contentPane.add(textCodiceTavoloAssegnato);
 		
 		Label label_1 = new Label("Cognome");
@@ -359,7 +359,7 @@ public class TavolataNonPrenotataView extends JFrame {
 		contentPane.add(label_1);
 		
 		Label label_2 = new Label("Nome");
-		label_2.setBounds(21, 182, 62, 22);
+		label_2.setBounds(298, 149, 62, 22);
 		contentPane.add(label_2);
 		
 		Label label_3 = new Label("Telefono");
@@ -367,7 +367,7 @@ public class TavolataNonPrenotataView extends JFrame {
 		contentPane.add(label_3);
 		
 		Label label_4 = new Label("Carta di identità");
-		label_4.setBounds(298, 153, 89, 22);
+		label_4.setBounds(21, 184, 89, 22);
 		contentPane.add(label_4);
 		
 		Label label_5 = new Label("Data");
@@ -375,7 +375,7 @@ public class TavolataNonPrenotataView extends JFrame {
 		contentPane.add(label_5);
 		
 		Label label_6 = new Label("Codice tavolo assegnato");
-		label_6.setBounds(21, 210, 138, 22);
+		label_6.setBounds(20, 210, 138, 22);
 		contentPane.add(label_6);
 		
 		btnCercaTavoloLibero = new JButton("Cerca tavolo libero");

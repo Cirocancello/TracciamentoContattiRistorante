@@ -88,25 +88,8 @@ public class Ristorante {
 	}
 
 	public void setClienti(List<Cliente> clienti) {
-		this.clienti = clienti;
-	}
+		this.clienti = clienti;	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(codice);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Ristorante other = (Ristorante) obj;
-		return Objects.equals(codice, other.codice);
-	}
 
 	@Override
 	public String toString() {

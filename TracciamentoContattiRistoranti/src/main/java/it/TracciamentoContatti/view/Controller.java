@@ -1,4 +1,4 @@
-package it.TracciamentoContatti;
+package it.TracciamentoContatti.view;
 
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -33,14 +33,8 @@ public class Controller {
 	
 	private HomePageView frame;
 	private Model model;
-	
-	private PrenotazioneView prenotazioneView;
-	
-	
-	public Controller(HomePageView frame, Model model) {
-	    this.frame = frame;
-	    this.model = model;
-	}
+	private PrenotazioneView prenotazioneView;	
+
 	
 	public Controller() {
 		
@@ -66,7 +60,7 @@ public class Controller {
 	}
 	
 	
-	public void Actionperformed(ActionEvent ePrenota) {		
+	public void actionPrenota(ActionEvent e) {		
 		
 			Model model = new Model();
 			List<Ristorante> ristoranti = model.getRistoranti();					
@@ -75,28 +69,28 @@ public class Controller {
 
 	}
 	
-	public void Actionperformed1(ActionEvent eTavNonPrenotata) {
+	public void actionTavolataNonPrenotata(ActionEvent e) {
 		Model model = new Model();
 		List<Ristorante> ristoranti = model.getRistoranti();	
 		TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView();
 	}
 	
 
-	public void Actionperformed2(ActionEvent eTavPrenotata) {
+	public void actionTavolataPrenotata(ActionEvent e) {
 		Model model = new Model();
 		List<Ristorante> ristoranti = model.getRistoranti();	
 		TavolataPrenotataView tavolataPrenotataView = new TavolataPrenotataView();
 		
 	}
 	
-	public void Actionperformed3(ActionEvent eTracciaContatti) {
+	public void actionTracciaContatti(ActionEvent e) {
 		Model model = new Model();
 		List<Ristorante> ristoranti = model.getRistoranti();
 		TracciaContattiView tracciaContatti = new TracciaContattiView();
 	}
 	
 
-	public void Actionperformed4(ActionEvent eStatisticaGiornaliera) {
+	public void actionStatisticaGiornaliera(ActionEvent e) {
 		Model model = new Model();
 		List<Ristorante> ristoranti = model.getRistoranti();
 		StatisticaGiornalieraView statiscticaGiornaliera = new StatisticaGiornalieraView();
@@ -104,7 +98,7 @@ public class Controller {
 	}
 	
 
-	public void Actionperformed5(ActionEvent eStatisticaMensile) {
+	public void actionStatisticaMensile(ActionEvent e) {
 		Model model = new Model();
 		List<Ristorante> ristoranti = model.getRistoranti();
 		StatisticaMensileView statisticaMensile = new StatisticaMensileView();
@@ -122,7 +116,7 @@ public class Controller {
 		Integer numeroPersone = prenotazione.getNumeroPersone();
 	    Date data =  prenotazione.getData(); 
 	    
-		List<Tavolo> tavoliLiberi = model.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
+		List<Tavolo> tavoliLiberi = model.getTavoloDisponibile(codiceRistorante, data, numeroPersone);
 		
 		if(tavoliLiberi.size()>0) {
             Integer codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();	
@@ -140,7 +134,7 @@ public class Controller {
 		}
 	}
 
-	public void StampaRistoranti(TextArea textAreaRistoranti) {
+	public void stampaRistoranti(TextArea textAreaRistoranti) {
 		
 		Model model = new Model();
 		
@@ -159,7 +153,7 @@ public class Controller {
 	}
 	
 
-	public void TracciaContatti(String cartaIdentita, String data, TextArea textAreaTraccia) throws IOException {
+	public void tracciaContatti(String cartaIdentita, String data, TextArea textAreaTraccia) throws IOException {
 		Model model = new Model();		
 	
 		List<Cliente> clientidaContattare = model.tracciaContatti(cartaIdentita, data); 		
@@ -246,7 +240,7 @@ public class Controller {
 			return;
 		}
 		//cerco il primo tavolo disponibile
-		List<Tavolo> tavoliLiberi = model.getTavoliDisponibili(codiceRistorante, data, numeroPersone);
+		List<Tavolo> tavoliLiberi = model.getTavoloDisponibile(codiceRistorante, data, numeroPersone);
 		if(tavoliLiberi.size() > 0) {
 		   Integer tavoloLibero = tavoliLiberi.get(0).getCodice();
 		  		

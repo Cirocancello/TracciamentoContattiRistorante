@@ -63,23 +63,6 @@ public class Sala {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(codice, codiceRistorante);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Sala other = (Sala) obj;
-		return Objects.equals(codice, other.codice) && Objects.equals(codiceRistorante, other.codiceRistorante);
-	}
-
-	@Override
 	public String toString() {
 		return "codice = " + codice + ", codice Ristorante =" + codiceRistorante + ", nome =" + nome ;
 				
