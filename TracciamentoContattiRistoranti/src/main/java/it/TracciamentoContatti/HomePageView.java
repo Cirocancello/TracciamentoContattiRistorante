@@ -57,7 +57,7 @@ public class HomePageView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 450, 246);
 		
-		
+		final Controller controller = new Controller();
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -158,9 +158,4 @@ public class HomePageView extends JFrame {
 		contentPane.add(lblNewLabel_1);
 	}
 	
-	public void setController(Controller controller) {
-		
-		this.controller = controller;		
-		
-	}
 }

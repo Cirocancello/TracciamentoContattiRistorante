@@ -75,35 +75,20 @@ public class LoginPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String userName = textUserName.getText();
 				String password = passwordField.getText();
-				Integer codiceLogin = null;
-		
-				Model models = new Model();
-				codiceLogin = models.login(userName, password);
-				//System.out.println( codiceLogin);
-				
-				if(codiceLogin != null) {
-			        HomePageView frame = new HomePageView();					
-			        Model model = new Model();
-			        Controller controller = new Controller(frame, model);
-	  
-			        frame.setController(controller);
-			
-			        frame.setResizable(false);
-			        frame.setVisible(true);		
-
-				}else {
-			        
-					JOptionPane.showMessageDialog(null,  "Username o Password non presenti in base dati!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
-
-
-				}
-				
+				//TODO aggiungi i controlli che non devono superare gli 8 caratteri
+				Controller controller = new Controller();
+				controller.login(userName, password);
 			}
 		});
 		btnLogin.setBounds(40, 144, 89, 23);
 		contentPane.add(btnLogin);
 		
 		passwordField = new JPasswordField();
+		passwordField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 		passwordField.setBounds(177, 96, 86, 20);
 		contentPane.add(passwordField);
 		

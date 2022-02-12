@@ -46,6 +46,25 @@ public class Controller {
 		
 	}
 	
+	public void login(String userName, String password) {
+		Model model = new Model();
+		
+		Integer codiceLogin = null;
+		codiceLogin = model.login(userName, password);
+		
+		if(codiceLogin != null) {
+	        HomePageView frame = new HomePageView();					
+	
+	        frame.setResizable(false);
+	        frame.setVisible(true);		
+
+		}else {
+	        
+			JOptionPane.showMessageDialog(null,  "Username o Password non presenti in base dati!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+
+		}
+	}
+	
 	
 	public void Actionperformed(ActionEvent ePrenota) {		
 		
@@ -53,13 +72,9 @@ public class Controller {
 			List<Ristorante> ristoranti = model.getRistoranti();					
 			
 			PrenotazioneView prenotazioneView = new PrenotazioneView(ristoranti);	
-		
-//		if(e.getSource() == frame.btnTavolataNonPrenotata) {
-//			
-//			TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView();
-//		}
 
 	}
+	
 	public void Actionperformed1(ActionEvent eTavNonPrenotata) {
 		Model model = new Model();
 		List<Ristorante> ristoranti = model.getRistoranti();	
@@ -316,16 +331,7 @@ public class Controller {
 	      textAreaStatistica.append("Nel mese di " +themounth+" ");
 	      textAreaStatistica.append("totale avventori "+s.getTotaleAvventori()+"\n");
 	    }
-	}
-
-
-
-
-
-
-	
-	
-	
+	}	
 	
 }
 	

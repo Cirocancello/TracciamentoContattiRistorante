@@ -6,6 +6,8 @@ import it.TracciamentoContatti.Controller;
 import it.TracciamentoContatti.model.Model;
 
 public class Main {		
+		private Model model;
+		private Controller controller;
 		
 		/**
 		 * Launch the application.
@@ -18,19 +20,9 @@ public class Main {
 						LoginPage login = new LoginPage();
 						login.setResizable(false);
 						login.setVisible(true);
-//						HomePageView frame = new HomePageView();					
-//      			    Model model = new Model();
-//					    Controller controller = new Controller(frame, model);
-//				  
-//						frame.setController(controller);
-//						
-//						frame.setResizable(false);
-//						frame.setVisible(true);
-//						
-//TODO dopo aver fatto il login recuperare il codice riastorante con la query
-// SELECT r.Nome
-//FROM login l, ristoranti r
-//WHERE l.ID = r.CodiceLogin;
+				
+      			        Model model = new Model();
+					    Controller controller = new Controller();
 
 					} catch (Exception e) {
 						e.printStackTrace();
