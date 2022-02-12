@@ -1,4 +1,4 @@
-package it.TracciamentoContatti.view;
+package it.controller;
 
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -20,11 +20,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import it.TracciamentoContatti.model.Cliente;
-import it.TracciamentoContatti.model.Model;
 import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Ristorante;
 import it.TracciamentoContatti.model.Statistica;
 import it.TracciamentoContatti.model.Tavolo;
+import it.TracciamentoContatti.view.HomePageView;
+import it.TracciamentoContatti.view.PrenotazioneView;
+import it.TracciamentoContatti.view.StatisticaGiornalieraView;
+import it.TracciamentoContatti.view.StatisticaMensileView;
+import it.TracciamentoContatti.view.TavolataNonPrenotataView;
+import it.TracciamentoContatti.view.TavolataPrenotataView;
+import it.TracciamentoContatti.view.TracciaContattiView;
+import it.model.Model;
 import javafx.scene.chart.PieChart.Data;
 import it.TracciamentoContatti.model.Statistica;
 

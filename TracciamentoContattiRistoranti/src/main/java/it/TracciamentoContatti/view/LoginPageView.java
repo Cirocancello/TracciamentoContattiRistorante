@@ -6,7 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import it.TracciamentoContatti.model.Model;
+import it.controller.Controller;
+import it.model.Model;
 
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -19,7 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class LoginPage extends JFrame {
+public class LoginPageView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textUserName;
@@ -28,7 +29,7 @@ public class LoginPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginPage() {
+	public LoginPageView() {
 		setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 14));
 		setTitle("Login page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

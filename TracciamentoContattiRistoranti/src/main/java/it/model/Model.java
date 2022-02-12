@@ -1,4 +1,4 @@
-package it.TracciamentoContatti.model;
+package it.model;
 
 
 import java.text.ParseException;

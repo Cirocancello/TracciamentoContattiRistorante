@@ -21,6 +21,9 @@ import javax.swing.JOptionPane;
 import java.awt.Choice;
 import java.awt.TextArea;
 import com.toedter.calendar.JDateChooser;
+
+import it.controller.Controller;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

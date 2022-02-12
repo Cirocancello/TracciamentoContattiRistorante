@@ -1,9 +1,10 @@
-package it.TracciamentoContatti.view;
+package it.main;
 
 import java.awt.EventQueue;
 
-import it.TracciamentoContatti.model.Model;
-import it.TracciamentoContatti.view.Controller;
+import it.TracciamentoContatti.view.LoginPageView;
+import it.controller.Controller;
+import it.model.Model;
 
 public class Main {		
 		private Model model;
@@ -17,7 +18,7 @@ public class Main {
 				public void run() {
 					try {
 						
-						LoginPage login = new LoginPage();
+						LoginPageView login = new LoginPageView();
 						login.setResizable(false);
 						login.setVisible(true);
 				
