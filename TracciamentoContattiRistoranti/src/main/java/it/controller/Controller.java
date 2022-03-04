@@ -20,11 +20,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import it.TracciamentoContatti.model.Cliente;
+import it.TracciamentoContatti.model.Persona;
 import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Ristorante;
 import it.TracciamentoContatti.model.Statistica;
 import it.TracciamentoContatti.model.Tavolo;
 import it.TracciamentoContatti.view.HomePageView;
+import it.TracciamentoContatti.view.LoginPageView;
 import it.TracciamentoContatti.view.PrenotazioneView;
 import it.TracciamentoContatti.view.StatisticaGiornalieraView;
 import it.TracciamentoContatti.view.StatisticaMensileView;
@@ -39,9 +41,8 @@ import it.TracciamentoContatti.model.Statistica;
 public class Controller {
 	
 	private HomePageView frame;
-	private Model model;
-	private PrenotazioneView prenotazioneView;	
-
+	private Model model;	
+		
 	
 	public Controller() {
 		
@@ -58,7 +59,7 @@ public class Controller {
 	
 	        frame.setResizable(false);
 	        frame.setVisible(true);		
-
+	        
 		}else {
 	        
 			JOptionPane.showMessageDialog(null,  "Username o Password non presenti in base dati!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
@@ -163,21 +164,28 @@ public class Controller {
 	public void tracciaContatti(String cartaIdentita, String data, TextArea textAreaTraccia) throws IOException {
 		Model model = new Model();		
 	
-		List<Cliente> clientidaContattare = model.tracciaContatti(cartaIdentita, data); 		
+		List<Persona> personeDaContattare = model.tracciaContatti(cartaIdentita, data); 		
 		
-		if(clientidaContattare.size() > 0) {
-		
-	  	   for(Cliente c : clientidaContattare) {			
-			   textAreaTraccia.append(c.getNome()+" ");
-			   textAreaTraccia.append(c.getCognome()+" ");
-			   textAreaTraccia.append(c.getTelefono()+"\n");			
-		   }
-		}else {
-			JOptionPane.showMessageDialog(null,  "Nessuna tavolata presente in quel giorno", "Attenzione!!!", JOptionPane.INFORMATION_MESSAGE);
-			
-		}
+		setPeroneDaContattare(personeDaContattare, textAreaTraccia);
 			
 		
+	}
+	
+	public void setPeroneDaContattare(List<Persona> personeDaContattare,TextArea textAreaTraccia){
+		if(personeDaContattare.size() > 0) {
+			
+		  	   for (Persona p : personeDaContattare) {	
+		  		
+		  		
+				   textAreaTraccia.append(p.getNome()+" ");
+				   textAreaTraccia.append(p.getCognome()+" ");
+				   textAreaTraccia.append(p.getTelefono()+" ");
+				   textAreaTraccia.append("\t"+"("+p.getTipo()+")"+"\n");
+			   }
+			}else {
+				JOptionPane.showMessageDialog(null,  "Nessuna tavolata presente in quel giorno", "Attenzione!!!", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
 	}
 
 	public void inserisciCliente(Cliente cliente, TextArea textAreaClientiInseriti) {
@@ -192,15 +200,16 @@ public class Controller {
 		Date data = cliente.getData();		
 		
 		model.InserisciCliente(codiceTavoloPrenotato,cognome,
-				               nome,cartaIdentita,telefono,data);		
-		
+				               nome,cartaIdentita,telefono,data);			
+	
 		textAreaClientiInseriti.append(cliente.getNome()+" ");
 		textAreaClientiInseriti.append(cliente.getCognome()+" ");
 		textAreaClientiInseriti.append(cliente.getTelefono()+" ");
 		textAreaClientiInseriti.append(cliente.getNumeroCartaIdentita()+"\n");			
 		
 	}
-
+   
+	
 	public void cercaPrenotazione(String data, String cognome,TextArea textAreaPrenotazione) {
           
 		Model model = new Model();				
@@ -212,7 +221,7 @@ public class Controller {
 		    for(Prenotazione p : prenotazione) {
 		    	Integer codice = p.getCodice();
 		    	String nomeSala = model.cercaNomeSala(codice);
-		    	textAreaPrenotazione.append("Codcie pernotazione "+p.getCodice()+"\n");
+		    	textAreaPrenotazione.append("Codice prenotazione "+p.getCodice()+"\n");
 			    textAreaPrenotazione.append("Prenotazione a nome di \n"+p.getCognome()+" ");
 			    textAreaPrenotazione.append(p.getNome()+" - ");
 			    textAreaPrenotazione.append("tel : "+p.getTelefono()+" - ");
@@ -249,13 +258,14 @@ public class Controller {
 		//cerco il primo tavolo disponibile
 		List<Tavolo> tavoliLiberi = model.getTavoloDisponibile(codiceRistorante, data, numeroPersone);
 		if(tavoliLiberi.size() > 0) {
-		   Integer tavoloLibero = tavoliLiberi.get(0).getCodice();
-		  		
+		   Integer tavoloLibero = tavoliLiberi.get(0).getCodice();		  		
+		  
 		   if(tavoloLibero != null) {
 			   //visualizzo il messaggio del tavolo libero con il suo codice e il nome della sala
 			   String nomeSala = model.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
-			   textArea.append("tavolo disponibile "+ Integer.toString(tavoloLibero) + "\n");
-			   textArea.append("nome della sala "+ nomeSala);
+//			   textArea.append("tavolo disponibile "+ Integer.toString(tavoloLibero) + "\n");
+//			   textArea.append("nome della sala "+ nomeSala);
+			   setVisualizzaTavoloLiberoSala(tavoloLibero,nomeSala,textArea);
 		    }
 		}
 		else {
@@ -264,6 +274,12 @@ public class Controller {
 		} 
 			
 	}
+	
+	public void setVisualizzaTavoloLiberoSala(Integer tavoloLibero,String nomeSala,JTextArea textArea) {
+		textArea.append("tavolo disponibile "+ Integer.toString(tavoloLibero) + "\n");
+		textArea.append("nome della sala "+ nomeSala);
+	}
+	
 
 	public void statiscticaGiornaliera(String codiceRistorante, TextArea textAreaStatistica) {
 		Model model = new Model();

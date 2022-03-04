@@ -31,7 +31,7 @@ import java.awt.event.KeyEvent;
 public class TavolataNonPrenotataView extends JFrame {
 
 	private JPanel contentPane;
-	private Controller controller;
+	
 	private JTextField textNumeroPersone;
 	private JTextField textCartaIdentita;
 	private JTextField textTelefono;
@@ -43,7 +43,7 @@ public class TavolataNonPrenotataView extends JFrame {
 	private JButton btnAggiungiCliente;
 	private JButton btnCercaTavoloLibero;
 	private JTextField textCodiceRistorante;
-	private JLabel lblNewLabel;
+	private JLabel lblCodiceRistorante;
 	private JDateChooser dateChooser;
 	private String data;
 	private String telefono;
@@ -54,7 +54,17 @@ public class TavolataNonPrenotataView extends JFrame {
 	private String numeroPersone;
 	private String codiceRistorante;
 	private JTextArea textArea;
-	private JLabel lblNewLabel_2;
+	private JLabel lblInserisciDatiClienti;
+	private JLabel lblClientiInseriti;
+	private JLabel lblNumeroPersone;
+	private JLabel lblCognome;
+	
+	private JLabel lblNome;
+	private JLabel lblTelefono;
+	private JLabel lblCartaIdentita;
+	private JLabel lblData;
+	private JLabel lblCodiceTavoloAssegnato;
+	
 	
 	
 	/**
@@ -116,14 +126,16 @@ public class TavolataNonPrenotataView extends JFrame {
 				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognome, nome, telefono, cartaIdentita, theData);
 			    controller.inserisciCliente(cliente, textAreaClienti);
 				
-			    textCodiceTavoloAssegnato.setText(" ");
-			    textCognome.setText(" ");
-			    textNome.setText(" ");
-			    textTelefono.setText(" ");
-			    textCartaIdentita.setText(" ");
-			  
-				
-				
+			  //  textCodiceTavoloAssegnato.setText("");
+			    textCognome.setText("");
+			    textNome.setText("");
+			    textTelefono.setText("");
+			    textCartaIdentita.setText("");
+			    textTelefono.setEditable(true);
+			    textCartaIdentita.setEditable(true);  
+			    textCognome.setEditable(true);
+			    textNome.setEditable(true);
+			    
 			}
 		});
 		btnAggiungiCliente.setBounds(376, 234, 150, 23);
@@ -139,10 +151,10 @@ public class TavolataNonPrenotataView extends JFrame {
 		btnChiudi.setBounds(437, 443, 89, 23);
 		contentPane.add(btnChiudi);
 		
-		JLabel lblNewLabel_1 = new JLabel("Numero persone");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_1.setBounds(21, 39, 102, 14);
-		contentPane.add(lblNewLabel_1);
+		lblNumeroPersone = new JLabel("Numero persone");
+		lblNumeroPersone.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNumeroPersone.setBounds(21, 39, 102, 14);
+		contentPane.add(lblNumeroPersone);
 		
 		textNumeroPersone = new JTextField();
 		textNumeroPersone.addKeyListener(new KeyAdapter() {
@@ -190,10 +202,10 @@ public class TavolataNonPrenotataView extends JFrame {
 		textAreaClienti.setBounds(21, 277, 505, 160);
 		contentPane.add(textAreaClienti);
 		
-		Label label = new Label("Clienti inseriti");
-		label.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		label.setBounds(21, 249, 150, 22);
-		contentPane.add(label);
+		lblClientiInseriti = new JLabel("Clienti inseriti");
+		lblClientiInseriti.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblClientiInseriti.setBounds(21, 249, 150, 22);
+		contentPane.add(lblClientiInseriti);
 		
 		textCartaIdentita = new JTextField();
 		textCartaIdentita.addKeyListener(new KeyAdapter() {
@@ -227,7 +239,7 @@ public class TavolataNonPrenotataView extends JFrame {
 			}				
 			
 		});
-		textCartaIdentita.setBounds(135, 184, 102, 20);
+		textCartaIdentita.setBounds(167, 184, 102, 20);
 		contentPane.add(textCartaIdentita);
 		textCartaIdentita.setColumns(10);
 		
@@ -312,7 +324,7 @@ public class TavolataNonPrenotataView extends JFrame {
 			}
 		});
 		textCognome.setColumns(10);
-		textCognome.setBounds(135, 151, 102, 20);
+		textCognome.setBounds(167, 151, 102, 20);
 		contentPane.add(textCognome);
 		
 		textCodiceTavoloAssegnato = new JTextField();
@@ -330,12 +342,12 @@ public class TavolataNonPrenotataView extends JFrame {
 			    //check for number 0 to 9
 			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
 			    	//check for length not more than 2 digit
-			    	if(length<2) {
+			    	if(length<3) {
 			    		//editable true
 			    		textCodiceTavoloAssegnato.setEditable(true);
 			    	}else {
 			    		textCodiceTavoloAssegnato.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Devi iserire al max 2 numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Devi iserire al max 3 numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    	
@@ -353,32 +365,32 @@ public class TavolataNonPrenotataView extends JFrame {
 			}
 		});
 		textCodiceTavoloAssegnato.setColumns(10);
-		textCodiceTavoloAssegnato.setBounds(181, 212, 56, 20);
+		textCodiceTavoloAssegnato.setBounds(219, 212, 48, 20);
 		contentPane.add(textCodiceTavoloAssegnato);
 		
-		Label label_1 = new Label("Cognome");
-		label_1.setBounds(21, 151, 62, 22);
-		contentPane.add(label_1);
+		lblCognome = new JLabel("Cognome");
+		lblCognome.setBounds(21, 151, 62, 22);
+		contentPane.add(lblCognome);		
 		
-		Label label_2 = new Label("Nome");
-		label_2.setBounds(298, 149, 62, 22);
-		contentPane.add(label_2);
+		lblNome = new JLabel("Nome");
+		lblNome.setBounds(298, 149, 62, 22);
+		contentPane.add(lblNome);
 		
-		Label label_3 = new Label("Telefono");
-		label_3.setBounds(298, 184, 62, 22);
-		contentPane.add(label_3);
+		lblTelefono = new JLabel("Telefono");
+		lblTelefono.setBounds(298, 184, 62, 22);
+		contentPane.add(lblTelefono);
 		
-		Label label_4 = new Label("Carta di identità");
-		label_4.setBounds(21, 184, 89, 22);
-		contentPane.add(label_4);
+		lblCartaIdentita = new JLabel("Carta di identità");
+		lblCartaIdentita.setBounds(21, 184, 89, 22);
+		contentPane.add(lblCartaIdentita);
 		
-		Label label_5 = new Label("Data");
-		label_5.setBounds(21, 70, 48, 22);
-		contentPane.add(label_5);
+		lblData = new JLabel("Data");
+		lblData.setBounds(21, 70, 48, 22);
+		contentPane.add(lblData);
 		
-		Label label_6 = new Label("Codice tavolo assegnato");
-		label_6.setBounds(20, 210, 138, 22);
-		contentPane.add(label_6);
+		lblCodiceTavoloAssegnato = new JLabel("Codice tavolo assegnato");
+		lblCodiceTavoloAssegnato.setBounds(20, 210, 164, 22);
+		contentPane.add(lblCodiceTavoloAssegnato);
 		
 		btnCercaTavoloLibero = new JButton("Cerca tavolo libero");
 		btnCercaTavoloLibero.addActionListener(new ActionListener() {
@@ -457,10 +469,10 @@ public class TavolataNonPrenotataView extends JFrame {
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);
 		
-		lblNewLabel = new JLabel("Codice Ristorante");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(181, 39, 113, 14);
-		contentPane.add(lblNewLabel);
+		lblCodiceRistorante = new JLabel("Codice Ristorante");
+		lblCodiceRistorante.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblCodiceRistorante.setBounds(181, 39, 113, 14);
+		contentPane.add(lblCodiceRistorante);
 		
 		dateChooser = new JDateChooser();
 		dateChooser.setBounds(69, 72, 102, 20);
@@ -471,9 +483,9 @@ public class TavolataNonPrenotataView extends JFrame {
 		textArea.setEditable(false);
 		contentPane.add(textArea);
 		
-		lblNewLabel_2 = new JLabel("Inserisci i dati dei clienti");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel_2.setBounds(25, 124, 212, 14);
-		contentPane.add(lblNewLabel_2);
+		lblInserisciDatiClienti = new JLabel("Inserisci i dati dei clienti");
+		lblInserisciDatiClienti.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblInserisciDatiClienti.setBounds(25, 124, 212, 14);
+		contentPane.add(lblInserisciDatiClienti);
 	}
 }

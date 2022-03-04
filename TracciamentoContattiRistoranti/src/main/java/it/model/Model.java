@@ -24,6 +24,7 @@ import it.TracciamentoContatti.db.TavoliDAO;
 import it.TracciamentoContatti.db.TracciaContattiDAO;
 import it.TracciamentoContatti.db.loginDAO;
 import it.TracciamentoContatti.model.Cliente;
+import it.TracciamentoContatti.model.Persona;
 import it.TracciamentoContatti.model.Prenotazione;
 import it.TracciamentoContatti.model.Ristorante;
 import it.TracciamentoContatti.model.Sala;
@@ -43,16 +44,16 @@ import it.TracciamentoContatti.model.Statistica;
 		
 		}
 		
-		public  List<Cliente> tracciaContatti(String cartaIdentita, String data) {
+		public  List<Persona> tracciaContatti(String cartaIdentita, String data) {
 			
 			TracciaContattiDAO tracciaContattiDao = new TracciaContattiDAO();			
 			
 			
 			//traccia contatti in caso di contagio simulando uno scenario di contagio
-			List<Cliente> clientidaContattare =  tracciaContattiDao.tracciaContatti(cartaIdentita, data); // passare anche la data come pararmetro
+			List<Persona> personeDaContattare =  tracciaContattiDao.tracciaContatti(cartaIdentita, data); // passare anche la data come pararmetro
 
 			
-			return clientidaContattare;
+			return personeDaContattare;
 			
 			
 		}
@@ -62,10 +63,10 @@ import it.TracciamentoContatti.model.Statistica;
 			//___________________________Cerco eventuali tavoli disponibili
 			TavoliDAO tavoliDao = new TavoliDAO();
 			
-			List<Tavolo> tavoliLiberi = tavoliDao.getTavoloDisponibile(codiceRistorante, data, numeroPersone);	
+			List<Tavolo> tavoloLibero = tavoliDao.getTavoloDisponibile(codiceRistorante, data, numeroPersone);	
 			
 			//return codiceTavoloDisponibile;
-			return tavoliLiberi;
+			return tavoloLibero;
 		}
 		
 		

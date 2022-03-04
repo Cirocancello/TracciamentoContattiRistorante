@@ -37,20 +37,30 @@ public class TavolataPrenotataView extends JFrame {
 	private JTextField textNome;
 	private JTextField textCartaIdentita;
 	private JTextField textTelefono;
-	private JTextField textCodiceTavolo;
+	private JTextField textCodiceTavoloAssegnato;
 	private TextArea textAreaClientiInseriti; 
 	private TextArea textAreaPrenotazione;
 	private JButton btnCercaPrenotazione;
-	private JLabel lblNewLabel_8;
+	private JLabel lblInserisciDatiClienti;
 	private JDateChooser dateChooser;
-	private JTextField textCognome1;
+	private JTextField textCognomeCliente;
 	private String telefono;
 	private String cognome;
 	private String nome;
-	private String cognome1;
+	private String cognomeCliente;
 	private String cartaIdentita;
 	private String  codiceTavolo;
-	
+	private JLabel lblcognome;
+	private JLabel lblNome;
+	private JLabel lblCartaIdentita;
+	private JLabel lblTelefono;
+	private JButton btnInserisciCliente;
+	private JLabel lblCodiceTavoloAssegnato;
+	private JLabel lblClientiInseriti;
+	private JButton btnChiudi;
+	private JLabel lblDataPrenotazione;
+	private JLabel lblCognomeCliente;
+	private JLabel lblPrenotazione;
 	
 	public TavolataPrenotataView() {
 		
@@ -64,21 +74,21 @@ public class TavolataPrenotataView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Cognome");
-		lblNewLabel_1.setBounds(313, 19, 72, 14);
-		contentPane.add(lblNewLabel_1);
+		lblcognome = new JLabel("Cognome");
+		lblcognome.setBounds(313, 19, 72, 14);
+		contentPane.add(lblcognome);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nome");
-		lblNewLabel_2.setBounds(274, 236, 46, 14);
-		contentPane.add(lblNewLabel_2);
+		lblNome = new JLabel("Nome");
+		lblNome.setBounds(274, 236, 46, 14);
+		contentPane.add(lblNome);
 		
-		JLabel lblNewLabel_3 = new JLabel("Carta di identità");
-		lblNewLabel_3.setBounds(32, 270, 95, 14);
-		contentPane.add(lblNewLabel_3);
+		lblCartaIdentita = new JLabel("Carta di identità");
+		lblCartaIdentita.setBounds(32, 270, 95, 14);
+		contentPane.add(lblCartaIdentita);
 		
-		JLabel lblNewLabel_4 = new JLabel("Telefono");
-		lblNewLabel_4.setBounds(274, 270, 64, 14);
-		contentPane.add(lblNewLabel_4);
+		lblTelefono = new JLabel("Telefono");
+		lblTelefono.setBounds(274, 270, 64, 14);
+		contentPane.add(lblTelefono);
 		
 		textCognome = new JTextField();
 		textCognome.addKeyListener(new KeyAdapter() {
@@ -179,7 +189,7 @@ public class TavolataPrenotataView extends JFrame {
 			    //check for number 0 to 9
 			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
 			    	//check for length not more than 10 digit
-			    	if(length<10) {
+			    	if(length<=10) {
 			    		//editable true
 			    		textTelefono.setEditable(true);
 			    	}else {
@@ -203,19 +213,19 @@ public class TavolataPrenotataView extends JFrame {
 		contentPane.add(textTelefono);
 		textTelefono.setColumns(10);
 		
-		JButton btnInserisciClienti = new JButton("Inserisci cliente");
-		btnInserisciClienti.addActionListener(new ActionListener() {
+		btnInserisciCliente = new JButton("Inserisci cliente");
+		btnInserisciCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				Controller controller = new Controller();			
 				
-				codiceTavolo = textCodiceTavolo.getText().trim();
+				codiceTavolo = textCodiceTavoloAssegnato.getText().trim();
 				if(codiceTavolo.length() == 0) {
 					JOptionPane.showMessageDialog(null,  "Campo codice tavolo vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				cognome1 = textCognome1.getText().trim();
-				if(cognome1.length() == 0) {
+				cognomeCliente = textCognomeCliente.getText().trim();
+				if(cognomeCliente.length() == 0) {
 					JOptionPane.showMessageDialog(null,  "Campo cognome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
@@ -234,21 +244,23 @@ public class TavolataPrenotataView extends JFrame {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				String theDate = dateFormat.format(dateChooser.getDate());
 			
-				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognome1, nome, telefono,  cartaIdentita, Date.valueOf(theDate));
+				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognomeCliente, nome, telefono,  cartaIdentita, Date.valueOf(theDate));
 			    controller.inserisciCliente(cliente, textAreaClientiInseriti);
 				
-			    //textCodiceTavolo.setText("");
+			    
 			    textCognome.setText("");
-			    textCognome1.setText("");
+			    textCognomeCliente.setText("");
 			    textNome.setText("");
 			    textTelefono.setText("");
 			    textCartaIdentita.setText("");
+			    textTelefono.setEditable(true);
+			    textCartaIdentita.setEditable(true);
 			
 				
 			}
 		});
-		btnInserisciClienti.setBounds(381, 295, 137, 23);
-		contentPane.add(btnInserisciClienti);
+		btnInserisciCliente.setBounds(381, 295, 137, 23);
+		contentPane.add(btnInserisciCliente);
 		
 		textAreaClientiInseriti = new TextArea();
 		textAreaClientiInseriti.setBounds(27, 329, 477, 91);
@@ -258,11 +270,11 @@ public class TavolataPrenotataView extends JFrame {
 		textAreaPrenotazione.setBounds(27, 80, 477, 102);
 		contentPane.add(textAreaPrenotazione);
 		
-		textCodiceTavolo = new JTextField();
-		textCodiceTavolo.addKeyListener(new KeyAdapter() {
+		textCodiceTavoloAssegnato = new JTextField();
+		textCodiceTavoloAssegnato.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				codiceTavolo = textCodiceTavolo.getText().trim();
+				codiceTavolo = textCodiceTavoloAssegnato.getText().trim();
 				//JTextField phone number validation/ accept only numbers
 			    //action when key is press
 			    //get JTextField string			   
@@ -273,12 +285,12 @@ public class TavolataPrenotataView extends JFrame {
 			    //check for number 0 to 9
 			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
 			    	//check for length not more than 2 digit
-			    	if(length<2) {
+			    	if(length<3) {
 			    		//editable true
-			    		textCodiceTavolo.setEditable(true);
+			    		textCodiceTavoloAssegnato.setEditable(true);
 			    	}else {
-			    		textCodiceTavolo.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Devi iserire al max 2 numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+			    		textCodiceTavoloAssegnato.setEditable(false);
+						JOptionPane.showMessageDialog(null,  "Devi iserire al max 3 numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    	
@@ -286,9 +298,9 @@ public class TavolataPrenotataView extends JFrame {
 			    	//now allow for keys 'back space' and 'delete' for edit
 			    	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
 			    		//than allow editable
-			    		textCodiceTavolo.setEditable(true);
+			    		textCodiceTavoloAssegnato.setEditable(true);
 			    	}else {
-			    		textCodiceTavolo.setEditable(false);
+			    		textCodiceTavoloAssegnato.setEditable(false);
 						JOptionPane.showMessageDialog(null,  "Devi iserire solo numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
@@ -296,18 +308,18 @@ public class TavolataPrenotataView extends JFrame {
 			}
 			
 		});
-		textCodiceTavolo.setBounds(446, 205, 53, 20);
-		contentPane.add(textCodiceTavolo);
-		textCodiceTavolo.setColumns(10);
+		textCodiceTavoloAssegnato.setBounds(446, 205, 53, 20);
+		contentPane.add(textCodiceTavoloAssegnato);
+		textCodiceTavoloAssegnato.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("Codice tavolo assegnato");
-		lblNewLabel_7.setBounds(274, 208, 149, 14);
-		contentPane.add(lblNewLabel_7);
+		lblCodiceTavoloAssegnato = new JLabel("Codice tavolo assegnato");
+		lblCodiceTavoloAssegnato.setBounds(274, 208, 149, 14);
+		contentPane.add(lblCodiceTavoloAssegnato);
 		
-		JLabel lblNewLabel = new JLabel("Clienti inseriti");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel.setBounds(27, 304, 189, 14);
-		contentPane.add(lblNewLabel);
+		lblClientiInseriti = new JLabel("Clienti inseriti");
+		lblClientiInseriti.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblClientiInseriti.setBounds(27, 304, 189, 14);
+		contentPane.add(lblClientiInseriti);
 		
 		btnCercaPrenotazione = new JButton("cerca prenotazione");
 		btnCercaPrenotazione.addActionListener(new ActionListener() {
@@ -338,12 +350,12 @@ public class TavolataPrenotataView extends JFrame {
 		btnCercaPrenotazione.setBounds(367, 46, 149, 23);
 		contentPane.add(btnCercaPrenotazione);
 		
-		lblNewLabel_8 = new JLabel("Inserisci i dati dei clienti ");
-		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel_8.setBounds(32, 208, 184, 14);
-		contentPane.add(lblNewLabel_8);
+		lblInserisciDatiClienti = new JLabel("Inserisci i dati dei clienti ");
+		lblInserisciDatiClienti.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblInserisciDatiClienti.setBounds(32, 208, 184, 14);
+		contentPane.add(lblInserisciDatiClienti);
 		
-		JButton btnChiudi = new JButton("Chiudi");
+		btnChiudi = new JButton("Chiudi");
 		btnChiudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -356,12 +368,12 @@ public class TavolataPrenotataView extends JFrame {
 		dateChooser.setBounds(157, 16, 121, 20);
 		contentPane.add(dateChooser);
 		
-		JLabel lblNewLabel_6 = new JLabel("Data Prenotazione");
-		lblNewLabel_6.setBounds(39, 19, 108, 14);
-		contentPane.add(lblNewLabel_6);
+		lblDataPrenotazione = new JLabel("Data Prenotazione");
+		lblDataPrenotazione.setBounds(39, 19, 108, 14);
+		contentPane.add(lblDataPrenotazione);
 		
-		textCognome1 = new JTextField();
-		textCognome1.addKeyListener(new KeyAdapter() {
+		textCognomeCliente = new JTextField();
+		textCognomeCliente.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				
@@ -371,26 +383,26 @@ public class TavolataPrenotataView extends JFrame {
 				if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
 					//ISOControl for edit operation (delete key and backspace key allow)
 					//if enter character is letter, space and isocontrol char than allow to edit
-					textCognome1.setEditable(true);					
+					textCognomeCliente.setEditable(true);					
 				}else {
-					textCognome1.setEditable(false);
+					textCognomeCliente.setEditable(false);
 				}
-				cognome1 = textNome.getText();
+				cognomeCliente = textNome.getText();
 				
 			}				
 			
 		});
-		textCognome1.setBounds(130, 234, 121, 20);
-		contentPane.add(textCognome1);
-		textCognome1.setColumns(10);
+		textCognomeCliente.setBounds(130, 234, 121, 20);
+		contentPane.add(textCognomeCliente);
+		textCognomeCliente.setColumns(10);		
 		
-		JLabel lblNewLabel_5 = new JLabel("Cognome");
-		lblNewLabel_5.setBounds(32, 237, 64, 14);
-		contentPane.add(lblNewLabel_5);
+		lblCognomeCliente = new JLabel("Cognome");
+		lblCognomeCliente.setBounds(32, 237, 64, 14);
+		contentPane.add(lblCognomeCliente);
 		
-		JLabel lblNewLabel_9 = new JLabel("Prenotazione");
-		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel_9.setBounds(27, 46, 224, 28);
-		contentPane.add(lblNewLabel_9);
+		lblPrenotazione = new JLabel("Prenotazione");
+		lblPrenotazione.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblPrenotazione.setBounds(27, 46, 224, 28);
+		contentPane.add(lblPrenotazione);
 	}
 }

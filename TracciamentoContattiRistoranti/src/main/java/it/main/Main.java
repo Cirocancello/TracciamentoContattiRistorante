@@ -6,6 +6,8 @@ import it.TracciamentoContatti.view.LoginPageView;
 import it.controller.Controller;
 import it.model.Model;
 
+//utilizzo username root e password root
+
 public class Main {		
 		private Model model;
 		private Controller controller;

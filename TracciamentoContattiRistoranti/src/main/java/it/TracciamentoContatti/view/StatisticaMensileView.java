@@ -33,22 +33,31 @@ import java.awt.Font;
 
 public class StatisticaMensileView extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel contentPane;	
 	
-	private Controller controller;
+	private JButton btnChiudi;
 	private JButton btnRistoranti;
-	private TextArea textAreaRistoranti;
+	private JButton btnVisualizzaStatistica;
+	
+	private JLabel lblRistoranti;
+	private JLabel lblCodiceRistorante;
+	private JLabel lblNumeroAvventori;
+	
 	private JTextField textCodiceRistorante;
-	private String codiceRistorante;
+	
+	private TextArea textAreaRistoranti;
 	private TextArea textAreaStatistica;
 	
-
+	private String codiceRistorante;
+	private Integer length;
+	
+	
 	/**
 	 * Create the frame.
 	 */
 	public StatisticaMensileView() {
 		setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		setTitle("Statistiche");
+		setTitle("Statistiche mensili");
 		
 		setResizable(false);
 		setVisible(true);
@@ -80,7 +89,7 @@ public class StatisticaMensileView extends JFrame {
 		textAreaRistoranti.setBounds(28, 40, 380, 110);
 		contentPane.add(textAreaRistoranti);		
 		
-		JButton btnChiudi = new JButton("Chiudi");
+		btnChiudi = new JButton("Chiudi");
 		btnChiudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -89,14 +98,14 @@ public class StatisticaMensileView extends JFrame {
 		btnChiudi.setBounds(320, 410, 89, 23);
 		contentPane.add(btnChiudi);
 		
-		JLabel lblNewLabel = new JLabel("Ristoranti presenti in base dati");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel.setBounds(28, 13, 214, 21);
-		contentPane.add(lblNewLabel);
+		lblRistoranti = new JLabel("Ristoranti presenti in base dati");
+		lblRistoranti.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblRistoranti.setBounds(28, 13, 214, 21);
+		contentPane.add(lblRistoranti);
 		
-		JLabel lblNewLabel_2 = new JLabel("Codice ristorante");
-		lblNewLabel_2.setBounds(28, 159, 116, 14);
-		contentPane.add(lblNewLabel_2);
+		lblCodiceRistorante = new JLabel("Codice ristorante");
+		lblCodiceRistorante.setBounds(28, 159, 116, 14);
+		contentPane.add(lblCodiceRistorante);
 		
 		textCodiceRistorante = new JTextField();
 		textCodiceRistorante.addKeyListener(new KeyAdapter() {
@@ -107,18 +116,18 @@ public class StatisticaMensileView extends JFrame {
 			    //action when key is press
 			    //get JTextField string			   
 			    
-			    int length = codiceRistorante.length();
+			    length = codiceRistorante.length();
 			    
 			    char c = e.getKeyChar();
 			    //check for number 0 to 9
-			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
+			    if(e.getKeyChar()>='0' && e.getKeyChar()<='4') {
 			    	//check for length not more than 2 digit
 			    	if(length<2) {
 			    		//editable true
 			    		textCodiceRistorante.setEditable(true);
 			    	}else {
 			    		textCodiceRistorante.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Il codice riatorante max 2 cifre!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Il codice riatorante troppo lungo!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    	
@@ -129,7 +138,7 @@ public class StatisticaMensileView extends JFrame {
 			    		textCodiceRistorante.setEditable(true);
 			    	}else {
 			    		textCodiceRistorante.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Devi iserire solo numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Il codice del ristorante è errato!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    }
@@ -140,8 +149,8 @@ public class StatisticaMensileView extends JFrame {
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);
 		
-		JButton btnMensile = new JButton("Visualizza statistica");
-		btnMensile.addActionListener(new ActionListener() {
+		btnVisualizzaStatistica = new JButton("Visualizza statistica");
+		btnVisualizzaStatistica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controller controller = new Controller();				
 				
@@ -155,17 +164,17 @@ public class StatisticaMensileView extends JFrame {
 				
 			}
 		});
-		btnMensile.setBounds(250, 188, 159, 23);
-		contentPane.add(btnMensile);
+		btnVisualizzaStatistica.setBounds(250, 188, 159, 23);
+		contentPane.add(btnVisualizzaStatistica);
 		
 		textAreaStatistica = new TextArea();
 		textAreaStatistica.setBounds(28, 244, 380, 160);
 		contentPane.add(textAreaStatistica);
 		
-		JLabel lblNewLabel_3 = new JLabel("numero totale di avventori ");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel_3.setBounds(28, 224, 229, 14);
-		contentPane.add(lblNewLabel_3);
+		lblNumeroAvventori = new JLabel("numero totale di avventori ");
+		lblNumeroAvventori.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblNumeroAvventori.setBounds(28, 224, 229, 14);
+		contentPane.add(lblNumeroAvventori);
 		
 		
 		

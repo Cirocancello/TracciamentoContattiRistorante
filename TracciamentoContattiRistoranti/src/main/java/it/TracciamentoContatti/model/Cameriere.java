@@ -9,8 +9,9 @@ public class Cameriere {
 	private int codice;
 	private String nome;
 	private String cognome;
+	private String telefono;
 	
-	private List<Sala> saleCamerieri = new LinkedList<>();
+	private Sala sala;
 	
 	public Cameriere(int codice, String nome, String cognome) {
 		this.codice = codice;

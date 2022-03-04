@@ -8,7 +8,7 @@ public class Cliente {
 	private Integer codice;
 	private Integer codiceTavolo;
 	private String cognome;
-	private String nome;
+	private String nome;	
 	private String numeroCartaIdentita;
 	private String telefono;
 	private Date data;
@@ -16,7 +16,7 @@ public class Cliente {
 	
 	private Tavolo codTavolo;
 	
-	public Cliente(String cognome, String nome, String telefono) {
+	public Cliente(String cognome, String nome, String telefono,Date data) {
 		this.cognome = cognome;
 		this.nome = nome;
 		this.telefono = telefono;

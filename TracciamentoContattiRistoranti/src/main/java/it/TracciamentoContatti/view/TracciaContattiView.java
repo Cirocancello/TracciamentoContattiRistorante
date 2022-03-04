@@ -35,7 +35,14 @@ public class TracciaContattiView extends JFrame {
 	private TextArea textAreaTraccia;
 	
 	private JDateChooser dateChooser;
+	private JLabel lblClientiDaContattare;
+	private JLabel lblData ;
+	private JLabel lblCartaIdentita;		
+	private JLabel lblTracciaContatti ;
+	private JButton btnTornaAlMenu;
+	
 	private String cartaIdentita;
+	private String data;
 
 	/**
 	 * Create the frame.
@@ -99,7 +106,7 @@ public class TracciaContattiView extends JFrame {
 				}	
 			
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				String data = null;
+				data = null;
 				try {
 				   data = dateFormat.format(dateChooser.getDate());
 				}catch(Exception ex) {
@@ -121,20 +128,20 @@ public class TracciaContattiView extends JFrame {
 		btnTraccia.setBounds(361, 103, 89, 23);
 		contentPane.add(btnTraccia);
 		
-		JLabel lblData = new JLabel("Data");
+		lblData = new JLabel("Data");
 		lblData.setBounds(279, 73, 46, 14);
 		contentPane.add(lblData);
-		
-		JLabel lblCartaIdentita = new JLabel("Carta di identità");
+				
+		lblCartaIdentita = new JLabel("Carta di identità");
 		lblCartaIdentita.setBounds(25, 73, 108, 14);
 		contentPane.add(lblCartaIdentita);
 		
-		JLabel lblTracciaContatti = new JLabel("Tracciamento contatti, in seguito contagio covid-19");
+		lblTracciaContatti = new JLabel("Tracciamento contatti, in seguito contagio covid-19");
 		lblTracciaContatti.setFont(new Font("Tahoma", Font.ITALIC, 15));
 		lblTracciaContatti.setBounds(70, 11, 354, 33);
 		contentPane.add(lblTracciaContatti);
 		
-		JButton btnTornaAlMenu = new JButton("Torna al menu principale");
+		btnTornaAlMenu = new JButton("Torna al menu principale");
 		btnTornaAlMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -148,10 +155,10 @@ public class TracciaContattiView extends JFrame {
 		textAreaTraccia.setBounds(25, 148, 436, 230);
 		contentPane.add(textAreaTraccia);
 		
-		JLabel lblNewLabel = new JLabel("Clienti da contattare");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel.setBounds(25, 127, 159, 14);
-		contentPane.add(lblNewLabel);
+		lblClientiDaContattare = new JLabel("Clienti da contattare");
+		lblClientiDaContattare.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblClientiDaContattare.setBounds(25, 127, 159, 14);
+		contentPane.add(lblClientiDaContattare);
 		
 		dateChooser = new JDateChooser();
 		dateChooser.setBounds(342, 70, 108, 20);

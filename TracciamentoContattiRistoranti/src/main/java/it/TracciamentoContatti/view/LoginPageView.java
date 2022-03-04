@@ -25,6 +25,11 @@ public class LoginPageView extends JFrame {
 	private JPanel contentPane;
 	private JTextField textUserName;
 	private JPasswordField passwordField;
+	private JButton btnLogin;
+	private JLabel lblUserName;
+	private JLabel lblPassword;
+	private JButton btnChiudi;
+	private JButton btnCancella;
 
 	/**
 	 * Create the frame.
@@ -39,46 +44,63 @@ public class LoginPageView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(55, 48, 89, 14);
-		contentPane.add(lblNewLabel);
+		lblUserName = new JLabel("Username");
+		lblUserName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUserName.setBounds(55, 48, 89, 14);
+		contentPane.add(lblUserName);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(55, 97, 89, 14);
-		contentPane.add(lblNewLabel_1);
+		lblPassword = new JLabel("Password");
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPassword.setBounds(55, 97, 89, 14);
+		contentPane.add(lblPassword);
 		
 		textUserName = new JTextField();
 		textUserName.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				
+				String userName = textUserName.getText();
+				int length = userName.length();			
+				
 				//JTextField to accept only alfabets
 				//code for JTextField that acept letter whitespace and delete backspace key only
 				char c = e.getKeyChar();
 				if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
 					//ISOControl for edit operation (delete key and backspace key allow)
 					//if enter character is letter, space and isocontrol char than allow to edit
-					textUserName.setEditable(true);					
+								   
+				   //check for length not more than 8 digit
+				   if(length<8) {
+				      //editable true
+				      textUserName.setEditable(true);
+				   }else {
+				      textUserName.setEditable(false);
+				   } 
 				}else {
-					textUserName.setEditable(false);
-				}				
-				
-				
+			       //now allow for keys 'back space' and 'delete' for edit
+			       if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+			    	 //than allow editable
+			    	 textUserName.setEditable(true);
+			       }else {
+			       	 textUserName.setEditable(false);
+			       }
+				}
 			}
+		  
 		});
 		textUserName.setBounds(177, 47, 86, 20);
 		contentPane.add(textUserName);
 		textUserName.setColumns(10);
 		
-		JButton btnLogin = new JButton("Login");
+		btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userName = textUserName.getText();
 				String password = passwordField.getText();
-				//TODO aggiungi i controlli che non devono superare gli 8 caratteri
+				
 				Controller controller = new Controller();
 				controller.login(userName, password);
+				
 			}
 		});
 		btnLogin.setBounds(174, 142, 89, 23);
@@ -93,24 +115,24 @@ public class LoginPageView extends JFrame {
 		passwordField.setBounds(177, 96, 86, 20);
 		contentPane.add(passwordField);
 		
-		JButton btnDelete = new JButton("Cancella");
-		btnDelete.addActionListener(new ActionListener() {
+		btnCancella = new JButton("Cancella");
+		btnCancella.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textUserName.setText("");
 				passwordField.setText("");				
 				
 			}
 		});
-		btnDelete.setBounds(43, 142, 89, 23);
-		contentPane.add(btnDelete);
+		btnCancella.setBounds(43, 142, 89, 23);
+		contentPane.add(btnCancella);
 		
-		JButton btnNewButton = new JButton("Chiudi");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnChiudi = new JButton("Chiudi");
+		btnChiudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(196, 219, 89, 23);
-		contentPane.add(btnNewButton);
+		btnChiudi.setBounds(174, 198, 89, 23);
+		contentPane.add(btnChiudi);
 	}
 }

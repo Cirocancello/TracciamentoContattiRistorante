@@ -8,7 +8,7 @@ import it.TracciamentoContatti.model.Ristorante;
 
 public class Ristorante {
 	
-	private String codice;
+	private Integer codice;
 	private String nome;
 	private String indirizzo;
 	private String citta;
@@ -16,9 +16,10 @@ public class Ristorante {
 	private String telefono;
 	
 	private List<Sala> sale = new LinkedList<>();	
-	private List<Cliente> clienti = new LinkedList<>();
+	private Prenotazione prenotazione;
 	
-	public Ristorante(String codice, String nome, String indirizzo, String citta, String provincia, String telefono) {
+	
+	public Ristorante(Integer codice, String nome, String indirizzo, String citta, String provincia, String telefono) {
 		this.codice = codice;
 		this.nome = nome;
 		this.indirizzo = indirizzo;
@@ -27,11 +28,11 @@ public class Ristorante {
 		this.telefono = telefono;
 	}
 
-	public String getCodice() {
+	public Integer getCodice() {
 		return codice;
 	}
 
-	public void setCodice(String codice) {
+	public void setCodice(Integer codice) {
 		this.codice = codice;
 	}
 
@@ -75,28 +76,10 @@ public class Ristorante {
 		this.telefono = telefono;
 	}
 
-	public List<Sala> getSale() {
-		return sale;
-	}
-
-	public void setSale(List<Sala> sale) {
-		this.sale = sale;
-	}
-
-	public List<Cliente> getClienti() {
-		return clienti;
-	}
-
-	public void setClienti(List<Cliente> clienti) {
-		this.clienti = clienti;	}
-
-
 	@Override
 	public String toString() {
 		return "codice ristorante = "+ codice + ", " + nome + ", " + indirizzo + ", " + citta + ", " + provincia + ", telefono = " + telefono ;
-	}
-	
-	
+	}	
 
 	
 }

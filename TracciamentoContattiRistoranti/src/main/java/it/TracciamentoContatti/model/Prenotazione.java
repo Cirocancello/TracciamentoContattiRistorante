@@ -15,8 +15,9 @@ public class Prenotazione {
 	private Integer numeroPersone;
 	private Date data;
 
-	private Cliente cliente;
-	private List<Tavolo> tavoliPrenotati = new LinkedList<>();
+	private List<Cliente> cliente;
+	private Tavolo tavoloPrenotato;
+	private Ristorante ristorante;
 	//_______________________________________________________________
 	public Prenotazione(Integer codice, Integer codiceTavolo, String cognome, String nome, String telefono, Integer numeroPersone, Date data) {
 		this.codice = codice;

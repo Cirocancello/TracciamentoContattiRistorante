@@ -30,7 +30,7 @@ public class RistoranteDAO {
 			ResultSet res = st.executeQuery();			
 			
 			while(res.next()) {
-				Ristorante r = new Ristorante(res.getString("codice"), res.getString("nome"), 
+				Ristorante r = new Ristorante(res.getInt("codice"), res.getString("nome"), 
 						res.getString("indirizzo"), res.getString("citta"), res.getString("provincia"),
 						res.getString("telefono"));
 				ristoranti.add(r);

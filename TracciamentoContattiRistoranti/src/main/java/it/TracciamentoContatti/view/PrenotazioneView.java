@@ -41,19 +41,28 @@ public class PrenotazioneView extends JFrame {
 	private JTextField textPrenotaNome;
 	private JTextField textPrenotaTelefono;
 	private JTextField textPrenotaNumeroPersone;	
+	private JTextField textCodiceRistorante;
 	
-	private Controller controller;	
 	private JButton btnEffettuaPrenotazione;
 	
-	private Prenotazione prenotazione;
-	private JTextField textCodiceRistorante;
 	private JTextArea textArea;
-	private JDateChooser dateChooser;
+	private JDateChooser dateChooser;	
+	private String codiceRistorante;	
+	private String numeroPersone; 
+	private JLabel lblCognome;
+	private JLabel lblNome;
+	private JLabel lblTelefono;
+	private JLabel lblNumeroPersone;
+	private JLabel lblData;
+	private JLabel lblRistoranti;
+	private JLabel lblcodicdeRistorante;
+	
 	private  String telefono ;
 	private String cognome;
 	private String nome;
-	private String codiceRistorante;	
-	private String numeroPersone; 
+	private String data;
+	
+	
 	/**
 	 * Create the frame.
 	 */
@@ -71,27 +80,27 @@ public class PrenotazioneView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCognome = new JLabel("Cognome");
+		lblCognome = new JLabel("Cognome");
 		lblCognome.setBounds(34, 39, 75, 14);
 		contentPane.add(lblCognome);
 		
-		JLabel lblNome = new JLabel("Nome");
+		lblNome = new JLabel("Nome");
 		lblNome.setBounds(274, 39, 75, 14);
 		contentPane.add(lblNome);
 		
-		JLabel lblTelefono = new JLabel("Telefono");
+		lblTelefono = new JLabel("Telefono");
 		lblTelefono.setBounds(34, 70, 75, 14);
 		contentPane.add(lblTelefono);
 		
-		JLabel lblNumeroPersone = new JLabel("Numero di persone");
+		lblNumeroPersone = new JLabel("Numero di persone");
 		lblNumeroPersone.setBounds(274, 70, 126, 14);
 		contentPane.add(lblNumeroPersone);
 		
-		JLabel lblData = new JLabel("Data");
+		lblData = new JLabel("Data");
 		lblData.setBounds(34, 108, 46, 14);
 		contentPane.add(lblData);
 		
-		JLabel lblRistoranti = new JLabel("Ristoranti");
+		lblRistoranti = new JLabel("Ristoranti");
 		lblRistoranti.setForeground(Color.BLACK);
 		lblRistoranti.setEnabled(false);
 		lblRistoranti.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
@@ -212,7 +221,7 @@ public class PrenotazioneView extends JFrame {
 				
 			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				
-			    String data = null;
+			    data = null;
 				try {
 				   data = dateFormat.format(dateChooser.getDate());
 				}catch(Exception ex) {
@@ -271,9 +280,9 @@ public class PrenotazioneView extends JFrame {
 		contentPane.add(textArea);
 		
 		
-		JLabel lblNewLabel = new JLabel("Codice ristrorante ");
-		lblNewLabel.setBounds(274, 108, 139, 14);
-		contentPane.add(lblNewLabel);
+		lblcodicdeRistorante = new JLabel("Codice ristrorante ");
+		lblcodicdeRistorante.setBounds(274, 108, 139, 14);
+		contentPane.add(lblcodicdeRistorante);
 		
 		textCodiceRistorante = new JTextField();
 		textCodiceRistorante.addKeyListener(new KeyAdapter() {
@@ -323,23 +332,4 @@ public class PrenotazioneView extends JFrame {
 
 	}
 
-
-	public JTextField getTextPrenotaCognome() {
-		return textPrenotaCognome;
-	}
-
-
-	public JTextField getTextPrenotaNome() {
-		return textPrenotaNome;
-	}
-
-
-	public JTextField getTextPrenotaTelefono() {
-		return textPrenotaTelefono;
-	}
-
-
-	public JTextField getTextPrenotaNumeroPersone() {
-		return textPrenotaNumeroPersone;
-	}
 }

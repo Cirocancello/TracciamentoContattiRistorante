@@ -36,19 +36,20 @@ public class HomePageView extends JFrame {
 		
 	public Controller controller;
 	private JMenuBar menuBar;
-	private JMenu mnNewMenu;
-	private JMenuItem mntmNewMenuItem;
-	private JMenu mnNewMenu_1;
-	private JMenuItem mntmNewMenuItem_1;
-	private JMenuItem mntmNewMenuItem_2;
-	private JMenu mnNewMenu_2;
-	private JMenuItem mntmNewMenuItem_3;
-	private JMenu mnNewMenu_3;
-	private JMenuItem mntmNewMenuItem_4;
-	private JMenuItem mntmNewMenuItem_5;
-	private JMenu mnNewMenu_4;
-	private JMenuItem mntmNewMenuItem_8;
-	private JLabel lblNewLabel_1;
+	private JMenu prenotazione;
+	private JMenuItem effettuaPrenotazione;
+	private JMenu tavolata;
+	private JMenuItem tavolataPrenotata;
+	private JMenuItem tavolataNonPrenotata;
+	private JMenu tracciaContatti;
+	private JMenuItem traccia;
+	private JMenu statistiche;
+	private JMenuItem mensile;
+	private JMenuItem giornaliera;
+	private JMenu esci;
+	private JMenuItem exit;
+	private JLabel label1;
+	private JLabel label2;
 
 	/**
 	 * Create the frame.
@@ -62,24 +63,24 @@ public class HomePageView extends JFrame {
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		mnNewMenu = new JMenu("Prenotazione");
-		menuBar.add(mnNewMenu);
+		prenotazione = new JMenu("Prenotazione");
+		menuBar.add(prenotazione);
 		
-		mntmNewMenuItem = new JMenuItem("Effettua prenotazione");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
+		effettuaPrenotazione = new JMenuItem("Effettua prenotazione");
+		effettuaPrenotazione.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ePrenota) {
 				
 				controller.actionPrenota(ePrenota);
 			}
 		});
-		mnNewMenu.add(mntmNewMenuItem);
+		prenotazione.add(effettuaPrenotazione);
 		
-		mnNewMenu_1 = new JMenu("Tavolata");
-		menuBar.add(mnNewMenu_1);
+		tavolata = new JMenu("Tavolata");
+		menuBar.add(tavolata);
 		
-		mntmNewMenuItem_2 = new JMenuItem("Tavolata non prenotata");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+		tavolataNonPrenotata = new JMenuItem("Tavolata non prenotata");
+		tavolataNonPrenotata.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent eTavNonPrenotata) {
@@ -87,10 +88,10 @@ public class HomePageView extends JFrame {
 				controller.actionTavolataNonPrenotata(eTavNonPrenotata);
 			}
 		});
-		mnNewMenu_1.add(mntmNewMenuItem_2);
+		tavolata.add(tavolataNonPrenotata);
 		
-		mntmNewMenuItem_1 = new JMenuItem("Tavolata prenotata");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+		tavolataPrenotata = new JMenuItem("Tavolata prenotata");
+		tavolataPrenotata.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent eTavPrenotata) {
 				controller.actionTavolataPrenotata(eTavPrenotata);
@@ -98,65 +99,65 @@ public class HomePageView extends JFrame {
 			}
 			
 		});
-		mnNewMenu_1.add(mntmNewMenuItem_1);
+		tavolata.add(tavolataPrenotata);
 		
-		mnNewMenu_2 = new JMenu("Traccia contatti");
-		menuBar.add(mnNewMenu_2);
+		tracciaContatti = new JMenu("Traccia contatti");
+		menuBar.add(tracciaContatti);
 		
-		mntmNewMenuItem_3 = new JMenuItem("Traccia");
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+		traccia = new JMenuItem("Traccia");
+		traccia.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent eTracciaContatti) {
 				controller.actionTracciaContatti(eTracciaContatti);
 			}
 		});
-		mnNewMenu_2.add(mntmNewMenuItem_3);
+		tracciaContatti.add(traccia);
 		
-		mnNewMenu_3 = new JMenu("Statistiche");
-		menuBar.add(mnNewMenu_3);
+		statistiche = new JMenu("Statistiche");
+		menuBar.add(statistiche);
 		
-		mntmNewMenuItem_5 = new JMenuItem("Giornaliera");
-		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+		giornaliera = new JMenuItem("Giornaliera");
+		giornaliera.addActionListener(new ActionListener() {
 			@Override			
 			public void actionPerformed(ActionEvent eStatisticaGiornaliera) {
 				controller.actionStatisticaGiornaliera(eStatisticaGiornaliera);
 			}
 		});
-		mnNewMenu_3.add(mntmNewMenuItem_5);
+		statistiche.add(giornaliera);
 		
-		mntmNewMenuItem_4 = new JMenuItem("Mensile");
-		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+		mensile = new JMenuItem("Mensile");
+		mensile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eStatisticaMensile) {
 				controller.actionStatisticaMensile(eStatisticaMensile);
 				
 			}
 		});
-		mnNewMenu_3.add(mntmNewMenuItem_4);
+		statistiche.add(mensile);
 		
-		mnNewMenu_4 = new JMenu("Esci");
-		menuBar.add(mnNewMenu_4);
+		esci = new JMenu("Esci");
+		menuBar.add(esci);
 		
-		mntmNewMenuItem_8 = new JMenuItem("Esci");
-		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+		exit = new JMenuItem("Esci");
+		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 			}
 		});
-		mnNewMenu_4.add(mntmNewMenuItem_8);
+		esci.add(exit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Sistema di tracciamento contatti nei ristoranti");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		lblNewLabel.setBounds(20, 21, 414, 42);
-		contentPane.add(lblNewLabel);
+		JLabel label1 = new JLabel("Sistema di tracciamento contatti covid-19 ");
+		label1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+		label1.setBounds(38, 24, 414, 42);
+		contentPane.add(label1);
 		
-		lblNewLabel_1 = new JLabel("covid-19");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		lblNewLabel_1.setBounds(164, 64, 154, 14);
-		contentPane.add(lblNewLabel_1);
+		label2 = new JLabel("in ristoranti");
+		label2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+		label2.setBounds(164, 64, 154, 14);
+		contentPane.add(label2);
 	}
 	
 }

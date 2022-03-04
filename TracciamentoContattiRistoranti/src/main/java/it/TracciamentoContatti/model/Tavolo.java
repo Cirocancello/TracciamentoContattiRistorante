@@ -6,35 +6,37 @@ import java.util.Objects;
 
 public class Tavolo {
 	
-	private int codice;
-	private int codiceSala;
+	private Integer codice;
+	private Integer codiceSala;
 	private  String nome;
-	private int capacitaMassima;
+	private Integer capacitaMassima;
 	
-	private List<Prenotazione> prenotazione = new LinkedList<>();
+	private Sala sala;
+	private Prenotazione prenotazione;
 	
 	private List<Tavolo> tavoliAdiccenti = new LinkedList<>();
 	
-	public Tavolo(int codice, int codiceSale, String nome, int capacitaMassima) {
+	
+	public Tavolo(Integer codice, Integer codiceSale, String nome, Integer capacitaMassima) {
 		this.codice = codice;
 		this.codiceSala = codiceSale;
 		this.nome = nome;
 		this.capacitaMassima = capacitaMassima;
 	}
 
-	public int getCodice() {
+	public Integer getCodice() {
 		return codice;
 	}
 
-	public void setCodice(int codice) {
+	public void setCodice(Integer codice) {
 		this.codice = codice;
 	}
 
-	public int getCodiceSala() {
+	public Integer getCodiceSala() {
 		return codiceSala;
 	}
 
-	public void setCodiceSala(int codiceSale) {
+	public void setCodiceSala(Integer codiceSale) {
 		this.codiceSala = codiceSale;
 	}
 
@@ -46,11 +48,11 @@ public class Tavolo {
 		this.nome = nome;
 	}
 
-	public int getCapacitaMassima() {
+	public Integer getCapacitaMassima() {
 		return capacitaMassima;
 	}
 
-	public void setCapacitaMassima(int capacitaMassima) {
+	public void setCapacitaMassima(Integer capacitaMassima) {
 		this.capacitaMassima = capacitaMassima;
 	}
 

@@ -35,20 +35,27 @@ public class StatisticaGiornalieraView extends JFrame {
 
 	private JPanel contentPane;
 	
-	private Controller controller;
 	private JButton btnRistoranti;
+	private JButton btnChiudi;
+	private JButton btnVisualizzaStatistica;
+	
 	private TextArea textAreaRistoranti;
 	private JTextField textCodiceRistorante;
-	private String codiceRistorante;
 	private TextArea textAreaStatistica;
-	
 
+	private JLabel lblRistoranti;
+	private JLabel lblCodiceRistorante;
+	private JLabel lblNumeroAvventori;
+	
+	private String codiceRistorante;	
+	private Integer length;
+	
 	/**
 	 * Create the frame.
 	 */
 	public StatisticaGiornalieraView() {
 		setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		setTitle("Statistiche");
+		setTitle("Statistiche giornaliere");
 		
 		setResizable(false);
 		setVisible(true);
@@ -80,7 +87,7 @@ public class StatisticaGiornalieraView extends JFrame {
 		textAreaRistoranti.setBounds(28, 40, 380, 110);
 		contentPane.add(textAreaRistoranti);		
 		
-		JButton btnChiudi = new JButton("Chiudi");
+		btnChiudi = new JButton("Chiudi");
 		btnChiudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -89,14 +96,14 @@ public class StatisticaGiornalieraView extends JFrame {
 		btnChiudi.setBounds(320, 410, 89, 23);
 		contentPane.add(btnChiudi);
 		
-		JLabel lblNewLabel = new JLabel("Ristoranti presenti in base dati");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel.setBounds(28, 13, 214, 21);
-		contentPane.add(lblNewLabel);
+		lblRistoranti = new JLabel("Ristoranti presenti in base dati");
+		lblRistoranti.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblRistoranti.setBounds(28, 13, 214, 21);
+		contentPane.add(lblRistoranti);
 		
-		JLabel lblNewLabel_2 = new JLabel("Codice ristorante");
-		lblNewLabel_2.setBounds(28, 159, 116, 14);
-		contentPane.add(lblNewLabel_2);
+		lblCodiceRistorante = new JLabel("Codice ristorante");
+		lblCodiceRistorante.setBounds(28, 159, 116, 14);
+		contentPane.add(lblCodiceRistorante);
 		
 		textCodiceRistorante = new JTextField();
 		textCodiceRistorante.addKeyListener(new KeyAdapter() {
@@ -107,18 +114,18 @@ public class StatisticaGiornalieraView extends JFrame {
 			    //action when key is press
 			    //get JTextField string			   
 			    
-			    int length = codiceRistorante.length();
+			    length = codiceRistorante.length();
 			    
 			    char c = e.getKeyChar();
 			    //check for number 0 to 9
-			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
+			    if(e.getKeyChar()>='0' && e.getKeyChar()<='4') {
 			    	//check for length not more than 2 digit
 			    	if(length<2) {
 			    		//editable true
 			    		textCodiceRistorante.setEditable(true);
 			    	}else {
 			    		textCodiceRistorante.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Il codice riatorante max 2 cifre!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Il codice riatorante troppo lungo!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    	
@@ -129,7 +136,7 @@ public class StatisticaGiornalieraView extends JFrame {
 			    		textCodiceRistorante.setEditable(true);
 			    	}else {
 			    		textCodiceRistorante.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Devi iserire solo numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Il codice riatorante errato!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    }
@@ -140,8 +147,8 @@ public class StatisticaGiornalieraView extends JFrame {
 		contentPane.add(textCodiceRistorante);
 		textCodiceRistorante.setColumns(10);
 		
-		JButton btnGiornaliera = new JButton("Visualizza Statistica");
-		btnGiornaliera.addActionListener(new ActionListener() {
+		btnVisualizzaStatistica = new JButton("Visualizza Statistica");
+		btnVisualizzaStatistica.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Controller controller = new Controller();				
 			
@@ -155,21 +162,17 @@ public class StatisticaGiornalieraView extends JFrame {
 			
 		}
 		});
-		btnGiornaliera.setBounds(247, 190, 152, 23);
-		contentPane.add(btnGiornaliera);
+		btnVisualizzaStatistica.setBounds(247, 190, 152, 23);
+		contentPane.add(btnVisualizzaStatistica);
 		
 		textAreaStatistica = new TextArea();
 		textAreaStatistica.setBounds(28, 244, 380, 160);
 		contentPane.add(textAreaStatistica);
 		
-		JLabel lblNewLabel_3 = new JLabel("numero totale di avventori ");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel_3.setBounds(28, 224, 229, 14);
-		contentPane.add(lblNewLabel_3);
-		
-		
-		
-		
+		lblNumeroAvventori = new JLabel("numero totale di avventori ");
+		lblNumeroAvventori.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblNumeroAvventori.setBounds(28, 224, 229, 14);
+		contentPane.add(lblNumeroAvventori);		
 		
 		
 	}

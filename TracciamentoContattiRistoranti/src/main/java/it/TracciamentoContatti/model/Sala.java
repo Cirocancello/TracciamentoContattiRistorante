@@ -14,6 +14,7 @@ public class Sala {
 	
 	private List<Tavolo> tavoli = new LinkedList<>();
 	private List<Cameriere> camerieri = new LinkedList<>();
+	private Ristorante ristorante;
 	
 	public Sala(Integer codice, Integer codiceRistorante, String nome) {
 
@@ -53,21 +54,12 @@ public class Sala {
 	public void setTavoli(List<Tavolo> tavoli) {
 		this.tavoli = tavoli;
 	}
-
-	public List<Cameriere> getCamerieri() {
-		return camerieri;
-	}
-
-	public void setCamerieri(List<Cameriere> camerieri) {
-		this.camerieri = camerieri;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "codice = " + codice + ", codice Ristorante =" + codiceRistorante + ", nome =" + nome ;
 				
-	}
-	
+	}	
 	
 	
 }
