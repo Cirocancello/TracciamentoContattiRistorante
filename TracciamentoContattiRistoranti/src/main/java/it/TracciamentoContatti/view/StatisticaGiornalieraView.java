@@ -7,9 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import it.TracciamentoContatti.model.Ristorante;
+import it.TracciamentoContatti.Ristorante;
 import it.controller.Controller;
-import it.model.Model;
 
 import javax.swing.JButton;
 import java.awt.TextArea;

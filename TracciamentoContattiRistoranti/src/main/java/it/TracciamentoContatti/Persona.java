@@ -1,4 +1,4 @@
-package it.TracciamentoContatti.model;
+package it.TracciamentoContatti;
 
 public class Persona {
 	private String cognome;

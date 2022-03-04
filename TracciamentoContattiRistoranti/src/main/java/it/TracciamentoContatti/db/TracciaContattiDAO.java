@@ -12,11 +12,11 @@ import java.util.List;
 
 import javax.swing.JTextField;
 
-import it.TracciamentoContatti.model.Cliente;
-import it.TracciamentoContatti.model.Persona;
-import it.TracciamentoContatti.model.Prenotazione;
-import it.TracciamentoContatti.model.Ristorante;
-import it.TracciamentoContatti.model.Tavolo;
+import it.TracciamentoContatti.Cliente;
+import it.TracciamentoContatti.Persona;
+import it.TracciamentoContatti.Prenotazione;
+import it.TracciamentoContatti.Ristorante;
+import it.TracciamentoContatti.Tavolo;
 
 public class TracciaContattiDAO {
     

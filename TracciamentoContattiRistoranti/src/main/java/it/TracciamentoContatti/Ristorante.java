@@ -1,10 +1,10 @@
-package it.TracciamentoContatti.model;
+package it.TracciamentoContatti;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import it.TracciamentoContatti.model.Ristorante;
+import it.TracciamentoContatti.Ristorante;
 
 public class Ristorante {
 	

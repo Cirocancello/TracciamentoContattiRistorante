@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import it.controller.Controller;
-import it.model.Model;
 
 import java.awt.Font;
 import javax.swing.JLabel;

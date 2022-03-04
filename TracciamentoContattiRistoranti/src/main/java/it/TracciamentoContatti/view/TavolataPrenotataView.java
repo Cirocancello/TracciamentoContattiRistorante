@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import it.TracciamentoContatti.model.Cliente;
-import it.TracciamentoContatti.model.Prenotazione;
+import it.TracciamentoContatti.Cliente;
+import it.TracciamentoContatti.Prenotazione;
 import it.controller.Controller;
 
 import javax.swing.JLabel;

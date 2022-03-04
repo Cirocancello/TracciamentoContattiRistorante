@@ -1,4 +1,4 @@
-package it.TracciamentoContatti.model;
+package it.TracciamentoContatti;
 
 import java.sql.Date;
 

@@ -1,5 +1,6 @@
 package it.controller;
 
+
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +20,12 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
+import it.TracciamentoContatti.Cliente;
+import it.TracciamentoContatti.Persona;
+import it.TracciamentoContatti.Prenotazione;
+import it.TracciamentoContatti.Ristorante;
+import it.TracciamentoContatti.Statistica;
+import it.TracciamentoContatti.Tavolo;
 import it.TracciamentoContatti.db.ClienteDAO;
 import it.TracciamentoContatti.db.PrenotazioniDAO;
 import it.TracciamentoContatti.db.RistoranteDAO;
@@ -28,12 +35,6 @@ import it.TracciamentoContatti.db.StatisticaMensileDAO;
 import it.TracciamentoContatti.db.TavoliDAO;
 import it.TracciamentoContatti.db.TracciaContattiDAO;
 import it.TracciamentoContatti.db.loginDAO;
-import it.TracciamentoContatti.model.Cliente;
-import it.TracciamentoContatti.model.Persona;
-import it.TracciamentoContatti.model.Prenotazione;
-import it.TracciamentoContatti.model.Ristorante;
-import it.TracciamentoContatti.model.Statistica;
-import it.TracciamentoContatti.model.Tavolo;
 import it.TracciamentoContatti.view.HomePageView;
 import it.TracciamentoContatti.view.LoginPageView;
 import it.TracciamentoContatti.view.PrenotazioneView;
@@ -42,15 +43,13 @@ import it.TracciamentoContatti.view.StatisticaMensileView;
 import it.TracciamentoContatti.view.TavolataNonPrenotataView;
 import it.TracciamentoContatti.view.TavolataPrenotataView;
 import it.TracciamentoContatti.view.TracciaContattiView;
-import it.model.Model;
 import javafx.scene.chart.PieChart.Data;
-import it.TracciamentoContatti.model.Statistica;
 
 
 public class Controller {
 	
 	private HomePageView frame;
-	//private Model model;	
+		
 		
 	
 	public Controller() {

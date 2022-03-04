@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import it.TracciamentoContatti.model.Statistica;
+import it.TracciamentoContatti.Statistica;
 
 public class loginDAO {
 

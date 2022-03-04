@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.TracciamentoContatti.model.Statistica;
+import it.TracciamentoContatti.Statistica;
 
 public class StatisticaMensileDAO {
 	

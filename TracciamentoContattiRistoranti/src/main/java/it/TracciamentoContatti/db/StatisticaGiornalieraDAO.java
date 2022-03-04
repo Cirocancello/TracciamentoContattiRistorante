@@ -10,9 +10,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.TracciamentoContatti.model.Cliente;
-import it.TracciamentoContatti.model.Prenotazione;
-import it.TracciamentoContatti.model.Statistica;
+import it.TracciamentoContatti.Cliente;
+import it.TracciamentoContatti.Prenotazione;
+import it.TracciamentoContatti.Statistica;
 
 public class StatisticaGiornalieraDAO {
 

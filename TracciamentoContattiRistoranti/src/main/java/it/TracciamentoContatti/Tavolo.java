@@ -1,4 +1,4 @@
-package it.TracciamentoContatti.model;
+package it.TracciamentoContatti;
 
 import java.util.LinkedList;
 import java.util.List;

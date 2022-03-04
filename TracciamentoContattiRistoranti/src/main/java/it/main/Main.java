@@ -4,12 +4,10 @@ import java.awt.EventQueue;
 
 import it.TracciamentoContatti.view.LoginPageView;
 import it.controller.Controller;
-import it.model.Model;
 
 //utilizzo username root e password root
 
-public class Main {		
-		private Model model;
+public class Main {			
 		private Controller controller;
 		
 		/**
@@ -22,9 +20,8 @@ public class Main {
 						
 						LoginPageView login = new LoginPageView();
 						login.setResizable(false);
-						login.setVisible(true);
-				
-      			        Model model = new Model();
+						login.setVisible(true);				
+      			      
 					    Controller controller = new Controller();
 
 					} catch (Exception e) {

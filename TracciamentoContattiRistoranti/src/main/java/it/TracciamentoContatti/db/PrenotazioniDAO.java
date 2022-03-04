@@ -14,8 +14,8 @@ import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
 
-import it.TracciamentoContatti.model.Prenotazione;
-import it.TracciamentoContatti.model.Tavolo;
+import it.TracciamentoContatti.Prenotazione;
+import it.TracciamentoContatti.Tavolo;
 
 public class PrenotazioniDAO {
 	
