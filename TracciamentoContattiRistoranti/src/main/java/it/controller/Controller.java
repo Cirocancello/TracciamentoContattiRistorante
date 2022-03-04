@@ -19,6 +19,15 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
+import it.TracciamentoContatti.db.ClienteDAO;
+import it.TracciamentoContatti.db.PrenotazioniDAO;
+import it.TracciamentoContatti.db.RistoranteDAO;
+import it.TracciamentoContatti.db.SalaDAO;
+import it.TracciamentoContatti.db.StatisticaGiornalieraDAO;
+import it.TracciamentoContatti.db.StatisticaMensileDAO;
+import it.TracciamentoContatti.db.TavoliDAO;
+import it.TracciamentoContatti.db.TracciaContattiDAO;
+import it.TracciamentoContatti.db.loginDAO;
 import it.TracciamentoContatti.model.Cliente;
 import it.TracciamentoContatti.model.Persona;
 import it.TracciamentoContatti.model.Prenotazione;
@@ -41,7 +50,7 @@ import it.TracciamentoContatti.model.Statistica;
 public class Controller {
 	
 	private HomePageView frame;
-	private Model model;	
+	//private Model model;	
 		
 	
 	public Controller() {
@@ -49,10 +58,8 @@ public class Controller {
 	}
 	
 	public void login(String userName, String password) {
-		Model model = new Model();
-		
-		Integer codiceLogin = null;
-		codiceLogin = model.login(userName, password);
+	
+		Integer codiceLogin = loginDAO.login(userName, password);		
 		
 		if(codiceLogin != null) {
 	        HomePageView frame = new HomePageView();					
@@ -69,53 +76,55 @@ public class Controller {
 	
 	
 	public void actionPrenota(ActionEvent e) {		
+        
+		RistoranteDAO ristoranteDao = new RistoranteDAO();
 		
-			Model model = new Model();
-			List<Ristorante> ristoranti = model.getRistoranti();					
+		// visualizzo le informazioni sui ristoranti
+		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();		
 			
-			PrenotazioneView prenotazioneView = new PrenotazioneView(ristoranti);	
+		PrenotazioneView prenotazioneView = new PrenotazioneView(ristoranti);	
 
 	}
 	
+	
 	public void actionTavolataNonPrenotata(ActionEvent e) {
-		Model model = new Model();
-		List<Ristorante> ristoranti = model.getRistoranti();	
+		RistoranteDAO ristoranteDao = new RistoranteDAO();
+		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();	
 		TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView();
 	}
 	
 
 	public void actionTavolataPrenotata(ActionEvent e) {
-		Model model = new Model();
-		List<Ristorante> ristoranti = model.getRistoranti();	
+		RistoranteDAO ristoranteDao = new RistoranteDAO();
+		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();	
 		TavolataPrenotataView tavolataPrenotataView = new TavolataPrenotataView();
 		
 	}
 	
 	public void actionTracciaContatti(ActionEvent e) {
-		Model model = new Model();
-		List<Ristorante> ristoranti = model.getRistoranti();
+		RistoranteDAO ristoranteDao = new RistoranteDAO();
+		List<Ristorante> ristoranti =  ristoranteDao.getRistoranti();
 		TracciaContattiView tracciaContatti = new TracciaContattiView();
 	}
 	
+	
 
 	public void actionStatisticaGiornaliera(ActionEvent e) {
-		Model model = new Model();
-		List<Ristorante> ristoranti = model.getRistoranti();
+		RistoranteDAO ristoranteDao = new RistoranteDAO();
+		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();
 		StatisticaGiornalieraView statiscticaGiornaliera = new StatisticaGiornalieraView();
 		
 	}
 	
 
 	public void actionStatisticaMensile(ActionEvent e) {
-		Model model = new Model();
-		List<Ristorante> ristoranti = model.getRistoranti();
+		RistoranteDAO ristoranteDao = new RistoranteDAO();
+		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();
 		StatisticaMensileView statisticaMensile = new StatisticaMensileView();
 		
 	}
 
 	public void effettuaPrenotazione(Prenotazione prenotazione, JTextField textCodiceRistorante) {
-	
-		Model model = new Model();		
 	
 		Integer codiceRistorante = Integer.parseInt(textCodiceRistorante.getText());
 		String cognome = prenotazione.getCognome();
@@ -124,13 +133,13 @@ public class Controller {
 		Integer numeroPersone = prenotazione.getNumeroPersone();
 	    Date data =  prenotazione.getData(); 
 	    
-		List<Tavolo> tavoliLiberi = model.getTavoloDisponibile(codiceRistorante, data, numeroPersone);
+		List<Tavolo> tavoliLiberi = getTavoloDisponibile(codiceRistorante, data, numeroPersone);
 		
 		if(tavoliLiberi.size()>0) {
             Integer codiceTavoloDisponibile = tavoliLiberi.get(0).getCodice();	
 		
 		   //scelgo il ristorante recupero il codice invocando il metodi getCodiceRistorante e il cognome, nome, ecc....		
-	       Integer codicePrenotazione = model.creaPrenotazione(codiceTavoloDisponibile, cognome, nome, telefono, numeroPersone, data);
+	       Integer codicePrenotazione = creaPrenotazione(codiceTavoloDisponibile, cognome, nome, telefono, numeroPersone, data);
 	       //prenotazione effettuata
 	       JOptionPane.showMessageDialog(null, "Tavolo prenotato per il : "+data
 	    		   +"\ncodice prenotazione "+codicePrenotazione
@@ -142,11 +151,19 @@ public class Controller {
 		}
 	}
 
+	public Integer creaPrenotazione(Integer codiceTavoloDisponibile, String cognome,
+         String nome, String telefono, Integer numeroPersone, Date data) {
+
+         PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+         Integer codicePrenotazione = prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, cognome, nome, telefono, numeroPersone, data);
+
+        return codicePrenotazione;
+	}
+	
 	public void stampaRistoranti(TextArea textAreaRistoranti) {
 		
-		Model model = new Model();
-		
-		List<Ristorante> ristoranti = model.getRistoranti();			
+		RistoranteDAO ristoranteDao = new RistoranteDAO();
+		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();
 		
 		for(Ristorante risto:ristoranti) {
 			textAreaRistoranti.append(risto.getCodice()+" ");
@@ -162,21 +179,20 @@ public class Controller {
 	
 
 	public void tracciaContatti(String cartaIdentita, String data, TextArea textAreaTraccia) throws IOException {
-		Model model = new Model();		
-	
-		List<Persona> personeDaContattare = model.tracciaContatti(cartaIdentita, data); 		
+			
+		TracciaContattiDAO tracciaContattiDao = new TracciaContattiDAO();			
+			
+		//traccia contatti in caso di contagio simulando uno scenario di contagio
+		List<Persona> personeDaContattare =  tracciaContattiDao.tracciaContatti(cartaIdentita, data); // passare anche la data come pararmetro
 		
 		setPeroneDaContattare(personeDaContattare, textAreaTraccia);
-			
-		
+
 	}
 	
 	public void setPeroneDaContattare(List<Persona> personeDaContattare,TextArea textAreaTraccia){
 		if(personeDaContattare.size() > 0) {
 			
-		  	   for (Persona p : personeDaContattare) {	
-		  		
-		  		
+		  	   for (Persona p : personeDaContattare) {		
 				   textAreaTraccia.append(p.getNome()+" ");
 				   textAreaTraccia.append(p.getCognome()+" ");
 				   textAreaTraccia.append(p.getTelefono()+" ");
@@ -190,7 +206,7 @@ public class Controller {
 
 	public void inserisciCliente(Cliente cliente, TextArea textAreaClientiInseriti) {
 		
-		Model model = new Model();			
+		ClienteDAO clienteDao = new ClienteDAO();					
 		
 		Integer codiceTavoloPrenotato = cliente.getCodiceTavolo();
 		String cognome = cliente.getCognome();
@@ -199,8 +215,8 @@ public class Controller {
 		String telefono = cliente.getTelefono();
 		Date data = cliente.getData();		
 		
-		model.InserisciCliente(codiceTavoloPrenotato,cognome,
-				               nome,cartaIdentita,telefono,data);			
+		clienteDao.inserisciCliente(codiceTavoloPrenotato, cognome, nome, cartaIdentita, telefono, data);
+					
 	
 		textAreaClientiInseriti.append(cliente.getNome()+" ");
 		textAreaClientiInseriti.append(cliente.getCognome()+" ");
@@ -212,15 +228,14 @@ public class Controller {
 	
 	public void cercaPrenotazione(String data, String cognome,TextArea textAreaPrenotazione) {
           
-		Model model = new Model();				
-		
-		List<Prenotazione> prenotazione = model.cercaPrenotazione(data, cognome);
+		PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+		List<Prenotazione> prenotazione = prenotazioneDao.cercaPrenotazione(data, cognome);
 		
 		if(prenotazione.size() > 0) {
 				
 		    for(Prenotazione p : prenotazione) {
 		    	Integer codice = p.getCodice();
-		    	String nomeSala = model.cercaNomeSala(codice);
+		    	String nomeSala = cercaNomeSala(codice);
 		    	textAreaPrenotazione.append("Codice prenotazione "+p.getCodice()+"\n");
 			    textAreaPrenotazione.append("Prenotazione a nome di \n"+p.getCognome()+" ");
 			    textAreaPrenotazione.append(p.getNome()+" - ");
@@ -237,11 +252,22 @@ public class Controller {
 		}
 		
 	}
+	
+	public String cercaNomeSala(Integer codice) {
+		
+		SalaDAO saleDao = new SalaDAO();
+		
+		String nomeSala = saleDao.cercaNomeSala(codice);
+		
+		return nomeSala;
+		
+	}
+
 
 	public void cercaTavoloLibero(ActionEvent e, JTextField textCodiceRistorante, JDateChooser dateChooser, JTextField textNumeroPersone
 								 ,TextArea textAreaClienti, JTextArea textArea) {
 		
-		Model model = new Model();
+		
 		Integer codiceRistorante = Integer.parseInt(textCodiceRistorante.getText());
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -256,13 +282,13 @@ public class Controller {
 			return;
 		}
 		//cerco il primo tavolo disponibile
-		List<Tavolo> tavoliLiberi = model.getTavoloDisponibile(codiceRistorante, data, numeroPersone);
+		List<Tavolo> tavoliLiberi = getTavoloDisponibile(codiceRistorante, data, numeroPersone);
 		if(tavoliLiberi.size() > 0) {
 		   Integer tavoloLibero = tavoliLiberi.get(0).getCodice();		  		
 		  
 		   if(tavoloLibero != null) {
 			   //visualizzo il messaggio del tavolo libero con il suo codice e il nome della sala
-			   String nomeSala = model.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
+			   String nomeSala = cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
 //			   textArea.append("tavolo disponibile "+ Integer.toString(tavoloLibero) + "\n");
 //			   textArea.append("nome della sala "+ nomeSala);
 			   setVisualizzaTavoloLiberoSala(tavoloLibero,nomeSala,textArea);
@@ -275,6 +301,27 @@ public class Controller {
 			
 	}
 	
+	public String cercaNomeSalaNonPrenotata(Integer tavoloLibero, Integer codiceRistorante) {
+		
+		SalaDAO saleDao = new SalaDAO();
+		
+		String nomeSala = saleDao.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
+		
+		return nomeSala;
+	}
+
+	
+	
+	public List<Tavolo> getTavoloDisponibile(Integer codiceRistorante, Date data, Integer numeroPersone) {
+		//___________________________Cerco eventuali tavoli disponibili
+		TavoliDAO tavoliDao = new TavoliDAO();
+		
+		List<Tavolo> tavoloLibero = tavoliDao.getTavoloDisponibile(codiceRistorante, data, numeroPersone);	
+		
+		//return codiceTavoloDisponibile;
+		return tavoloLibero;
+	}
+	
 	public void setVisualizzaTavoloLiberoSala(Integer tavoloLibero,String nomeSala,JTextArea textArea) {
 		textArea.append("tavolo disponibile "+ Integer.toString(tavoloLibero) + "\n");
 		textArea.append("nome della sala "+ nomeSala);
@@ -282,11 +329,9 @@ public class Controller {
 	
 
 	public void statiscticaGiornaliera(String codiceRistorante, TextArea textAreaStatistica) {
-		Model model = new Model();
-		
 		textAreaStatistica.setText("");
 	
-		List<Statistica> statistica = model.statisticaGiornaliera(codiceRistorante);		
+		List<Statistica> statistica = statisticaGiornaliera(codiceRistorante);		
     	
 	    for(Statistica s : statistica) {
 	      textAreaStatistica.append("In data " +s.getData()+" ");
@@ -298,11 +343,9 @@ public class Controller {
 
 	public void statiscticaMensile(String codiceRistorante, TextArea textAreaStatistica) {
 		
-		Model model = new Model();
-		
 		textAreaStatistica.setText("");
 		
-		List<Statistica> statistica = model.statisticaMensile(codiceRistorante);		
+		List<Statistica> statistica = statisticaMensile(codiceRistorante);		
     	String themounth = null;
 	    
     	for(Statistica s : statistica) {
@@ -349,6 +392,31 @@ public class Controller {
 	      textAreaStatistica.append("totale avventori "+s.getTotaleAvventori()+"\n");
 	    }
 	}	
+	
+	
+	public List<Statistica> statisticaGiornaliera(String codiceRistorante) {
+		
+		
+		StatisticaGiornalieraDAO  statiscticaGiornalieraDao = new StatisticaGiornalieraDAO();
+		
+		List<Statistica> statistica = statiscticaGiornalieraDao.totaliAvventoriGiornalieri(codiceRistorante);
+				
+		
+		return statistica;
+	     
+		
+	}
+
+	public List<Statistica> statisticaMensile(String codiceRistorante) {
+		StatisticaMensileDAO  statiscticaMensileDao = new StatisticaMensileDAO();
+		
+		List<Statistica> statistica = statiscticaMensileDao.totaliAvventoriGiornalieri(codiceRistorante);
+				
+		
+		return statistica;
+	     
+	}
+
 	
 }
 	

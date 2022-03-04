@@ -25,13 +25,7 @@ public class ClienteDAO {
 			st.setDate(6, data);	
 			
 			st.executeUpdate();
-//			try (ResultSet generatedKeys = st.getGeneratedKeys()) {
-//				if (generatedKeys.next()) {
-//					codicePrenotazione = generatedKeys.getInt(1);
-//				} else {
-//					throw new SQLException("errore nella creazione della prenotazione");
-//				}
-//			}
+
 			st.close();
 			conn.close();
 		} catch (SQLException e) {

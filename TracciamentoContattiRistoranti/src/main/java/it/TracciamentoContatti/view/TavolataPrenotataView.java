@@ -189,7 +189,7 @@ public class TavolataPrenotataView extends JFrame {
 			    //check for number 0 to 9
 			    if(e.getKeyChar()>='0' && e.getKeyChar()<='9') {
 			    	//check for length not more than 10 digit
-			    	if(length<=10) {
+			    	if(length<10) {
 			    		//editable true
 			    		textTelefono.setEditable(true);
 			    	}else {
@@ -247,15 +247,14 @@ public class TavolataPrenotataView extends JFrame {
 				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognomeCliente, nome, telefono,  cartaIdentita, Date.valueOf(theDate));
 			    controller.inserisciCliente(cliente, textAreaClientiInseriti);
 				
-			    
-			    textCognome.setText("");
 			    textCognomeCliente.setText("");
 			    textNome.setText("");
 			    textTelefono.setText("");
 			    textCartaIdentita.setText("");
+			    textCognomeCliente.setEditable(true);	
+			    textNome.setEditable(true);
 			    textTelefono.setEditable(true);
-			    textCartaIdentita.setEditable(true);
-			
+			    textCartaIdentita.setEditable(true);			
 				
 			}
 		});

@@ -33,125 +33,125 @@ import it.TracciamentoContatti.model.Statistica;
 
 	public class Model {	
 		
-		public List<Ristorante> getRistoranti() {
-			
-			RistoranteDAO ristoranteDao = new RistoranteDAO();
-			
-			// visualizzo le informazioni sui ristoranti
-			List<Ristorante> ristoranti = ristoranteDao.getRistoranti() ;
-			
-			return ristoranti;
+//		public List<Ristorante> getRistoranti() {
+//			
+//			RistoranteDAO ristoranteDao = new RistoranteDAO();
+//			
+//			// visualizzo le informazioni sui ristoranti
+//			List<Ristorante> ristoranti = ristoranteDao.getRistoranti() ;
+//			
+//			return ristoranti;
+//		
+//		}
 		
-		}
+//		public  List<Persona> tracciaContatti(String cartaIdentita, String data) {
+//			
+//			TracciaContattiDAO tracciaContattiDao = new TracciaContattiDAO();			
+//			
+//			
+//			//traccia contatti in caso di contagio simulando uno scenario di contagio
+//			List<Persona> personeDaContattare =  tracciaContattiDao.tracciaContatti(cartaIdentita, data); // passare anche la data come pararmetro
+//
+//			
+//			return personeDaContattare;
+			
+			
+//		}
 		
-		public  List<Persona> tracciaContatti(String cartaIdentita, String data) {
-			
-			TracciaContattiDAO tracciaContattiDao = new TracciaContattiDAO();			
-			
-			
-			//traccia contatti in caso di contagio simulando uno scenario di contagio
-			List<Persona> personeDaContattare =  tracciaContattiDao.tracciaContatti(cartaIdentita, data); // passare anche la data come pararmetro
+		
+//		public List<Tavolo> getTavoloDisponibile(Integer codiceRistorante, Date data, Integer numeroPersone) {
+//			//___________________________Cerco eventuali tavoli disponibili
+//			TavoliDAO tavoliDao = new TavoliDAO();
+//			
+//			List<Tavolo> tavoloLibero = tavoliDao.getTavoloDisponibile(codiceRistorante, data, numeroPersone);	
+//			
+//			//return codiceTavoloDisponibile;
+//			return tavoloLibero;
+//		}
+		
+		
+		
+//		public Integer creaPrenotazione(Integer codiceTavoloDisponibile, String cognome,
+//				                     String nome, String telefono, Integer numeroPersone, Date data) {
+//		
+//			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+//			Integer codicePrenotazione = prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, cognome, nome, telefono, numeroPersone, data);
+//			
+//			return codicePrenotazione;
+//		}
+//		
+//		
+//		public void InserisciCliente(Integer codiceTavoloPrenotato, String cognome, String nome, String cartaIdentita, String telefono, Date data) {
+//			
+//			ClienteDAO clienteDao = new ClienteDAO();			
+//				
+//			clienteDao.inserisciCliente(codiceTavoloPrenotato, cognome, nome, cartaIdentita, telefono, data);
+//			
+//			
+//		}
+		
+		
+//		public List<Prenotazione> cercaPrenotazione(String data, String cognome) {
+//			
+//			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+//			List<Prenotazione> prenotazione = prenotazioneDao.cercaPrenotazione(data, cognome);
+//			
+//			return prenotazione;
+//		}
+		
+		
+		
+//		public String cercaNomeSala(Integer codice) {
+//			
+//			SalaDAO saleDao = new SalaDAO();
+//			
+//			String nomeSala = saleDao.cercaNomeSala(codice);
+//			
+//			return nomeSala;
+//			
+//		}
+		
+//		public String cercaNomeSalaNonPrenotata(Integer tavoloLibero, Integer codiceRistorante) {
+//			
+//			SalaDAO saleDao = new SalaDAO();
+//			
+//			String nomeSala = saleDao.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
+//			
+//			return nomeSala;
+//		}
 
-			
-			return personeDaContattare;
-			
-			
-		}
-		
-		
-		public List<Tavolo> getTavoloDisponibile(Integer codiceRistorante, Date data, Integer numeroPersone) {
-			//___________________________Cerco eventuali tavoli disponibili
-			TavoliDAO tavoliDao = new TavoliDAO();
-			
-			List<Tavolo> tavoloLibero = tavoliDao.getTavoloDisponibile(codiceRistorante, data, numeroPersone);	
-			
-			//return codiceTavoloDisponibile;
-			return tavoloLibero;
-		}
-		
-		
-		
-		public Integer creaPrenotazione(Integer codiceTavoloDisponibile, String cognome,
-				                     String nome, String telefono, Integer numeroPersone, Date data) {
-		
-			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
-			Integer codicePrenotazione = prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, cognome, nome, telefono, numeroPersone, data);
-			
-			return codicePrenotazione;
-		}
-		
-		
-		public void InserisciCliente(Integer codiceTavoloPrenotato, String cognome, String nome, String cartaIdentita, String telefono, Date data) {
-			
-			ClienteDAO clienteDao = new ClienteDAO();			
-				
-			clienteDao.inserisciCliente(codiceTavoloPrenotato, cognome, nome, cartaIdentita, telefono, data);
-			
-			
-		}
-		
-		
-		public List<Prenotazione> cercaPrenotazione(String data, String cognome) {
-			
-			PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
-			List<Prenotazione> prenotazione = prenotazioneDao.cercaPrenotazione(data, cognome);
-			
-			return prenotazione;
-		}
-		
-		
-		
-		public String cercaNomeSala(Integer codice) {
-			
-			SalaDAO saleDao = new SalaDAO();
-			
-			String nomeSala = saleDao.cercaNomeSala(codice);
-			
-			return nomeSala;
-			
-		}
-		
-		public String cercaNomeSalaNonPrenotata(Integer tavoloLibero, Integer codiceRistorante) {
-			
-			SalaDAO saleDao = new SalaDAO();
-			
-			String nomeSala = saleDao.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
-			
-			return nomeSala;
-		}
+//		public List<Statistica> statisticaGiornaliera(String codiceRistorante) {
+//			
+//			
+//			StatisticaGiornalieraDAO  statiscticaGiornalieraDao = new StatisticaGiornalieraDAO();
+//			
+//			List<Statistica> statistica = statiscticaGiornalieraDao.totaliAvventoriGiornalieri(codiceRistorante);
+//					
+//			
+//			return statistica;
+//		     
+//			
+//		}
+//
+//		public List<Statistica> statisticaMensile(String codiceRistorante) {
+//			StatisticaMensileDAO  statiscticaMensileDao = new StatisticaMensileDAO();
+//			
+//			List<Statistica> statistica = statiscticaMensileDao.totaliAvventoriGiornalieri(codiceRistorante);
+//					
+//			
+//			return statistica;
+//		     
+//		}
 
-		public List<Statistica> statisticaGiornaliera(String codiceRistorante) {
-			
-			
-			StatisticaGiornalieraDAO  statiscticaGiornalieraDao = new StatisticaGiornalieraDAO();
-			
-			List<Statistica> statistica = statiscticaGiornalieraDao.totaliAvventoriGiornalieri(codiceRistorante);
-					
-			
-			return statistica;
-		     
-			
-		}
-
-		public List<Statistica> statisticaMensile(String codiceRistorante) {
-			StatisticaMensileDAO  statiscticaMensileDao = new StatisticaMensileDAO();
-			
-			List<Statistica> statistica = statiscticaMensileDao.totaliAvventoriGiornalieri(codiceRistorante);
-					
-			
-			return statistica;
-		     
-		}
-
-		public Integer login(String userName, String password) {
-			
-			Integer codiceLogin = loginDAO.login(userName, password);
-			
-			return codiceLogin;
-			
-			
-		}
-	
+//		public Integer login(String userName, String password) {
+//			
+//			Integer codiceLogin = loginDAO.login(userName, password);
+//			
+//			return codiceLogin;
+//			
+//			
+//		}
+//	
 }
 	
 

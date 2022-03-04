@@ -124,9 +124,8 @@ public class TavolataNonPrenotataView extends JFrame {
 				Date theData = Date.valueOf(data);
 				    
 				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognome, nome, telefono, cartaIdentita, theData);
-			    controller.inserisciCliente(cliente, textAreaClienti);
-				
-			  //  textCodiceTavoloAssegnato.setText("");
+			    controller.inserisciCliente(cliente, textAreaClienti);				
+			
 			    textCognome.setText("");
 			    textNome.setText("");
 			    textTelefono.setText("");
