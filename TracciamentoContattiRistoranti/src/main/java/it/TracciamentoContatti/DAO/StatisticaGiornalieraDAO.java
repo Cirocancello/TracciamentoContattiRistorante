@@ -1,4 +1,4 @@
-package it.TracciamentoContatti.db;
+package it.TracciamentoContatti.DAO;
 
 import java.sql.Connection;
 import java.sql.Date;

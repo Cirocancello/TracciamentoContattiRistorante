@@ -26,15 +26,15 @@ import it.TracciamentoContatti.Prenotazione;
 import it.TracciamentoContatti.Ristorante;
 import it.TracciamentoContatti.Statistica;
 import it.TracciamentoContatti.Tavolo;
-import it.TracciamentoContatti.db.ClienteDAO;
-import it.TracciamentoContatti.db.PrenotazioniDAO;
-import it.TracciamentoContatti.db.RistoranteDAO;
-import it.TracciamentoContatti.db.SalaDAO;
-import it.TracciamentoContatti.db.StatisticaGiornalieraDAO;
-import it.TracciamentoContatti.db.StatisticaMensileDAO;
-import it.TracciamentoContatti.db.TavoliDAO;
-import it.TracciamentoContatti.db.TracciaContattiDAO;
-import it.TracciamentoContatti.db.loginDAO;
+import it.TracciamentoContatti.DAO.ClienteDAO;
+import it.TracciamentoContatti.DAO.PrenotazioniDAO;
+import it.TracciamentoContatti.DAO.RistoranteDAO;
+import it.TracciamentoContatti.DAO.SalaDAO;
+import it.TracciamentoContatti.DAO.StatisticaGiornalieraDAO;
+import it.TracciamentoContatti.DAO.StatisticaMensileDAO;
+import it.TracciamentoContatti.DAO.TavoliDAO;
+import it.TracciamentoContatti.DAO.TracciaContattiDAO;
+import it.TracciamentoContatti.DAO.loginDAO;
 import it.TracciamentoContatti.view.HomePageView;
 import it.TracciamentoContatti.view.LoginPageView;
 import it.TracciamentoContatti.view.PrenotazioneView;
@@ -43,15 +43,11 @@ import it.TracciamentoContatti.view.StatisticaMensileView;
 import it.TracciamentoContatti.view.TavolataNonPrenotataView;
 import it.TracciamentoContatti.view.TavolataPrenotataView;
 import it.TracciamentoContatti.view.TracciaContattiView;
-import javafx.scene.chart.PieChart.Data;
 
 
 public class Controller {
 	
-	private HomePageView frame;
 		
-		
-	
 	public Controller() {
 		
 	}
@@ -315,10 +311,10 @@ public class Controller {
 		//___________________________Cerco eventuali tavoli disponibili
 		TavoliDAO tavoliDao = new TavoliDAO();
 		
-		List<Tavolo> tavoloLibero = tavoliDao.getTavoloDisponibile(codiceRistorante, data, numeroPersone);	
+		List<Tavolo> tavoliLiberi = tavoliDao.getTavoloDisponibile(codiceRistorante, data, numeroPersone);	
 		
 		//return codiceTavoloDisponibile;
-		return tavoloLibero;
+		return tavoliLiberi;
 	}
 	
 	public void setVisualizzaTavoloLiberoSala(Integer tavoloLibero,String nomeSala,JTextArea textArea) {

@@ -1,4 +1,4 @@
-package it.TracciamentoContatti.db;
+package it.TracciamentoContatti.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.TracciamentoContatti.Ristorante;
-import it.TracciamentoContatti.db.DBConnect;
+import it.TracciamentoContatti.DAO.DBConnect;
 
 
 public class RistoranteDAO {
