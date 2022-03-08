@@ -62,6 +62,8 @@ public class PrenotazioneView extends JFrame {
 	private String nome;
 	private String data;
 	
+	private Controller controller;
+	
 	
 	/**
 	 * Create the frame.
@@ -217,7 +219,7 @@ public class PrenotazioneView extends JFrame {
 		btnEffettuaPrenotazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			    Controller controller = new Controller();
+			    controller = new Controller();
 				
 			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				

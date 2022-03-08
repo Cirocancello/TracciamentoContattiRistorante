@@ -48,6 +48,7 @@ public class StatisticaGiornalieraView extends JFrame {
 	
 	private String codiceRistorante;	
 	private Integer length;
+	private Controller controller;
 	
 	/**
 	 * Create the frame.
@@ -72,7 +73,7 @@ public class StatisticaGiornalieraView extends JFrame {
 		btnRistoranti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {			
 				
-				Controller controller = new Controller();
+				controller = new Controller();
 				
 				controller.stampaRistoranti(textAreaRistoranti);
 				
@@ -149,7 +150,7 @@ public class StatisticaGiornalieraView extends JFrame {
 		btnVisualizzaStatistica = new JButton("Visualizza Statistica");
 		btnVisualizzaStatistica.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			Controller controller = new Controller();				
+			controller = new Controller();				
 			
 			codiceRistorante = textCodiceRistorante.getText();
 			if(codiceRistorante.length() == 0) {

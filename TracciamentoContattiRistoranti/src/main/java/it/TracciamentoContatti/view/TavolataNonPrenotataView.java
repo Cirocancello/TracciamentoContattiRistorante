@@ -68,6 +68,8 @@ public class TavolataNonPrenotataView extends JFrame {
 	private JLabel lblData;
 	private JLabel lblCodiceTavoloAssegnato;
 	private JLabel lblRistoranti;
+	private Controller controller;
+	private Cliente cliente;
 	
 	
 	
@@ -91,7 +93,7 @@ public class TavolataNonPrenotataView extends JFrame {
 		btnAggiungiCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Controller controller = new Controller();					
+				controller = new Controller();					
 				
 				codiceTavolo = textCodiceTavoloAssegnato.getText();			
 				   
@@ -127,7 +129,7 @@ public class TavolataNonPrenotataView extends JFrame {
 				
 				Date theData = Date.valueOf(data);
 				    
-				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognome, nome, telefono, cartaIdentita, theData);
+				cliente = new Cliente(Integer.parseInt(codiceTavolo),cognome, nome, telefono, cartaIdentita, theData);
 			    controller.inserisciCliente(cliente, textAreaClienti);				
 			
 			    textCognome.setText("");

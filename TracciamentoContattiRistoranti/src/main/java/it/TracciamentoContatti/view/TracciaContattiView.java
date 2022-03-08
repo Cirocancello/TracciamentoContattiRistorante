@@ -43,6 +43,7 @@ public class TracciaContattiView extends JFrame {
 	
 	private String cartaIdentita;
 	private String data;
+	private Controller controller;
 
 	/**
 	 * Create the frame.
@@ -98,7 +99,7 @@ public class TracciaContattiView extends JFrame {
 		btnTraccia = new JButton("Traccia");
 		btnTraccia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = new Controller();
+				controller = new Controller();
 				
 				cartaIdentita = textCartaIdentita.getText();
 				if (cartaIdentita.length() == 0) {

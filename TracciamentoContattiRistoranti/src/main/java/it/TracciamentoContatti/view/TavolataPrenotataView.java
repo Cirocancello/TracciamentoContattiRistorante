@@ -61,6 +61,8 @@ public class TavolataPrenotataView extends JFrame {
 	private JLabel lblDataPrenotazione;
 	private JLabel lblCognomeCliente;
 	private JLabel lblPrenotazione;
+	private Controller controller;
+	private Cliente cliente;
 	
 	public TavolataPrenotataView() {
 		
@@ -217,7 +219,7 @@ public class TavolataPrenotataView extends JFrame {
 		btnInserisciCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Controller controller = new Controller();			
+				controller = new Controller();			
 				
 				codiceTavolo = textCodiceTavoloAssegnato.getText().trim();
 				if(codiceTavolo.length() == 0) {
@@ -244,7 +246,7 @@ public class TavolataPrenotataView extends JFrame {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				String theDate = dateFormat.format(dateChooser.getDate());
 			
-				Cliente cliente = new Cliente(Integer.parseInt(codiceTavolo),cognomeCliente, nome, telefono,  cartaIdentita, Date.valueOf(theDate));
+				cliente = new Cliente(Integer.parseInt(codiceTavolo),cognomeCliente, nome, telefono,  cartaIdentita, Date.valueOf(theDate));
 			    controller.inserisciCliente(cliente, textAreaClientiInseriti);
 				
 			    textCognomeCliente.setText("");
