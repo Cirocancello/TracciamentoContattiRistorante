@@ -29,6 +29,9 @@ public class LoginPageView extends JFrame {
 	private JLabel lblPassword;
 	private JButton btnChiudi;
 	private JButton btnCancella;
+	private Controller controller;
+	private String userName;
+	private String password;
 
 	/**
 	 * Create the frame.
@@ -58,7 +61,7 @@ public class LoginPageView extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				
-				String userName = textUserName.getText();
+				userName = textUserName.getText();
 				int length = userName.length();			
 				
 				//JTextField to accept only alfabets
@@ -94,10 +97,10 @@ public class LoginPageView extends JFrame {
 		btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String userName = textUserName.getText();
-				String password = passwordField.getText();
+			    userName = textUserName.getText();
+				password = passwordField.getText();
 				
-				Controller controller = new Controller();
+				controller = new Controller();
 				controller.login(userName, password);
 				
 			}

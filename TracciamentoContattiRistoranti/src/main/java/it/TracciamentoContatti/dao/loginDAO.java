@@ -1,4 +1,4 @@
-package it.TracciamentoContatti.DAO;
+package it.TracciamentoContatti.dao;
 
 import java.awt.EventQueue;
 import java.sql.Connection;

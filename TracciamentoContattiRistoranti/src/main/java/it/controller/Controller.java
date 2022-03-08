@@ -26,15 +26,15 @@ import it.TracciamentoContatti.Prenotazione;
 import it.TracciamentoContatti.Ristorante;
 import it.TracciamentoContatti.Statistica;
 import it.TracciamentoContatti.Tavolo;
-import it.TracciamentoContatti.DAO.ClienteDAO;
-import it.TracciamentoContatti.DAO.PrenotazioniDAO;
-import it.TracciamentoContatti.DAO.RistoranteDAO;
-import it.TracciamentoContatti.DAO.SalaDAO;
-import it.TracciamentoContatti.DAO.StatisticaGiornalieraDAO;
-import it.TracciamentoContatti.DAO.StatisticaMensileDAO;
-import it.TracciamentoContatti.DAO.TavoliDAO;
-import it.TracciamentoContatti.DAO.TracciaContattiDAO;
-import it.TracciamentoContatti.DAO.loginDAO;
+import it.TracciamentoContatti.dao.ClienteDAO;
+import it.TracciamentoContatti.dao.PrenotazioniDAO;
+import it.TracciamentoContatti.dao.RistoranteDAO;
+import it.TracciamentoContatti.dao.SalaDAO;
+import it.TracciamentoContatti.dao.StatisticaGiornalieraDAO;
+import it.TracciamentoContatti.dao.StatisticaMensileDAO;
+import it.TracciamentoContatti.dao.TavoliDAO;
+import it.TracciamentoContatti.dao.TracciaContattiDAO;
+import it.TracciamentoContatti.dao.loginDAO;
 import it.TracciamentoContatti.view.HomePageView;
 import it.TracciamentoContatti.view.LoginPageView;
 import it.TracciamentoContatti.view.PrenotazioneView;
@@ -47,20 +47,36 @@ import it.TracciamentoContatti.view.TracciaContattiView;
 
 public class Controller {
 	
+	private LoginPageView login;
 		
 	public Controller() {
 		
 	}
 	
+	/**
+	 * Creo La finestra login e la rendo visibile
+	 */
+	public void creaLogin() {
+		login = new LoginPageView();
+		login.setResizable(false);
+		login.setVisible(true);	
+		
+	}
+	
+	/** 
+	 * controllo i dati di accesso userName e password se corretti apro la HomePageView
+	 * @param userName
+	 * @param password
+	 */
 	public void login(String userName, String password) {
 	
 		Integer codiceLogin = loginDAO.login(userName, password);		
 		
 		if(codiceLogin != null) {
-	        HomePageView frame = new HomePageView();					
-	
+		
+	        HomePageView frame = new HomePageView();		
 	        frame.setResizable(false);
-	        frame.setVisible(true);		
+	        frame.setVisible(true);		     
 	        
 		}else {
 	        
@@ -85,36 +101,32 @@ public class Controller {
 	public void actionTavolataNonPrenotata(ActionEvent e) {
 		RistoranteDAO ristoranteDao = new RistoranteDAO();
 		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();	
-		TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView();
+		TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView(ristoranti);
 	}
 	
 
 	public void actionTavolataPrenotata(ActionEvent e) {
-		RistoranteDAO ristoranteDao = new RistoranteDAO();
-		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();	
+		
 		TavolataPrenotataView tavolataPrenotataView = new TavolataPrenotataView();
 		
 	}
 	
 	public void actionTracciaContatti(ActionEvent e) {
-		RistoranteDAO ristoranteDao = new RistoranteDAO();
-		List<Ristorante> ristoranti =  ristoranteDao.getRistoranti();
+
 		TracciaContattiView tracciaContatti = new TracciaContattiView();
 	}
 	
 	
 
 	public void actionStatisticaGiornaliera(ActionEvent e) {
-		RistoranteDAO ristoranteDao = new RistoranteDAO();
-		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();
+		
 		StatisticaGiornalieraView statiscticaGiornaliera = new StatisticaGiornalieraView();
 		
 	}
 	
 
 	public void actionStatisticaMensile(ActionEvent e) {
-		RistoranteDAO ristoranteDao = new RistoranteDAO();
-		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();
+	
 		StatisticaMensileView statisticaMensile = new StatisticaMensileView();
 		
 	}

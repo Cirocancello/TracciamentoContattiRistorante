@@ -17,13 +17,9 @@ public class Main {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						
-						LoginPageView login = new LoginPageView();
-						login.setResizable(false);
-						login.setVisible(true);				
       			      
 					    Controller controller = new Controller();
-
+					    controller.creaLogin();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

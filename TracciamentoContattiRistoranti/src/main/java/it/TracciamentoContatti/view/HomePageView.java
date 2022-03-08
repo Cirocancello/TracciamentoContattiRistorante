@@ -58,6 +58,7 @@ public class HomePageView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 450, 246);
 		
+		
 		final Controller controller = new Controller();
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -148,7 +149,7 @@ public class HomePageView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label1 = new JLabel("Sistema di tracciamento contatti covid-19 ");
+		label1 = new JLabel("Sistema di tracciamento contatti covid-19 ");
 		label1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
 		label1.setBounds(38, 24, 414, 42);
 		contentPane.add(label1);
