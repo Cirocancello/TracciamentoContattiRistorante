@@ -80,7 +80,7 @@ public class Controller {
 	       
 		}else {
 	        
-			JOptionPane.showMessageDialog(null,  "Username o Password non presenti in base dati!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "Username o Password errati o non presenti in base dati!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 		}
 	}

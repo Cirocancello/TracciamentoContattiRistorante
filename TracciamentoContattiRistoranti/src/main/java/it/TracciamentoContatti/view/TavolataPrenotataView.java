@@ -206,10 +206,9 @@ public class TavolataPrenotataView extends JFrame {
 			    	}else {
 			    		textTelefono.setEditable(false);
 			    	}
-			    }
-				
-				
+			    }			
 			}
+							
 		});
 		textTelefono.setBounds(383, 264, 121, 20);
 		contentPane.add(textTelefono);
@@ -237,6 +236,13 @@ public class TavolataPrenotataView extends JFrame {
 					JOptionPane.showMessageDialog(null,  "Campo nome vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
+				
+				telefono = textTelefono.getText();
+				if(telefono.length() == 0) {			           
+					JOptionPane.showMessageDialog(null,  "Campo telefono vuoto!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;
+			    }
+
 				
 				cartaIdentita = textCartaIdentita.getText().trim();
 				if(cartaIdentita.length() == 0) {
@@ -291,7 +297,7 @@ public class TavolataPrenotataView extends JFrame {
 			    		textCodiceTavoloAssegnato.setEditable(true);
 			    	}else {
 			    		textCodiceTavoloAssegnato.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Devi iserire al max 3 numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Codice tavolo composto da al più 3 numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    	
@@ -302,7 +308,7 @@ public class TavolataPrenotataView extends JFrame {
 			    		textCodiceTavoloAssegnato.setEditable(true);
 			    	}else {
 			    		textCodiceTavoloAssegnato.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Devi iserire solo numeri!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Codice tavolo errato!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    }

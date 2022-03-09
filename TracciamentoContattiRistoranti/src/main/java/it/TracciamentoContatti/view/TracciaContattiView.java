@@ -112,13 +112,13 @@ public class TracciaContattiView extends JFrame {
 				   data = dateFormat.format(dateChooser.getDate());
 				}catch(Exception ex) {
 					JOptionPane.showMessageDialog(null,  "Devi inserire una data valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
-
+					return;
 				}
 				try {
 					controller.tracciaContatti(cartaIdentita, data, textAreaTraccia);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,  "Devi inserire una data valida!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+					return;					
 				}
 			}
 					
