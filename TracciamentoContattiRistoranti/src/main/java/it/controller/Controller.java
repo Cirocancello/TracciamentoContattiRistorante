@@ -77,7 +77,7 @@ public class Controller {
 	        HomePageView frame = new HomePageView();		
 	        frame.setResizable(false);
 	        frame.setVisible(true);		     
-	        
+	       
 		}else {
 	        
 			JOptionPane.showMessageDialog(null,  "Username o Password non presenti in base dati!!! ", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);

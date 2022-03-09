@@ -59,7 +59,7 @@ public class HomePageView extends JFrame {
 		setBounds(400, 200, 450, 246);
 		
 		
-		final Controller controller = new Controller();
+		controller = new Controller();
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
