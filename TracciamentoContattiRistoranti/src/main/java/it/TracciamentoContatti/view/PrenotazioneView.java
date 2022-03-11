@@ -63,10 +63,11 @@ public class PrenotazioneView extends JFrame {
 	private String data;
 	
 	private Controller controller;
-	
+	private JButton btnChiudi;
+	private HomePageView homePage ;
 	
 	/**
-	 * Create the frame.
+	 * Create the frame. creazione della finestra grafica della prenotazione
 	 */
 	public PrenotazioneView(List<Ristorante> ristoranti) {  
 		
@@ -219,6 +220,7 @@ public class PrenotazioneView extends JFrame {
 		btnEffettuaPrenotazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				
 			    controller = new Controller();
 				
 			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -259,14 +261,15 @@ public class PrenotazioneView extends JFrame {
 			    Prenotazione prenotazione = new Prenotazione(cognome, nome, telefono, Integer.valueOf(numeroPersone), Date.valueOf(data));
 			    
 				controller.effettuaPrenotazione(prenotazione,textCodiceRistorante);				
-				
+				homePage = new HomePageView();
+				homePage.setVisible(true);
 				dispose();
 							
 			}
 
 		
 		});
-		btnEffettuaPrenotazione.setBounds(333, 399, 190, 23);
+		btnEffettuaPrenotazione.setBounds(34, 399, 190, 23);
 		contentPane.add(btnEffettuaPrenotazione);
 		
 		textArea = new JTextArea();
@@ -331,7 +334,17 @@ public class PrenotazioneView extends JFrame {
 		dateChooser = new JDateChooser();
 		dateChooser.setBounds(119, 108, 126, 20);
 		contentPane.add(dateChooser);
+		
+		btnChiudi = new JButton("Chiudi");
+		btnChiudi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HomePageView homePage = new HomePageView();
+				homePage.setVisible(true);
+				dispose();
+			}
+		});
+		btnChiudi.setBounds(434, 399, 89, 23);
+		contentPane.add(btnChiudi);
 
 	}
-
 }

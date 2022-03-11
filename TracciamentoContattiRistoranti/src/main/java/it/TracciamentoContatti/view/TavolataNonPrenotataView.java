@@ -70,11 +70,11 @@ public class TavolataNonPrenotataView extends JFrame {
 	private JLabel lblRistoranti;
 	private Controller controller;
 	private Cliente cliente;
-	
+	private HomePageView homePage ;
 	
 	
 	/**
-	 * Create the frame.
+	 * Create the frame.creazione della finestra grafica della tavolata non prenotata
 	 */
 	public TavolataNonPrenotataView(List<Ristorante> ristoranti) {
 		
@@ -149,6 +149,8 @@ public class TavolataNonPrenotataView extends JFrame {
 		btnChiudi = new JButton("Chiudi");
 		btnChiudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				homePage = new HomePageView();
+				homePage.setVisible(true);
 				setVisible(false);
 			
 			}

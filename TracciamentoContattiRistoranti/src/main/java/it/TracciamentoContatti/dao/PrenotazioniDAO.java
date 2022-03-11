@@ -24,14 +24,14 @@ public class PrenotazioniDAO {
 	 * prenotare, il metodo mi restituisce il codice della prenotazione registrata, altrimenti il messaggio 
 	 * ' nessun tavolo disponibile' 
 	 * 
-	 * @param codiceRistorante
-	 * @param cognome
-	 * @param nome
-	 * @param telefono
-	 * @param numeroPersone
-	 * @param data
+	 * @param codiceRistorante   codice del ristorante in cui si effettua la prenotazione
+	 * @param cognome            cognome del cliebte che effettua la prenotazione
+	 * @param nome				 nome del cliente che effettua la prenotazione
+	 * @param telefono			 numero di telefono del cliente che effettua la prenotazione
+	 * @param numeroPersone		 numero di persone che siederanno al tavolo prenotato
+	 * @param data				 data della prenotazione
 	 * 
-	 * @return il metodo ritorna il codice della eventuale prenotazione registrata
+	 * @return il metodo ritorna il codice della eventuale ( se andata a buon fine) prenotazione registrata
 	 */
 	public Integer creaPrenotazione(Integer codiceTavoloDisponibile, String cognome, String nome, String telefono, Integer numeroPersone,
 			Date data) {

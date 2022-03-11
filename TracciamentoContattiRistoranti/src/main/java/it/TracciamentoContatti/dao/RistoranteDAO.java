@@ -51,7 +51,7 @@ public class RistoranteDAO {
 	 * riceve come parametro il nome del ristorante
 	 * 
 	 * @param nome nome del ristorante
-	 * @return ritorna il codice del ristorante
+	 * @return ritorna il codice del ristorante selezionato
 	 */
 	public int getCodiceRistorante(String nome) {
 

@@ -48,7 +48,25 @@ import it.TracciamentoContatti.view.TracciaContattiView;
 public class Controller {
 	
 	private LoginPageView login;
-		
+	private HomePageView frame;
+	private Integer codiceLogin;
+	private TracciaContattiView tracciaContatti ;
+	private RistoranteDAO ristoranteDao;
+	private TavolataPrenotataView tavolataPrenotataView;
+	private PrenotazioneView prenotazioneView;
+	private TavolataNonPrenotataView tavolataNonPrenotataView;
+	private StatisticaGiornalieraView statiscticaGiornaliera;
+	private StatisticaMensileView statisticaMensile;
+	private PrenotazioniDAO prenotazioneDao;
+	private Integer codicePrenotazione;
+	private TracciaContattiDAO tracciaContattiDao;
+	private ClienteDAO clienteDao;
+	private SalaDAO saleDao;
+	private String nomeSala;
+	private TavoliDAO tavoliDao;
+	private StatisticaGiornalieraDAO statiscticaGiornalieraDao;
+	private StatisticaMensileDAO statiscticaMensileDao ;
+	
 	public Controller() {
 		
 	}
@@ -68,13 +86,14 @@ public class Controller {
 	 * @param userName
 	 * @param password
 	 */
-	public void login(String userName, String password) {
+	public void login(String userName, String password, LoginPageView login) {
 	
-		Integer codiceLogin = loginDAO.login(userName, password);		
+		codiceLogin = loginDAO.login(userName, password);		
 		
 		if(codiceLogin != null) {
 		
-	        HomePageView frame = new HomePageView();		
+	        frame = new HomePageView();	
+	        login.setVisible(false);
 	        frame.setResizable(false);
 	        frame.setVisible(true);		     
 	       
@@ -86,49 +105,51 @@ public class Controller {
 	}
 	
 	
-	public void actionPrenota(ActionEvent e) {		
+	public void actionPrenota(ActionEvent e , HomePageView home) {		
         
-		RistoranteDAO ristoranteDao = new RistoranteDAO();
-		
+		ristoranteDao = new RistoranteDAO();
+		home.setVisible(false);
 		// visualizzo le informazioni sui ristoranti
 		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();		
 			
-		PrenotazioneView prenotazioneView = new PrenotazioneView(ristoranti);	
+		prenotazioneView = new PrenotazioneView(ristoranti);	
 
 	}
 	
 	
-	public void actionTavolataNonPrenotata(ActionEvent e) {
-		RistoranteDAO ristoranteDao = new RistoranteDAO();
+	public void actionTavolataNonPrenotata(ActionEvent e, HomePageView home) {
+		ristoranteDao = new RistoranteDAO();
 		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();	
-		TavolataNonPrenotataView tavolataNonPrenotataView = new TavolataNonPrenotataView(ristoranti);
+		tavolataNonPrenotataView = new TavolataNonPrenotataView(ristoranti);
+		home.setVisible(false);
 	}
 	
 
-	public void actionTavolataPrenotata(ActionEvent e) {
+	public void actionTavolataPrenotata(ActionEvent e, HomePageView home) {
 		
-		TavolataPrenotataView tavolataPrenotataView = new TavolataPrenotataView();
-		
+		tavolataPrenotataView = new TavolataPrenotataView();
+		home.setVisible(false);
 	}
 	
-	public void actionTracciaContatti(ActionEvent e) {
+	public void actionTracciaContatti(ActionEvent e, HomePageView home) {
 
-		TracciaContattiView tracciaContatti = new TracciaContattiView();
+		tracciaContatti = new TracciaContattiView();
+		home.setVisible(false);
 	}
 	
 	
 
-	public void actionStatisticaGiornaliera(ActionEvent e) {
+	public void actionStatisticaGiornaliera(ActionEvent e, HomePageView home) {
 		
-		StatisticaGiornalieraView statiscticaGiornaliera = new StatisticaGiornalieraView();
-		
+		statiscticaGiornaliera = new StatisticaGiornalieraView();
+		home.setVisible(false);
 	}
 	
 
-	public void actionStatisticaMensile(ActionEvent e) {
+	public void actionStatisticaMensile(ActionEvent e, HomePageView home) {
 	
-		StatisticaMensileView statisticaMensile = new StatisticaMensileView();
-		
+		statisticaMensile = new StatisticaMensileView();
+		home.setVisible(false);
 	}
 
 	public void effettuaPrenotazione(Prenotazione prenotazione, JTextField textCodiceRistorante) {
@@ -161,15 +182,15 @@ public class Controller {
 	public Integer creaPrenotazione(Integer codiceTavoloDisponibile, String cognome,
          String nome, String telefono, Integer numeroPersone, Date data) {
 
-         PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
-         Integer codicePrenotazione = prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, cognome, nome, telefono, numeroPersone, data);
+         prenotazioneDao = new PrenotazioniDAO();
+         codicePrenotazione = prenotazioneDao.creaPrenotazione(codiceTavoloDisponibile, cognome, nome, telefono, numeroPersone, data);
 
         return codicePrenotazione;
 	}
 	
 	public void stampaRistoranti(TextArea textAreaRistoranti) {
 		
-		RistoranteDAO ristoranteDao = new RistoranteDAO();
+		ristoranteDao = new RistoranteDAO();
 		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();
 		
 		for(Ristorante risto:ristoranti) {
@@ -187,7 +208,7 @@ public class Controller {
 
 	public void tracciaContatti(String cartaIdentita, String data, TextArea textAreaTraccia) throws IOException {
 			
-		TracciaContattiDAO tracciaContattiDao = new TracciaContattiDAO();			
+		tracciaContattiDao = new TracciaContattiDAO();			
 			
 		//traccia contatti in caso di contagio simulando uno scenario di contagio
 		List<Persona> personeDaContattare =  tracciaContattiDao.tracciaContatti(cartaIdentita, data); // passare anche la data come pararmetro
@@ -213,7 +234,7 @@ public class Controller {
 
 	public void inserisciCliente(Cliente cliente, TextArea textAreaClientiInseriti) {
 		
-		ClienteDAO clienteDao = new ClienteDAO();					
+		clienteDao = new ClienteDAO();					
 		
 		Integer codiceTavoloPrenotato = cliente.getCodiceTavolo();
 		String cognome = cliente.getCognome();
@@ -235,7 +256,7 @@ public class Controller {
 	
 	public void cercaPrenotazione(String data, String cognome,TextArea textAreaPrenotazione) {
           
-		PrenotazioniDAO prenotazioneDao = new PrenotazioniDAO();
+		prenotazioneDao = new PrenotazioniDAO();
 		List<Prenotazione> prenotazione = prenotazioneDao.cercaPrenotazione(data, cognome);
 		
 		if(prenotazione.size() > 0) {
@@ -262,9 +283,9 @@ public class Controller {
 	
 	public String cercaNomeSala(Integer codice) {
 		
-		SalaDAO saleDao = new SalaDAO();
+		saleDao = new SalaDAO();
 		
-		String nomeSala = saleDao.cercaNomeSala(codice);
+		nomeSala = saleDao.cercaNomeSala(codice);
 		
 		return nomeSala;
 		
@@ -310,9 +331,9 @@ public class Controller {
 	
 	public String cercaNomeSalaNonPrenotata(Integer tavoloLibero, Integer codiceRistorante) {
 		
-		SalaDAO saleDao = new SalaDAO();
+		saleDao = new SalaDAO();
 		
-		String nomeSala = saleDao.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
+		nomeSala = saleDao.cercaNomeSalaNonPrenotata(tavoloLibero, codiceRistorante);
 		
 		return nomeSala;
 	}
@@ -321,7 +342,7 @@ public class Controller {
 	
 	public List<Tavolo> getTavoloDisponibile(Integer codiceRistorante, Date data, Integer numeroPersone) {
 		//___________________________Cerco eventuali tavoli disponibili
-		TavoliDAO tavoliDao = new TavoliDAO();
+		tavoliDao = new TavoliDAO();
 		
 		List<Tavolo> tavoliLiberi = tavoliDao.getTavoloDisponibile(codiceRistorante, data, numeroPersone);	
 		
@@ -404,7 +425,7 @@ public class Controller {
 	public List<Statistica> statisticaGiornaliera(String codiceRistorante) {
 		
 		
-		StatisticaGiornalieraDAO  statiscticaGiornalieraDao = new StatisticaGiornalieraDAO();
+		statiscticaGiornalieraDao = new StatisticaGiornalieraDAO();
 		
 		List<Statistica> statistica = statiscticaGiornalieraDao.totaliAvventoriGiornalieri(codiceRistorante);
 				
@@ -415,7 +436,7 @@ public class Controller {
 	}
 
 	public List<Statistica> statisticaMensile(String codiceRistorante) {
-		StatisticaMensileDAO  statiscticaMensileDao = new StatisticaMensileDAO();
+		statiscticaMensileDao = new StatisticaMensileDAO();
 		
 		List<Statistica> statistica = statiscticaMensileDao.totaliAvventoriGiornalieri(codiceRistorante);
 				

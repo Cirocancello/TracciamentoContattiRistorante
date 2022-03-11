@@ -44,11 +44,13 @@ public class TracciaContattiView extends JFrame {
 	private String cartaIdentita;
 	private String data;
 	private Controller controller;
-
+	private HomePageView homePage ;
+	
 	/**
-	 * Create the frame.
+	 * Create the frame. creazione della fionestra grafica della traccia contatti
 	 */
 	public TracciaContattiView() {
+		homePage = new HomePageView();
 		
 		setResizable(false);
 		setVisible(true);
@@ -145,7 +147,7 @@ public class TracciaContattiView extends JFrame {
 		btnTornaAlMenu = new JButton("Torna al menu principale");
 		btnTornaAlMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				homePage.setVisible(true);
 				dispose();
 			}
 		});

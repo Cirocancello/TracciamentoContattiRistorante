@@ -12,6 +12,12 @@ import it.TracciamentoContatti.Statistica;
 
 public class StatisticaMensileDAO {
 	
+	/**
+	 * il metodo implementa il calcolo della statistica mensile del numero di avventori nel ristorante indicato
+	 * 
+	 * @param codiceRistorante codice del ristorante per cui si vuole la statisrica
+	 * @return  lista di avventori 
+	 */
 	public static  List<Statistica> totaliAvventoriGiornalieri(String codiceRistorante) {
 
 		Integer codiceRistorante1 = Integer.parseInt(codiceRistorante);

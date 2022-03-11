@@ -4,6 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementazione dell' entità tavolo
+ * la classe fornisce il metodo costruttore e i getter e setter per definire un tavolo
+ * @author Ciro Cancello
+ *
+ */
+
 public class Tavolo {
 	
 	private Integer codice;

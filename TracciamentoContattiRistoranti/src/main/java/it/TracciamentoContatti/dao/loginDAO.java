@@ -9,8 +9,22 @@ import java.sql.Statement;
 
 import it.TracciamentoContatti.Statistica;
 
+/**
+ * implementazione della classe per poter effettuare il login dell' utente
+ * con il recupero del codice ID dopo aver inserito username e password
+ * @author Ciro Cancello
+ *
+ */
+
 public class loginDAO {
 
+	/**
+	 * implementazione della classe per poter effettuare il login dell' utente
+	 * con il recupero del codice ID dopo aver inserito username e password
+	 * @param userName credenziali forniti in input
+	 * @param password
+	 * @return il metodo restituisce il codice ID se le credenziali sono presenti nel database
+	 */
 	public static Integer login(String userName, String password) {
 		
 		String sql = "SELECT ID "

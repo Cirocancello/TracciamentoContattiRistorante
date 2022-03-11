@@ -4,6 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementazione dell' entità cameriere
+ * la classe fornisce il metodo costruttore e i getter e setter per definire un cameriere
+ * 
+ * @author Ciro Cancello
+ *
+ */
 public class Cameriere {
 
 	private int codice;

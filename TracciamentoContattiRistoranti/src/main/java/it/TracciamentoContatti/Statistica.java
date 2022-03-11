@@ -2,6 +2,13 @@ package it.TracciamentoContatti;
 
 import java.sql.Date;
 
+/**
+ * Implementazione dell' entità statistica
+ * la classe fornisce il metodo costruttore e i getter e setter per definire una statistica
+ * 
+ * @author Ciro Cancello
+ *
+ */
 public class Statistica {
 	private Date data;
 	private Integer totaleAvventori;

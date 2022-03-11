@@ -51,9 +51,11 @@ public class HomePageView extends JFrame {
 	private JLabel label2;
 
 	/**
-	 * Create the frame.
+	 * Create the frame. crezione della finestra grafica della home page
 	 */
 	public HomePageView() {
+		final HomePageView self = this;
+		
 		setTitle("Home Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 450, 246);
@@ -71,7 +73,7 @@ public class HomePageView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent ePrenota) {
 				
-				controller.actionPrenota(ePrenota);
+				controller.actionPrenota(ePrenota, self);
 			}
 		});
 		prenotazione.add(effettuaPrenotazione);
@@ -85,7 +87,7 @@ public class HomePageView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent eTavNonPrenotata) {
 			
-				controller.actionTavolataNonPrenotata(eTavNonPrenotata);
+				controller.actionTavolataNonPrenotata(eTavNonPrenotata, self);
 			}
 		});
 		tavolata.add(tavolataNonPrenotata);
@@ -94,7 +96,7 @@ public class HomePageView extends JFrame {
 		tavolataPrenotata.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent eTavPrenotata) {
-				controller.actionTavolataPrenotata(eTavPrenotata);
+				controller.actionTavolataPrenotata(eTavPrenotata, self);
 				
 			}
 			
@@ -108,7 +110,7 @@ public class HomePageView extends JFrame {
 		traccia.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent eTracciaContatti) {
-				controller.actionTracciaContatti(eTracciaContatti);
+				controller.actionTracciaContatti(eTracciaContatti, self);
 			}
 		});
 		tracciaContatti.add(traccia);
@@ -120,7 +122,7 @@ public class HomePageView extends JFrame {
 		giornaliera.addActionListener(new ActionListener() {
 			@Override			
 			public void actionPerformed(ActionEvent eStatisticaGiornaliera) {
-				controller.actionStatisticaGiornaliera(eStatisticaGiornaliera);
+				controller.actionStatisticaGiornaliera(eStatisticaGiornaliera, self);
 			}
 		});
 		statistiche.add(giornaliera);
@@ -128,7 +130,7 @@ public class HomePageView extends JFrame {
 		mensile = new JMenuItem("Mensile");
 		mensile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eStatisticaMensile) {
-				controller.actionStatisticaMensile(eStatisticaMensile);
+				controller.actionStatisticaMensile(eStatisticaMensile, self);
 				
 			}
 		});

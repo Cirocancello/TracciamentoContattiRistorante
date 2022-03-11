@@ -1,5 +1,12 @@
 package it.TracciamentoContatti;
 
+/**
+ * Implementazione dell' entità persona
+ * la classe fornisce il metodo costruttore e i getter e setter per definire una persona
+ * 
+ * @author Ciro Cancello
+ *
+ */
 public class Persona {
 	private String cognome;
 	private String nome;

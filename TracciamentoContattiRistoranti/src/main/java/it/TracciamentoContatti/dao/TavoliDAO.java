@@ -14,7 +14,7 @@ public class TavoliDAO {
 	/**
 	 * ricerca dei tavoli liberi nel ristorante in cui si deve fare una prenotazione
 	 * 
-	 * @param codiceRistorante
+	 * @param codiceRistorante  codice del ristorante per cui si vuole trovare il tavolo libero
 	 * 
 	 * @return ritorna una lista di tavoli liberi
 	 */

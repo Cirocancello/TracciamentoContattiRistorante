@@ -5,6 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementazione dell' entità prenotazione
+ * la classe fornisce il metodo costruttore e i getter e setter per definire una prenotazione
+ * 
+ * @author Ciro Cancello
+ *
+ */
 public class Prenotazione {	
 	
 	private Integer codice;

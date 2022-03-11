@@ -15,7 +15,13 @@ import it.TracciamentoContatti.Prenotazione;
 import it.TracciamentoContatti.Statistica;
 
 public class StatisticaGiornalieraDAO {
-
+	
+    /**
+     * il metodo implementa il calcolo della statisctica giornaliera di avventori nel ristorante indicato
+     * 
+     * @param codiceRistorante  codice del ristorante per cui si vuole la statistica giornaliera
+     * @return lista di avventori
+     */
 	public static  List<Statistica> totaliAvventoriGiornalieri(String codiceRistorante) {
 
 		Integer codiceRistorante1 = Integer.parseInt(codiceRistorante);

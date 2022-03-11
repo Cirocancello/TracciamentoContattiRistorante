@@ -34,9 +34,11 @@ public class LoginPageView extends JFrame {
 	private String password;
 
 	/**
-	 * Create the frame.
+	 * Create the frame. creazione della finestra grafica della login page
 	 */
 	public LoginPageView() {
+		final LoginPageView self = this;
+		
 		setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 14));
 		setTitle("Login page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,7 +103,7 @@ public class LoginPageView extends JFrame {
 				password = passwordField.getText();
 				
 				controller = new Controller();
-				controller.login(userName, password);
+				controller.login(userName, password, self);
 				
 			}
 		});

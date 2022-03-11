@@ -22,13 +22,13 @@ public class TracciaContattiDAO {
     
 	/**
 	 * Ricerca dei contatti in caso di contagio, nei tavoli adiacenti al contagiato
-	 * e in quelli adiacenti a quest
+	 * e in quelli adiacenti a questi e le informazioni sui camerieri
 	 * 
 	 * @param cartaIdentita   carta di identità del contagiato
-	 * @param data data della tavolata
+	 * @param data            data della tavolata
 	 * 
 	 * @return ritorna il nome, cognome e telefono delle persone che hanno avuto
-	 *         contatto con il contagiato
+	 *         contatto con il contagiato e dei camerieri che hanno servito al tavolo
 	 */
 	public List<Persona> tracciaContatti(String cartaIdentita, String data1) {
 

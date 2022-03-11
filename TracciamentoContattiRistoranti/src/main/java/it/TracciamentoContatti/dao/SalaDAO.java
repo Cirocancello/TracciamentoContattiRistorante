@@ -9,6 +9,11 @@ import com.toedter.calendar.JDateChooser;
 
 public class SalaDAO {
 
+	/**
+	 * il metodo permette di ricercare il nome di una sala di un ristorante in cui è presente una prenotazione
+	 * @param codice    codice del ristorante a cui appartiene la sala
+	 * @return ritorna il nome della sala
+	 */
     public String cercaNomeSala(Integer codice)	{	
     	
 		String sql ="SELECT s.Nome "
@@ -41,6 +46,14 @@ public class SalaDAO {
 		
 	}
     
+    /**
+     * implementa il metodo per effettuare la ricerca del nome di una sala di un ristorante per cui non 
+     * è presente una prenotazione
+     * 
+     * @param tavoloLibero       codice del tavolo libero disponibile per la tavolata
+     * @param codiceRistorante   codice del ristorante in cui i vuole fare la cena
+     * @return ritorna il npome della sala
+     */
     public String cercaNomeSalaNonPrenotata(Integer tavoloLibero, Integer codiceRistorante) {
     	String nomeSala = null;
     	

@@ -6,6 +6,13 @@ import java.util.Objects;
 
 import it.TracciamentoContatti.Sala;
 
+/**
+ * Implementazione dell' entità sala
+ * la classe fornisce il metodo costruttore e i getter e setter per definire un sala
+ * 
+ * @author Ciro Cancello
+ *
+ */
 public class Sala {
 	
 	private Integer codice;

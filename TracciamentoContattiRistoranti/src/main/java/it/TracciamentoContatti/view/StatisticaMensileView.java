@@ -50,10 +50,10 @@ public class StatisticaMensileView extends JFrame {
 	private String codiceRistorante;
 	private Integer length;
 	private Controller controller;
-	
+	private HomePageView homePage;
 	
 	/**
-	 * Create the frame.
+	 * Create the frame. creazione della finestra grafica della statistica mensile
 	 */
 	public StatisticaMensileView() {
 		setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
@@ -92,6 +92,8 @@ public class StatisticaMensileView extends JFrame {
 		btnChiudi = new JButton("Chiudi");
 		btnChiudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				homePage = new HomePageView();
+				homePage.setVisible(true);
 				dispose();
 			}
 		});

@@ -64,6 +64,9 @@ public class TavolataPrenotataView extends JFrame {
 	private Controller controller;
 	private Cliente cliente;
 	
+	/**
+	 * creazione della finestra grafica della tavolata prenotata
+	 */
 	public TavolataPrenotataView() {
 		
 		setResizable(false);
@@ -266,7 +269,7 @@ public class TavolataPrenotataView extends JFrame {
 				
 			}
 		});
-		btnInserisciCliente.setBounds(381, 295, 137, 23);
+		btnInserisciCliente.setBounds(367, 295, 137, 23);
 		contentPane.add(btnInserisciCliente);
 		
 		textAreaClientiInseriti = new TextArea();
@@ -365,6 +368,8 @@ public class TavolataPrenotataView extends JFrame {
 		btnChiudi = new JButton("Chiudi");
 		btnChiudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				HomePageView homePage = new HomePageView();
+				homePage.setVisible(true);
 				setVisible(false);
 			}
 		});

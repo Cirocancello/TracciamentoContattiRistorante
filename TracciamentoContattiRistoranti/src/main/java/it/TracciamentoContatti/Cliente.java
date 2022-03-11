@@ -3,6 +3,13 @@ package it.TracciamentoContatti;
 import java.sql.Date;
 import java.time.LocalDate;
 
+/**
+ * Implementazione dell' entità cliente
+ * la classe fornisce il metodo costruttore e i getter e setter per definire un cliente
+ * 
+ * @author Ciro Cancello
+ *
+ */
 public class Cliente {
 	
 	private Integer codice;

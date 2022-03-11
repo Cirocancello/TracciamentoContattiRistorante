@@ -6,6 +6,13 @@ import java.util.Objects;
 
 import it.TracciamentoContatti.Ristorante;
 
+/**
+ * Implementazione dell' entità ristorante
+ * la classe fornisce il metodo costruttore e i getter e setter per definire un ristorante
+ * 
+ * @author Ciro Cancello
+ *
+ */
 public class Ristorante {
 	
 	private Integer codice;
