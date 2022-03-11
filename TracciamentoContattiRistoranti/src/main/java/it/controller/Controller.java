@@ -67,6 +67,7 @@ public class Controller {
 	private StatisticaGiornalieraDAO statiscticaGiornalieraDao;
 	private StatisticaMensileDAO statiscticaMensileDao ;
 	
+	
 	public Controller() {
 		
 	}
@@ -83,8 +84,8 @@ public class Controller {
 	
 	/** 
 	 * controllo i dati di accesso userName e password se corretti apro la HomePageView
-	 * @param userName
-	 * @param password
+	 * @param userName   credenziali forniti in ingresso
+	 * @param password   password fornita in ingresso
 	 */
 	public void login(String userName, String password, LoginPageView login) {
 	
@@ -104,7 +105,11 @@ public class Controller {
 		}
 	}
 	
-	
+	/**
+	 * imolementazione dele funzioni per una prenotazione
+	 * @param e
+	 * @param home
+	 */
 	public void actionPrenota(ActionEvent e , HomePageView home) {		
         
 		ristoranteDao = new RistoranteDAO();
@@ -116,42 +121,72 @@ public class Controller {
 
 	}
 	
-	
+	/**
+	 * implementazione delle funziamalità per una tavolata non prenotata
+	 * @param e
+	 * @param home
+	 */
 	public void actionTavolataNonPrenotata(ActionEvent e, HomePageView home) {
 		ristoranteDao = new RistoranteDAO();
+		//recupero le informazioni sui ristoranti
 		List<Ristorante> ristoranti = ristoranteDao.getRistoranti();	
+		//creo la finestra relativa e la rendo visibile
 		tavolataNonPrenotataView = new TavolataNonPrenotataView(ristoranti);
 		home.setVisible(false);
 	}
 	
-
+    /**
+     * 
+     * implementazione delle funzionalità per una tavolata di cui è presente una prenotazione
+     * @param e
+     * @param home
+     */
 	public void actionTavolataPrenotata(ActionEvent e, HomePageView home) {
 		
+		//creo la relativa finestra e la rendo visibile
 		tavolataPrenotataView = new TavolataPrenotataView();
 		home.setVisible(false);
 	}
 	
+	/**
+	 * iplementazione delle funzionalità per il tracciamento dei contatti
+	 * @param e
+	 * @param home
+	 */
 	public void actionTracciaContatti(ActionEvent e, HomePageView home) {
-
+		// creo la relativa finestra e la rndo visibile
 		tracciaContatti = new TracciaContattiView();
 		home.setVisible(false);
 	}
 	
 	
-
+	/**
+	 * implementazione delle funzionalità per una statistica giornaliera
+	 * @param e
+	 * @param home
+	 */
 	public void actionStatisticaGiornaliera(ActionEvent e, HomePageView home) {
-		
+		//creo la relativa finestra e la rendo visibile
 		statiscticaGiornaliera = new StatisticaGiornalieraView();
 		home.setVisible(false);
 	}
 	
-
+	/**
+	 * implementazione delle funzionalità per una statistica mensile
+	 * @param e
+	 * @param home
+	 */
 	public void actionStatisticaMensile(ActionEvent e, HomePageView home) {
-	
+		//creo la relativa finestra e la rendo visibile
 		statisticaMensile = new StatisticaMensileView();
 		home.setVisible(false);
 	}
 
+	/**
+	 * implementazione delle funzionalitè per effettuare una prenotazione
+	 * @param prenotazione
+	 * @param textCodiceRistorante
+	 */
 	public void effettuaPrenotazione(Prenotazione prenotazione, JTextField textCodiceRistorante) {
 	
 		Integer codiceRistorante = Integer.parseInt(textCodiceRistorante.getText());
@@ -159,8 +194,9 @@ public class Controller {
 		String nome = prenotazione.getNome();
 		String telefono = prenotazione.getTelefono();
 		Integer numeroPersone = prenotazione.getNumeroPersone();
-	    Date data =  prenotazione.getData(); 
+	    Date data =  prenotazione.getData();
 	    
+	    //cerco i tavoli liberi
 		List<Tavolo> tavoliLiberi = getTavoloDisponibile(codiceRistorante, data, numeroPersone);
 		
 		if(tavoliLiberi.size()>0) {
@@ -179,6 +215,7 @@ public class Controller {
 		}
 	}
 
+	// cerco la prenotazione in base dati
 	public Integer creaPrenotazione(Integer codiceTavoloDisponibile, String cognome,
          String nome, String telefono, Integer numeroPersone, Date data) {
 
@@ -187,7 +224,7 @@ public class Controller {
 
         return codicePrenotazione;
 	}
-	
+	//visualizzo iristoranti presenti in base dati
 	public void stampaRistoranti(TextArea textAreaRistoranti) {
 		
 		ristoranteDao = new RistoranteDAO();
@@ -205,7 +242,14 @@ public class Controller {
 		
 	}
 	
-
+	/**
+	 * il metodo effettua il tracciamento di contatti in caso di positività
+	 * 
+	 * @param cartaIdentita     carta di identità del contagiato
+	 * @param data				data della tavolata
+	 * @param textAreaTraccia
+	 * @throws IOException
+	 */
 	public void tracciaContatti(String cartaIdentita, String data, TextArea textAreaTraccia) throws IOException {
 			
 		tracciaContattiDao = new TracciaContattiDAO();			
@@ -217,6 +261,12 @@ public class Controller {
 
 	}
 	
+	/**
+	 * visualizzazione delle persone da cointattare
+	 * 
+	 * @param personeDaContattare
+	 * @param textAreaTraccia
+	 */
 	public void setPeroneDaContattare(List<Persona> personeDaContattare,TextArea textAreaTraccia){
 		if(personeDaContattare.size() > 0) {
 			
@@ -232,6 +282,11 @@ public class Controller {
 			}
 	}
 
+	/**
+	 * il metodo effettua l' inserimento in base dati di un nuovo cliente
+	 * @param cliente                 generalita di un cliente
+	 * @param textAreaClientiInseriti
+	 */
 	public void inserisciCliente(Cliente cliente, TextArea textAreaClientiInseriti) {
 		
 		clienteDao = new ClienteDAO();					
@@ -253,7 +308,12 @@ public class Controller {
 		
 	}
    
-	
+	/**
+	 * il metodo effettua la ricerca di una prenotazione
+	 * @param data					data della prenotazione
+	 * @param cognome				cognome del cliente che ha effettuato la prenotazione
+	 * @param textAreaPrenotazione
+	 */
 	public void cercaPrenotazione(String data, String cognome,TextArea textAreaPrenotazione) {
           
 		prenotazioneDao = new PrenotazioniDAO();
@@ -281,6 +341,11 @@ public class Controller {
 		
 	}
 	
+	/**
+	 * ricerca del nome della sala del ristorante in cui è presente una prenotazione
+	 * @param codice
+	 * @return
+	 */
 	public String cercaNomeSala(Integer codice) {
 		
 		saleDao = new SalaDAO();
@@ -291,7 +356,15 @@ public class Controller {
 		
 	}
 
-
+	/**
+	 * ricerca di un tavolo libero
+	 * @param e
+	 * @param textCodiceRistorante
+	 * @param dateChooser
+	 * @param textNumeroPersone
+	 * @param textAreaClienti
+	 * @param textArea
+	 */
 	public void cercaTavoloLibero(ActionEvent e, JTextField textCodiceRistorante, JDateChooser dateChooser, JTextField textNumeroPersone
 								 ,TextArea textAreaClienti, JTextArea textArea) {
 		
@@ -328,7 +401,9 @@ public class Controller {
 		} 
 			
 	}
-	
+	/*
+	 * ricerca del nome della sala di un ristorante in cui non è presente una prenotazione
+	 */
 	public String cercaNomeSalaNonPrenotata(Integer tavoloLibero, Integer codiceRistorante) {
 		
 		saleDao = new SalaDAO();
@@ -339,7 +414,13 @@ public class Controller {
 	}
 
 	
-	
+	/**
+	 * ricerca dei tavoli disponibili per una tavolata
+	 * @param codiceRistorante   codice del ristorante in cui si vuole cenare
+	 * @param data			     data della cena
+	 * @param numeroPersone		 numero delle persone che ceneranno
+	 * @return
+	 */
 	public List<Tavolo> getTavoloDisponibile(Integer codiceRistorante, Date data, Integer numeroPersone) {
 		//___________________________Cerco eventuali tavoli disponibili
 		tavoliDao = new TavoliDAO();
@@ -350,6 +431,12 @@ public class Controller {
 		return tavoliLiberi;
 	}
 	
+	/**
+	 * visualizzo le informazioni sul tavolo libero
+	 * @param tavoloLibero
+	 * @param nomeSala
+	 * @param textArea
+	 */
 	public void setVisualizzaTavoloLiberoSala(Integer tavoloLibero,String nomeSala,JTextArea textArea) {
 		textArea.append("tavolo disponibile "+ Integer.toString(tavoloLibero) + "\n");
 		textArea.append("nome della sala "+ nomeSala);
@@ -369,6 +456,11 @@ public class Controller {
 		
 	}
 
+	/**
+	 * implementazione della funzionalitè per la statistca mensile
+	 * @param codiceRistorante
+	 * @param textAreaStatistica
+	 */
 	public void statiscticaMensile(String codiceRistorante, TextArea textAreaStatistica) {
 		
 		textAreaStatistica.setText("");
@@ -421,7 +513,11 @@ public class Controller {
 	    }
 	}	
 	
-	
+	/**
+	 * implementazione delle funzionalità per la statisrica giornaliera
+	 * @param codiceRistorante
+	 * @return
+	 */
 	public List<Statistica> statisticaGiornaliera(String codiceRistorante) {
 		
 		
