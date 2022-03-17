@@ -128,7 +128,7 @@ public class StatisticaGiornalieraView extends JFrame {
 			    		textCodiceRistorante.setEditable(true);
 			    	}else {
 			    		textCodiceRistorante.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Il codice riatorante troppo lungo!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Il codice ristorante troppo lungo!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    	
@@ -139,7 +139,7 @@ public class StatisticaGiornalieraView extends JFrame {
 			    		textCodiceRistorante.setEditable(true);
 			    	}else {
 			    		textCodiceRistorante.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Il codice riatorante errato!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Il codice ristorante errato!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    }

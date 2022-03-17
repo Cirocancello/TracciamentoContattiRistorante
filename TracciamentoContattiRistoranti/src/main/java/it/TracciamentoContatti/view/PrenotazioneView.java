@@ -309,7 +309,7 @@ public class PrenotazioneView extends JFrame {
 			    		textCodiceRistorante.setEditable(true);
 			    	}else {
 			    		textCodiceRistorante.setEditable(false);
-						JOptionPane.showMessageDialog(null,  "Il codice riatorante max 2 cifre!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,  "Il codice ristorante max 2 cifre!!!", "Attenzione!!!", JOptionPane.ERROR_MESSAGE);
 
 			    	}
 			    	

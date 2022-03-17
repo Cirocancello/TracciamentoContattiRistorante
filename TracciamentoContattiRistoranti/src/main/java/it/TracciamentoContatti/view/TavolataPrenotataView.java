@@ -161,6 +161,12 @@ public class TavolataPrenotataView extends JFrame {
 				    		textCartaIdentita.setEditable(true);
 				    	}else {
 				    		textCartaIdentita.setEditable(false);
+				        	if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || e.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+					    		//than allow editable
+					    		textCartaIdentita.setEditable(true);
+					    	}else {
+					    		textCartaIdentita.setEditable(false);
+					    	}
 				    	}
 				    	
 				    }else {
